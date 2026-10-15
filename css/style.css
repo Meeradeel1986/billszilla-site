@@ -267,3 +267,15 @@ section{padding:64px 0}
 /* toast notification */
 #bz-toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:#0f172a;color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:9999;max-width:90vw;text-align:center}
 #bz-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* affiliate recommendations */
+.aff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:780px;margin:0 auto}
+.aff-card{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:28px;text-align:center}
+.aff-card h3{color:var(--slate);margin-bottom:8px}
+.aff-card p{color:var(--muted);font-size:.94rem;margin-bottom:18px}
+.aff-disclosure{text-align:center;color:var(--muted);font-size:.8rem;margin-top:18px}
+.aff-box{background:#f0fdf4;border:1px solid #6ee7b7;border-radius:12px;padding:20px 22px;margin:26px 0}
+.aff-box h3{color:#065f46;margin-bottom:6px;font-size:1.05rem}
+.aff-box p{margin:0;font-size:.94rem}
+.aff-box .aff-disclosure{text-align:left;margin:10px 0 0}
+@media(max-width:640px){.aff-grid{grid-template-columns:1fr}}
