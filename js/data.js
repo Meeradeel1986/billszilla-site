@@ -1,4 +1,4 @@
-/* Billszilla data: currencies + invoice label translations.
+/* BillsZilla data: currencies + invoice label translations.
    All static — no network calls, works offline. */
 
 const CURRENCIES = [
