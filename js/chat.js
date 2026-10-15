@@ -1,11 +1,11 @@
-/* Billzilla Assistant — free rule-based FAQ chat widget. No backend, no tracking. */
+/* Billszilla Assistant — free rule-based FAQ chat widget. No backend, no tracking. */
 (function(){
 "use strict";
 var EMAIL="hello@billszilla.com";
 
 var KB=[
- {k:["free","cost","price","charge","pay","subscription"],q:"Is Billzilla really free?",
-  a:"Yes — Billzilla is 100% free. No signup, no watermark, no limits on invoices."},
+ {k:["free","cost","price","charge","pay","subscription"],q:"Is Billszilla really free?",
+  a:"Yes — Billszilla is 100% free. No signup, no watermark, no limits on invoices."},
  {k:["pdf","download","save as pdf","print"],q:"How do I download my invoice as PDF?",
   a:"Click <b>Download PDF</b> in the toolbar, then choose <b>Save as PDF</b> in the print dialog that opens."},
  {k:["private","privacy","data","safe","secure","server","upload"],q:"Is my data private?",
@@ -39,15 +39,15 @@ var KB=[
  {k:["signup","sign up","account","login","register"],q:"Do I need an account?",
   a:"No accounts, no signup, no login — everything works instantly in your browser."},
  {k:["mobile","phone","android","iphone"],q:"Does it work on my phone?",
-  a:"Yes — Billzilla is fully mobile-friendly. You can create and download invoices right from your phone's browser."},
+  a:"Yes — Billszilla is fully mobile-friendly. You can create and download invoices right from your phone's browser."},
  {k:["lost","deleted","disappeared","gone","clear","cleared"],q:"My saved invoices disappeared!",
   a:"Invoices live only in your browser — clearing browser data or switching devices erases them. Tip: download important invoices as PDF for backup."},
  {k:["internet","offline","connection"],q:"Do I need the internet?",
-  a:"Yes, you need an internet connection to load and use Billzilla."},
+  a:"Yes, you need an internet connection to load and use Billszilla."},
  {k:["human","person","support","contact","email","help me"],q:"How do I contact support?",
   a:"Email us at <a href=\"mailto:"+EMAIL+"\">"+EMAIL+"</a> — we aim to reply within 2 business days."},
  {k:["hello","hi","salam","hey"],q:"Hello!",
-  a:"Hello! Ask me anything about creating invoices, quotes, receipts, or proformas with Billzilla."},
+  a:"Hello! Ask me anything about creating invoices, quotes, receipts, or proformas with Billszilla."},
  {k:["thank","thanks","shukriya"],q:"Thanks!",
   a:"You're welcome! Good luck with your invoicing."}
 ];
@@ -83,7 +83,7 @@ function answerFor(text){
     if(s>bestScore){bestScore=s;best=KB[i];}
   }
   if(best&&bestScore>0) return best.a;
-  return "I can answer questions about using Billzilla — try one of the suggestions, or email <a href=\"mailto:"+EMAIL+"\">"+EMAIL+"</a> for anything else.";
+  return "I can answer questions about using Billszilla — try one of the suggestions, or email <a href=\"mailto:"+EMAIL+"\">"+EMAIL+"</a> for anything else.";
 }
 
 function addMsg(html,who){
@@ -103,9 +103,9 @@ function ask(text){
 function init(){
   if(document.getElementById("bz-chat-btn"))return;
   var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
-  var btn=document.createElement("button");btn.id="bz-chat-btn";btn.setAttribute("aria-label","Chat with Billzilla Assistant");btn.innerHTML="💬";
+  var btn=document.createElement("button");btn.id="bz-chat-btn";btn.setAttribute("aria-label","Chat with Billszilla Assistant");btn.innerHTML="💬";
   var panel=document.createElement("div");panel.id="bz-chat-panel";
-  panel.innerHTML='<div class="bz-chat-head"><div><strong>Billzilla Assistant</strong><span>Instant answers</span></div><button id="bz-chat-close" aria-label="Close">×</button></div>'+
+  panel.innerHTML='<div class="bz-chat-head"><div><strong>Billszilla Assistant</strong><span>Instant answers</span></div><button id="bz-chat-close" aria-label="Close">×</button></div>'+
     '<div id="bz-chat-msgs"></div><div id="bz-chat-chips"></div>'+
     '<div class="bz-chat-input"><input id="bz-chat-text" placeholder="Ask a question…" autocomplete="off"><button id="bz-chat-send" aria-label="Send">➤</button></div>';
   document.body.appendChild(btn);document.body.appendChild(panel);
@@ -113,7 +113,7 @@ function init(){
   function toggle(force){
     var open=typeof force==="boolean"?force:!panel.classList.contains("open");
     panel.classList.toggle("open",open);
-    if(open&&!greeted){greeted=true;botSay("Hi! I'm the Billzilla Assistant. Ask me anything about invoices, quotes, receipts, or proformas.");}
+    if(open&&!greeted){greeted=true;botSay("Hi! I'm the Billszilla Assistant. Ask me anything about invoices, quotes, receipts, or proformas.");}
     if(open)setTimeout(function(){document.getElementById("bz-chat-text").focus();},100);
   }
   btn.addEventListener("click",function(){toggle();});
