@@ -276,6 +276,18 @@ function initChrome(){
   document.querySelectorAll('[data-scroll]').forEach(a=>a.addEventListener("click",e=>{
     const el=document.querySelector(a.getAttribute("href")); if(el){e.preventDefault();el.scrollIntoView({behavior:"smooth"});}
   }));
+  /* contact email: always copy on tap (mailto may do nothing if no mail app is set), let mailto proceed too */
+  const ce=document.getElementById("contact-email");
+  if(ce) ce.addEventListener("click",()=>{
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText("hello@billszilla.com").catch(()=>{});
+    toast("Email address copied to clipboard");
+  });
+}
+function toast(msg){
+  let t=document.getElementById("bz-toast");
+  if(!t){t=document.createElement("div");t.id="bz-toast";document.body.appendChild(t);}
+  t.textContent=msg;t.classList.add("show");
+  clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2200);
 }
 
 /* ---------- init ---------- */
