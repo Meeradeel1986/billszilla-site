@@ -63,6 +63,13 @@ section{padding:64px 0}
 .trust-pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-size:.88rem;font-weight:600;color:var(--slate-2);box-shadow:0 2px 8px rgba(15,23,42,.05)}
 .trust-pill .dot{color:var(--green);margin-right:6px}
 
+/* live "invoices today" counter */
+.live-stat{display:flex;align-items:center;justify-content:center;gap:9px;margin:22px 0 2px;color:var(--slate);font-size:.98rem;font-weight:500}
+.live-stat strong{font-size:1.25rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.live-dot{width:9px;height:9px;border-radius:50%;background:#22c55e;flex:none;animation:live-pulse 2s infinite}
+@keyframes live-pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.45)}70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+@media(prefers-reduced-motion:reduce){.live-dot{animation:none}}
+
 /* ---------- app ---------- */
 .app-section{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .app-shell{background:var(--bg);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:clip}
@@ -227,6 +234,8 @@ section{padding:64px 0}
 .foot-grid a{color:#94a3b8;font-size:.92rem;display:block;margin-bottom:9px}
 .foot-grid a:hover{color:#fff}
 .foot-brand p{font-size:.9rem;color:#94a3b8;max-width:300px;margin-top:10px}
+/* footer brand lockup: restore flex centering + size overridden by .foot-grid a */
+.foot-grid .brand{display:flex;align-items:center;font-size:1.35rem}
 .foot-bottom{border-top:1px solid #1e293b;padding-top:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.85rem;color:#64748b}
 
 /* ---------- responsive ---------- */
