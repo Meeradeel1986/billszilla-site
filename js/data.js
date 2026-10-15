@@ -53,3 +53,9 @@ const DOC_TYPES = {
   receipt:  {prefix:"RCP-"},
   proforma: {prefix:"PRO-"}
 };
+
+/* Affiliate links — swap these placeholder URLs for real affiliate links once approved. */
+var AFFILIATE_LINKS = {
+  freshbooks: "https://www.freshbooks.com",
+  quickbooks: "https://quickbooks.intuit.com"
+};
