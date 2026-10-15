@@ -10,7 +10,7 @@ const _docParam=String((window.BILLZILLA_DOC||new URLSearchParams(location.searc
 const DOC=(typeof DOC_TYPES!=="undefined"&&DOC_TYPES[_docParam])?_docParam:"invoice";
 const LS_DRAFT="billzilla_draft_v1_"+DOC, LS_HIST="billzilla_history_v1", LS_COUNT="billzilla_counter_v1";
 
-function blankItem(){return {desc:"",qty:1,rate:0,tax:0};}
+function blankItem(){return {desc:"",qty:1,rate:0,tax:0}}
 function defaultState(){
   return {
     business:{name:"",address:"",email:"",phone:"",taxId:"",logo:""},
@@ -282,6 +282,14 @@ function initChrome(){
     if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText("hello@billszilla.com").catch(()=>{});
     toast("Email address copied to clipboard");
   });
+  /* affiliate links: single source of truth in AFFILIATE_LINKS (js/data.js) */
+  window.wireAffiliateLinks=function(root){
+    (root||document).querySelectorAll("a[data-aff]").forEach(function(a){
+      var k=a.getAttribute("data-aff");
+      if(window.AFFILIATE_LINKS&&AFFILIATE_LINKS[k]){a.href=AFFILIATE_LINKS[k];a.target="_blank";a.rel="sponsored noopener";}
+    });
+  };
+  wireAffiliateLinks(document);
 }
 function toast(msg){
   let t=document.getElementById("bz-toast");
