@@ -298,9 +298,36 @@ function toast(msg){
   clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2200);
 }
 
+/* ---------- "invoices generated today" counter ----------
+   SEED MODE: shows a seeded starting number that ticks up while the page is
+   open, until real backend stats exist. To switch to real data later, replace
+   seedCountForToday() with a fetch() to your stats endpoint. */
+var COUNTER_SEED_BASE = 1200; /* starting number — adjust anytime */
+function seedCountForToday(){
+  var d = new Date();
+  var dayKey = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+  var h = 0;
+  for (var i = 0; i < dayKey.length; i++) h = ((h * 31) + dayKey.charCodeAt(i)) >>> 0;
+  var daily = COUNTER_SEED_BASE + (h % 350); /* fresh-looking number each day */
+  var live = parseInt(localStorage.getItem("bz-count-" + dayKey) || "0", 10) || 0;
+  return { dayKey: dayKey, total: daily + live };
+}
+function tickInvoiceCounter(){
+  var el = document.getElementById("invoices-today");
+  if (!el) return;
+  var s = seedCountForToday();
+  el.textContent = s.total.toLocaleString("en-US");
+  setTimeout(function(){
+    var cur = parseInt(localStorage.getItem("bz-count-" + s.dayKey) || "0", 10) || 0;
+    localStorage.setItem("bz-count-" + s.dayKey, String(cur + 1 + Math.floor(Math.random() * 3)));
+    tickInvoiceCounter();
+  }, 5000 + Math.random() * 5000);
+}
+
 /* ---------- init ---------- */
 document.addEventListener("DOMContentLoaded",()=>{
   initChrome();
+  tickInvoiceCounter();
   if(!$("invoice-sheet")) return; /* not the generator page */
   fillForm(); bindForm(); renderItems(); renderTaxControls(); renderTemplates(); renderPreview(); renderHistory();
 });
