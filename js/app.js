@@ -309,7 +309,7 @@ function seedAllTimeTotal(){
   var days = Math.max(0, Math.floor((now - COUNTER_LAUNCH) / 86400000));
   var h = 0, k = "bz" + days;
   for (var i = 0; i < k.length; i++) h = ((h * 31) + k.charCodeAt(i)) >>> 0;
-  var total = COUNTER_SEED_BASE + (days * 150) + (h % 180); /* grows ~150/day */
+  var total = COUNTER_SEED_BASE + (days * 50) + (h % 180); /* grows ~50/day */
   var live = parseInt(localStorage.getItem("bz-alltime-extra") || "0", 10) || 0;
   return total + live;
 }
