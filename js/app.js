@@ -302,14 +302,14 @@ function toast(msg){
    SEED MODE: shows a seeded all-time total that grows day by day and ticks up
    while the page is open, until real backend stats exist. To switch to real
    data later, replace seedAllTimeTotal() with a fetch() to your stats endpoint. */
-var COUNTER_SEED_BASE = 48000; /* all-time starting number — adjust anytime */
+var COUNTER_SEED_BASE = 8000; /* all-time starting number — adjust anytime */
 var COUNTER_LAUNCH = new Date(2026, 9, 15); /* site launch date */
 function seedAllTimeTotal(){
   var now = new Date();
   var days = Math.max(0, Math.floor((now - COUNTER_LAUNCH) / 86400000));
   var h = 0, k = "bz" + days;
   for (var i = 0; i < k.length; i++) h = ((h * 31) + k.charCodeAt(i)) >>> 0;
-  var total = COUNTER_SEED_BASE + (days * 240) + (h % 180); /* grows ~240/day */
+  var total = COUNTER_SEED_BASE + (days * 150) + (h % 180); /* grows ~150/day */
   var live = parseInt(localStorage.getItem("bz-alltime-extra") || "0", 10) || 0;
   return total + live;
 }
