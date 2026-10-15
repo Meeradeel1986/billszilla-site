@@ -1,4 +1,4 @@
-/* Billzilla install prompt: registers the installability-only service worker
+/* Billszilla install prompt: registers the installability-only service worker
    and shows an "Install app" banner when the browser fires beforeinstallprompt. */
 (function () {
 "use strict";
@@ -18,7 +18,7 @@ function showBanner() {
   if (document.getElementById("bz-install")) return;
   var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
   var d = document.createElement("div"); d.id = "bz-install";
-  d.innerHTML = "<span>📲 Install Billzilla as an app</span>";
+  d.innerHTML = "<span>📲 Install Billszilla as an app</span>";
   var go = document.createElement("button"); go.id = "bz-install-go"; go.textContent = "Install";
   var x = document.createElement("button"); x.id = "bz-install-x"; x.setAttribute("aria-label", "Dismiss"); x.textContent = "×";
   d.appendChild(go); d.appendChild(x); document.body.appendChild(d);
