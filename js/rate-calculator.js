@@ -36,7 +36,6 @@ function calc(){
   $("rc-rate").textContent = money(rate, code);
   $("rc-per-day").textContent = money(rate * 8, code);
   $("rc-per-week").textContent = money(rate * hrsWeek, code);
-  $("rc-billable").textContent = billableHrs.toLocaleString("en-US") + " billable hours / year";
   $("rc-formula").textContent =
     "(" + money(income, code) + " + " + money(expenses, code) + ") ÷ " +
     billableHrs.toLocaleString("en-US") + " hrs";
