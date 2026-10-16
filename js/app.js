@@ -341,11 +341,29 @@ function tickInvoiceCounter(){
   }, 5000 + Math.random() * 5000);
 }
 
+/* ---------- time tracker import ---------- */
+function importTimeEntries(){
+  let imp=null;
+  try{ imp=JSON.parse(localStorage.getItem("billzilla_time_import_v1")||"null"); }catch(e){}
+  if(!imp || !imp.length) return;
+  try{ localStorage.removeItem("billzilla_time_import_v1"); }catch(e){}
+  imp.forEach(function(e, i){
+    var item={desc:String(e.desc||"Work"), qty:Number(e.hours)||0, rate:Number(e.rate)||0, tax:0};
+    var firstBlank = S.items.length===1 && !(S.items[0].desc||"").trim() && !(Number(S.items[0].rate)||0);
+    if(i===0 && firstBlank){ S.items[0]=item; }
+    else { S.items.push(item); }
+  });
+  if(imp[0].client && !(S.client.name||"").trim()) S.client.name=String(imp[0].client);
+  saveDraft(); fillForm(); renderItems(); renderPreview();
+  toast("Imported "+imp.length+" time "+(imp.length===1?"entry":"entries")+" from the time tracker");
+}
+
 /* ---------- init ---------- */
 document.addEventListener("DOMContentLoaded",()=>{
   initChrome();
   tickInvoiceCounter();
   if(!$("invoice-sheet")) return; /* not the generator page */
   fillForm(); bindForm(); renderItems(); renderTaxControls(); renderTemplates(); renderPreview(); renderHistory();
+  importTimeEntries();
 });
 })();
