@@ -288,3 +288,22 @@ section{padding:64px 0}
 .aff-box p{margin:0;font-size:.94rem}
 .aff-box .aff-disclosure{text-align:left;margin:10px 0 0}
 @media(max-width:640px){.aff-grid{grid-template-columns:1fr}}
+
+/* ---------- payment reminder generator ---------- */
+.tone-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tone-card input{position:absolute;opacity:0;pointer-events:none}
+.tone-card span{display:block;border:2px solid var(--line);border-radius:10px;padding:12px 8px;cursor:pointer;text-align:center;font-size:.88rem;transition:border-color .15s,background .15s}
+.tone-card span b{display:block;font-size:.95rem;margin:4px 0 2px}
+.tone-card span small{color:var(--muted);font-size:.76rem}
+.tone-card input:checked+span{border-color:var(--green);background:#f0fdf4}
+.tone-card input:focus-visible+span{outline:2px solid var(--green);outline-offset:2px}
+#r-overdue{display:inline-block;background:#fee2e2;color:#991b1b;font-weight:700;font-size:.78rem;padding:4px 12px;border-radius:999px;margin-left:10px;vertical-align:middle}
+.letter-sheet{background:#fff;border:1px solid var(--line);border-radius:12px;padding:28px;box-shadow:var(--shadow);font-size:.95rem;line-height:1.75;color:var(--ink)}
+.letter-subject{font-weight:700;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.letter-subject span{color:var(--muted);font-weight:600}
+.letter-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted);flex-wrap:wrap}
+.tone-tag{font-weight:700;font-size:.75rem;padding:4px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:.05em}
+.tone-gentle{background:#dcfce7;color:#166534}
+.tone-firm{background:#fef3c7;color:#92400e}
+.tone-final{background:#fee2e2;color:#991b1b}
+@media(max-width:640px){.tone-pick{grid-template-columns:1fr}}
