@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Time Tracker for Freelancers — BillsZilla | Track Hours, Invoice Them</title>
+<meta name="description" content="BillsZilla's free time tracker logs your billable hours and turns them into a professional invoice in one click. No signup, no watermark, everything stays in your browser.">
+<link rel="canonical" href="https://billszilla.com/time-tracker.html">
+<meta property="og:title" content="Free Time Tracker for Freelancers — BillsZilla">
+<meta property="og:description" content="Track billable hours, then turn them into an invoice in one click. Free forever. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://billszilla.com/time-tracker.html">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#059669">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is there a free time tracker for freelancers?","acceptedAnswer":{"@type":"Answer","text":"Yes — BillsZilla's time tracker is free forever with no signup. Start the timer when you begin work, stop when you finish, and your billable hours are logged with the amount earned."}},
+{"@type":"Question","name":"Can I turn tracked hours into an invoice?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click 'Send to invoice' and every logged entry becomes a line item (hours × rate) in the BillsZilla invoice generator, ready to download as a PDF."}},
+{"@type":"Question","name":"Does the timer keep running if I close the page?","acceptedAnswer":{"@type":"Answer","text":"Yes. The start time is saved in your browser, so if you reload or close the tab, the timer resumes where it left off when you return."}},
+{"@type":"Question","name":"Where is my time data stored?","acceptedAnswer":{"@type":"Answer","text":"Only in your own browser (localStorage). Nothing is uploaded anywhere — your client list and hours never leave your device."}}
+]}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/logo.png?v=2" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Invoice Generator</a>
+      <a href="/payment-reminder.html">Payment Reminders</a>
+      <a href="/hourly-rate-calculator.html">Rate Calculator</a>
+      <a href="/time-tracker.html">Time Tracker</a>
+      <a href="/quote.html">Quotes</a>
+      <a href="/receipt.html">Receipts</a>
+      <a href="/proforma.html">Proforma</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/#app" class="btn nav-cta">Create Invoice</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Free Time Tracker for Freelancers</h1>
+    <p>Start the timer, do the work, stop the timer — then turn your hours into a professional invoice in one click. Free forever.</p>
+  </div>
+</section>
+
+<section class="app-section" id="app">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;margin-bottom:26px">
+      <h2 class="sec-title">Time Tracker</h2>
+      <p class="sec-sub">Your entries are saved in this browser only — nothing is uploaded.</p>
+    </div>
+    <div class="app-shell">
+      <div class="tt-timer-card">
+        <div class="tt-elapsed" id="tt-elapsed">00:00:00</div>
+        <div class="tt-status" id="tt-status">Timer stopped</div>
+        <div class="frow">
+          <div class="field"><label>Client / project</label><input id="tt-client" placeholder="Acme Studio"></div>
+          <div class="field"><label>What are you working on?</label><input id="tt-desc" placeholder="Homepage redesign"></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label>Currency</label><select id="tt-currency"></select></div>
+          <div class="field"><label>Hourly rate</label><input id="tt-rate" type="number" min="0" step="any" placeholder="50.00"></div>
+        </div>
+        <button class="btn tt-toggle" id="tt-toggle" type="button">▶ Start timer</button>
+        <div class="hint" style="margin-top:10px">Don't know your rate? <a href="/hourly-rate-calculator.html">Calculate it here</a>.</div>
+      </div>
+
+      <div class="app-toolbar" style="margin-top:22px">
+        <span class="title">📋 Logged time</span>
+        <div class="actions">
+          <button class="btn small ghost-dark" id="btn-clear" type="button">Clear all</button>
+          <button class="btn small" id="btn-invoice" type="button">🧾 Send to invoice →</button>
+        </div>
+      </div>
+      <div class="tt-entries" id="tt-entries"></div>
+      <div class="tt-totals">
+        <div><span>Total time</span><b id="tt-total-time">0m</b></div>
+        <div><span>Total amount</span><b id="tt-total-amount">$0.00</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="marketing">
+  <div class="wrap" style="max-width:820px">
+    <h2 class="sec-title">Time tracker FAQ</h2>
+    <div class="faq-item"><button class="faq-q">Is there a free time tracker for freelancers?</button><div class="faq-a">Yes — this one is free forever with no signup. Start the timer when you begin work, stop when you finish, and your billable hours are logged with the amount earned.</div></div>
+    <div class="faq-item"><button class="faq-q">Can I turn tracked hours into an invoice?</button><div class="faq-a">Yes. Click "Send to invoice" and every logged entry becomes a line item (hours × rate) in the <a href="/">invoice generator</a>, ready to download as a PDF.</div></div>
+    <div class="faq-item"><button class="faq-q">Does the timer keep running if I close the page?</button><div class="faq-a">Yes. The start time is saved in your browser, so if you reload or close the tab, the timer resumes where it left off when you return.</div></div>
+    <div class="faq-item"><button class="faq-q">Where is my time data stored?</button><div class="faq-a">Only in your own browser. Nothing is uploaded anywhere — your client list and hours never leave your device.</div></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" style="color:#fff"><img src="/logo.png?v=2" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+        <p>The free invoice generator that respects your privacy. No signup, no watermark, no servers.</p>
+      </div>
+      <div><h4>Tools</h4><a href="/#app">Invoice Generator</a><a href="/payment-reminder.html">Payment Reminder</a><a href="/hourly-rate-calculator.html">Rate Calculator</a><a href="/time-tracker.html">Time Tracker</a><a href="/quote.html">Quote Generator</a><a href="/receipt.html">Receipt Generator</a><a href="/proforma.html">Proforma Invoice</a></div>
+      <div><h4>Resources</h4><a href="/blog/">Blog</a><a href="/#faq">FAQ</a><a href="/#templates">Templates</a></div>
+      <div><h4>Company</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Made for freelancers everywhere.</span></div>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<script src="/js/data.js"></script>
+<script src="/js/time-tracker.js"></script>
+<script src="/js/chat.js"></script>
+<script src="/js/install.js"></script>
+</body>
+</html>
