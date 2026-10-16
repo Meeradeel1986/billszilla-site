@@ -233,6 +233,7 @@ function bindForm(){
     r.readAsDataURL(f);
   });
   const dl=$("btn-download"); if(dl) dl.addEventListener("click",()=>window.print());
+  const em=$("btn-email"); if(em) em.addEventListener("click",emailInvoice);
   const sv=$("btn-save"); if(sv) sv.addEventListener("click",saveToHistory);
   const nw=$("btn-new"); if(nw) nw.addEventListener("click",()=>{ if(confirm("Start a new invoice? Your current draft will be cleared.")){ S=defaultState(); saveDraft(); fillForm(); renderItems(); renderTaxControls(); renderTemplates(); renderPreview(); renderHistory(); }});
 }
@@ -296,6 +297,22 @@ function toast(msg){
   if(!t){t=document.createElement("div");t.id="bz-toast";document.body.appendChild(t);}
   t.textContent=msg;t.classList.add("show");
   clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2200);
+}
+
+/* ---------- email invoice via mailto ---------- */
+function emailInvoice(){
+  const c=calc();
+  const to=(S.client.email||"").trim();
+  const biz=(S.business.name||"").trim();
+  const num=(S.meta.number||"").trim();
+  const due=S.meta.due?new Date(S.meta.due+"T12:00:00").toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}):"";
+  const subject="Invoice "+num+(biz?" from "+biz:"")+" — "+fmt(c.total)+(due?" (due "+due+")":"");
+  let body="Hi "+((S.client.name||"").trim()||"there")+",\n\n";
+  body+="Please find attached invoice "+num+" for "+fmt(c.total)+(due?", due on "+due:"")+".\n";
+  if((S.payment||"").trim()) body+="\nPayment details:\n"+S.payment.trim()+"\n";
+  body+="\nThank you,\n"+(biz||"");
+  window.location.href="mailto:"+encodeURIComponent(to)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  toast("Email draft opened — attach the PDF you downloaded");
 }
 
 /* ---------- "invoices generated" all-time counter ----------
