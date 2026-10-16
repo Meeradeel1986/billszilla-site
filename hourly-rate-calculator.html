@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Hourly Rate Calculator for Freelancers — BillsZilla</title>
+<meta name="description" content="What should you charge per hour? BillsZilla's free freelancer rate calculator turns your income goal, expenses, and billable hours into the perfect hourly rate. No signup, instant results.">
+<link rel="canonical" href="https://billszilla.com/hourly-rate-calculator.html">
+<meta property="og:title" content="Free Hourly Rate Calculator for Freelancers — BillsZilla">
+<meta property="og:description" content="Find the hourly rate that actually covers your income goal and expenses. Free forever. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://billszilla.com/hourly-rate-calculator.html">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#059669">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I calculate my hourly rate as a freelancer?","acceptedAnswer":{"@type":"Answer","text":"Add your target annual income to your annual business expenses, then divide by your billable hours per year (weekly billable hours × (52 − weeks off)). The result is the hourly rate that covers your goal. BillsZilla's calculator does this instantly."}},
+{"@type":"Question","name":"What is a good hourly rate for freelancers?","acceptedAnswer":{"@type":"Answer","text":"There's no single number — it depends on your income goal, expenses, skill level, and how many hours you can actually bill. As a rule of thumb, most freelancers need to charge 2–3× what they'd earn per hour as an employee, because of taxes, unpaid admin time, and time off."}},
+{"@type":"Question","name":"Should I include expenses in my hourly rate?","acceptedAnswer":{"@type":"Answer","text":"Yes. Software, hardware, internet, coworking, insurance, and taxes are real costs of doing business. Add them to your income target before dividing by billable hours, or you'll undercharge."}},
+{"@type":"Question","name":"Is this rate calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — unlimited calculations, no signup, no watermark. Everything runs in your browser."}}
+]}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/logo.png?v=2" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Invoice Generator</a>
+      <a href="/payment-reminder.html">Payment Reminders</a>
+      <a href="/hourly-rate-calculator.html">Rate Calculator</a>
+      <a href="/time-tracker.html">Time Tracker</a>
+      <a href="/quote.html">Quotes</a>
+      <a href="/receipt.html">Receipts</a>
+      <a href="/proforma.html">Proforma</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/#app" class="btn nav-cta">Create Invoice</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Freelancer Hourly Rate Calculator</h1>
+    <p>Stop guessing what to charge. Enter your income goal and work schedule — get the hourly rate that actually pays your bills. Free forever.</p>
+  </div>
+</section>
+
+<section class="app-section" id="app">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;margin-bottom:26px">
+      <h2 class="sec-title">Hourly Rate Calculator</h2>
+      <p class="sec-sub">Your numbers update the rate live as you type.</p>
+    </div>
+    <div class="app-shell">
+      <div class="app-grid cols2">
+        <div class="app-form">
+          <fieldset>
+            <legend>Your Numbers</legend>
+            <div class="frow single"><div class="field"><label>Currency</label><select id="rc-currency"></select></div></div>
+            <div class="frow">
+              <div class="field"><label>Target yearly income</label><input id="rc-income" type="number" min="0" step="any" value="60000"></div>
+              <div class="field"><label>Yearly business expenses</label><input id="rc-expenses" type="number" min="0" step="any" value="6000"></div>
+            </div>
+            <div class="frow">
+              <div class="field"><label>Billable hours / week</label><input id="rc-hours" type="number" min="1" max="80" step="any" value="30"></div>
+              <div class="field"><label>Weeks off / year</label><input id="rc-weeks-off" type="number" min="0" max="52" step="any" value="4"></div>
+            </div>
+            <div class="hint">Billable hours = hours you actually charge clients for. Most freelancers bill 20–35 of every 40 working hours.</div>
+          </fieldset>
+        </div>
+        <div class="app-preview">
+          <div class="preview-label"><span><span class="live-dot"></span>Your rate</span></div>
+          <div class="rate-result">
+            <div class="rate-big" id="rc-rate">$0.00</div>
+            <div class="rate-sub">per hour</div>
+            <div class="rate-rows">
+              <div class="rate-row"><span>Per day (8 hrs)</span><b id="rc-per-day">$0.00</b></div>
+              <div class="rate-row"><span>Per week</span><b id="rc-per-week">$0.00</b></div>
+              <div class="rate-row"><span>Capacity</span><b id="rc-billable">—</b></div>
+            </div>
+            <div class="rate-formula" id="rc-formula"></div>
+            <a href="/#app" class="btn" style="margin-top:18px">Invoice at this rate →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="marketing">
+  <div class="wrap" style="max-width:820px">
+    <h2 class="sec-title">Hourly rate FAQ</h2>
+    <div class="faq-item"><button class="faq-q">How do I calculate my hourly rate as a freelancer?</button><div class="faq-a">Add your target annual income to your annual business expenses, then divide by your billable hours per year (weekly billable hours × (52 − weeks off)). The result is the hourly rate that covers your goal. The calculator above does this instantly.</div></div>
+    <div class="faq-item"><button class="faq-q">What is a good hourly rate for freelancers?</button><div class="faq-a">There's no single number — it depends on your income goal, expenses, skill level, and billable hours. As a rule of thumb, most freelancers need 2–3× their equivalent employee hourly wage to cover taxes, unpaid admin time, and time off.</div></div>
+    <div class="faq-item"><button class="faq-q">Should I include expenses in my hourly rate?</button><div class="faq-a">Yes. Software, hardware, internet, coworking, insurance, and taxes are real costs. Add them to your income target before dividing by billable hours, or you'll undercharge.</div></div>
+    <div class="faq-item"><button class="faq-q">Is this rate calculator free?</button><div class="faq-a">Yes — unlimited calculations, no signup, no watermark. Everything runs in your browser.</div></div>
+    <div class="faq-item"><button class="faq-q">Ready to bill at your new rate?</button><div class="faq-a">Use our free <a href="/">invoice generator</a> to send a professional invoice in seconds, or <a href="/time-tracker.html">track your hours</a> and turn them into an invoice automatically.</div></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" style="color:#fff"><img src="/logo.png?v=2" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+        <p>The free invoice generator that respects your privacy. No signup, no watermark, no servers.</p>
+      </div>
+      <div><h4>Tools</h4><a href="/#app">Invoice Generator</a><a href="/payment-reminder.html">Payment Reminder</a><a href="/hourly-rate-calculator.html">Rate Calculator</a><a href="/time-tracker.html">Time Tracker</a><a href="/quote.html">Quote Generator</a><a href="/receipt.html">Receipt Generator</a><a href="/proforma.html">Proforma Invoice</a></div>
+      <div><h4>Resources</h4><a href="/blog/">Blog</a><a href="/#faq">FAQ</a><a href="/#templates">Templates</a></div>
+      <div><h4>Company</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Made for freelancers everywhere.</span></div>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<script src="/js/data.js"></script>
+<script src="/js/rate-calculator.js"></script>
+<script src="/js/chat.js"></script>
+<script src="/js/install.js"></script>
+</body>
+</html>
