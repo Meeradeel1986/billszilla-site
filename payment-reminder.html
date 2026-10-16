@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Payment Reminder Generator — BillsZilla | Chase Overdue Invoices</title>
+<meta name="description" content="Generate professional payment reminder letters in seconds with BillsZilla's free tool. Friendly, firm, and final notice templates with live preview. Copy, email, or print — no signup, no watermark.">
+<link rel="canonical" href="https://billszilla.com/payment-reminder.html">
+<meta property="og:title" content="Free Payment Reminder Generator — BillsZilla">
+<meta property="og:description" content="Polite to firm payment reminders in seconds. Free forever. No signup. No watermark.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://billszilla.com/payment-reminder.html">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#059669">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a payment reminder letter?","acceptedAnswer":{"@type":"Answer","text":"A payment reminder letter is a polite written request asking a client to pay an overdue invoice. It states the invoice number, amount, due date, and how to pay. BillsZilla generates one for you in seconds — free, with no signup."}},
+{"@type":"Question","name":"When should I send a payment reminder?","acceptedAnswer":{"@type":"Answer","text":"Send a friendly reminder as soon as an invoice becomes overdue. If there's no response after 2 weeks, follow up with a firmer tone. After 45+ days, a final notice is appropriate before considering further action."}},
+{"@type":"Question","name":"Is the payment reminder generator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes — unlimited reminders, no watermark, no account. Everything runs in your browser; your client data never leaves your device."}},
+{"@type":"Question","name":"Can I email the reminder directly?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click 'Send via email' and your email app opens with the subject line and letter body pre-filled — just add your client's address and hit send."}}
+]}
+</script>
+<style>
+@media print{
+  .site-header,.page-hero,.app-form,.app-toolbar,.marketing,.site-footer,#bz-chat-btn,#bz-chat-panel,#bz-toast,.preview-label{display:none!important}
+  .app-section{background:#fff;border:0}
+  .app-shell{box-shadow:none;border:0}
+  .app-grid{display:block}
+  .app-preview{position:static;max-height:none;overflow:visible}
+  .letter-sheet{box-shadow:none;border:0;padding:0}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/logo.png?v=2" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Invoice Generator</a>
+      <a href="/quote.html">Quotes</a>
+      <a href="/receipt.html">Receipts</a>
+      <a href="/proforma.html">Proforma</a>
+      <a href="/payment-reminder.html">Reminders</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/#app" class="btn nav-cta">Create Invoice</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Free Payment Reminder Generator</h1>
+    <p>Get paid faster. Generate a professional overdue-invoice reminder in under a minute — friendly nudge, firm follow-up, or final notice. Free forever.</p>
+  </div>
+</section>
+
+<section class="app-section" id="app">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;margin-bottom:26px">
+      <h2 class="sec-title">Payment Reminder Generator</h2>
+      <p class="sec-sub">Fill in the details — your reminder letter updates live on the right. Copy it, email it, or print it.</p>
+    </div>
+    <div class="app-shell">
+      <div class="app-toolbar">
+        <span class="title">💸 New Payment Reminder</span>
+        <div class="actions">
+          <button class="btn small" id="btn-copy" type="button">📋 Copy text</button>
+          <button class="btn small ghost-dark" id="btn-email" type="button">✉️ Send via email</button>
+          <button class="btn small" id="btn-print" type="button">⬇ Print / PDF</button>
+        </div>
+      </div>
+      <div class="app-grid">
+        <div class="app-form">
+          <fieldset>
+            <legend>Your Details</legend>
+            <div class="frow">
+              <div class="field"><label>Your name / business</label><input id="r-sender" placeholder="Acme Studio"></div>
+              <div class="field"><label>Invoice number</label><input id="r-inv" placeholder="INV-0001"></div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Client &amp; Invoice</legend>
+            <div class="frow single"><div class="field"><label>Client name</label><input id="r-client" placeholder="Client or company"></div></div>
+            <div class="frow">
+              <div class="field"><label>Currency</label><select id="r-currency"></select></div>
+              <div class="field"><label>Amount owed</label><input id="r-amount" type="number" min="0" step="any" placeholder="500.00"></div>
+            </div>
+            <div class="frow">
+              <div class="field"><label>Issue date</label><input id="r-issued" type="date"></div>
+              <div class="field"><label>Due date <span id="r-overdue" style="display:none"></span></label><input id="r-due" type="date"></div>
+            </div>
+            <div class="hint">The tone auto-adjusts to how overdue the invoice is — you can override it below.</div>
+          </fieldset>
+          <fieldset>
+            <legend>Reminder Tone</legend>
+            <div class="tone-pick">
+              <label class="tone-card"><input type="radio" name="tone" value="gentle" checked><span>🙂<b>Friendly nudge</b><small>1–14 days overdue</small></span></label>
+              <label class="tone-card"><input type="radio" name="tone" value="firm"><span>😐<b>Firm follow-up</b><small>15–44 days overdue</small></span></label>
+              <label class="tone-card"><input type="radio" name="tone" value="final"><span>😠<b>Final notice</b><small>45+ days overdue</small></span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Payment &amp; Extras</legend>
+            <div class="frow single"><div class="field"><label>How should they pay?</label><textarea id="r-pay" placeholder="Bank account, IBAN, JazzCash / Easypaisa, PayPal, etc."></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Extra note (optional)</label><textarea id="r-note" placeholder="Anything extra before your sign-off"></textarea></div></div>
+          </fieldset>
+        </div>
+        <div class="app-preview">
+          <div class="preview-label"><span><span class="live-dot"></span>Live preview</span></div>
+          <div class="letter-sheet" id="letter-sheet"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="marketing">
+  <div class="wrap" style="max-width:820px">
+    <h2 class="sec-title">Payment reminder FAQ</h2>
+    <div class="faq-item"><button class="faq-q">What is a payment reminder letter?</button><div class="faq-a">A payment reminder letter is a polite written request asking a client to pay an overdue invoice. It states the invoice number, amount, due date, and how to pay. BillsZilla generates one for you in seconds — free, with no signup.</div></div>
+    <div class="faq-item"><button class="faq-q">When should I send a payment reminder?</button><div class="faq-a">Send a friendly reminder as soon as an invoice becomes overdue. If there's no response after 2 weeks, follow up with a firmer tone. After 45+ days, a final notice is appropriate before considering further action.</div></div>
+    <div class="faq-item"><button class="faq-q">Is the payment reminder generator really free?</button><div class="faq-a">Yes — unlimited reminders, no watermark, no account. Everything runs in your browser; your client data never leaves your device.</div></div>
+    <div class="faq-item"><button class="faq-q">Can I email the reminder directly?</button><div class="faq-a">Yes. Click "Send via email" and your email app opens with the subject line and letter body pre-filled — just add your client's address and hit send. You can also copy the text or print it as a PDF.</div></div>
+    <div class="faq-item"><button class="faq-q">I haven't invoiced yet — where do I start?</button><div class="faq-a">Use our free <a href="/">invoice generator</a> to create a professional invoice first, then come back here if the payment runs late.</div></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" style="color:#fff"><img src="/logo.png?v=2" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+        <p>The free invoice generator that respects your privacy. No signup, no watermark, no servers.</p>
+      </div>
+      <div><h4>Tools</h4><a href="/#app">Invoice Generator</a><a href="/quote.html">Quote Generator</a><a href="/receipt.html">Receipt Generator</a><a href="/proforma.html">Proforma Invoice</a><a href="/payment-reminder.html">Payment Reminder</a></div>
+      <div><h4>Resources</h4><a href="/blog/">Blog</a><a href="/#faq">FAQ</a><a href="/#templates">Templates</a></div>
+      <div><h4>Company</h4><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Made for freelancers everywhere.</span></div>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<script src="/js/data.js"></script>
+<script src="/js/reminder.js"></script>
+<script src="/js/chat.js"></script>
+<script src="/js/install.js"></script>
+</body>
+</html>
