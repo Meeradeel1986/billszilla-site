@@ -304,9 +304,22 @@ function bindForm(){
     r.onload=ev=>{S.business.logo=ev.target.result;const lp=$("logo-prev");if(lp){lp.src=S.business.logo;lp.style.display="block";}autosave();renderPreview();};
     r.readAsDataURL(f);
   });
-  const dl=$("btn-download"); if(dl) dl.addEventListener("click",printDoc);
-  const em=$("btn-email"); if(em) em.addEventListener("click",emailInvoice);
-  const wa=$("btn-whatsapp"); if(wa) wa.addEventListener("click",whatsappInvoice);
+  const ssb=$("btn-save-send"); if(ssb) ssb.addEventListener("click",()=>{ if(validateInvoice()) openSendModal(); });
+  const scx=$("send-cancel"); if(scx) scx.addEventListener("click",closeSendModal);
+  const smd=$("send-modal"); if(smd) smd.addEventListener("click",e=>{ if(e.target===smd) closeSendModal(); });
+  const swa=$("send-wa"); if(swa) swa.addEventListener("click",sendViaWhatsApp);
+  const sem=$("send-em"); if(sem) sem.addEventListener("click",sendViaEmail);
+  const dlp=$("btn-dl-print"), smn=$("split-menu");
+  if(dlp&&smn){
+    dlp.addEventListener("click",e=>{ e.stopPropagation(); smn.classList.toggle("open"); });
+    document.addEventListener("click",e=>{ if(!e.target.closest(".split-wrap")) smn.classList.remove("open"); });
+    const md=$("m-download"); if(md) md.addEventListener("click",async()=>{ smn.classList.remove("open"); const b=await makePdfOrToast(); if(b) downloadBlob(b,pdfFileName()); });
+    const mp=$("m-print"); if(mp) mp.addEventListener("click",()=>{ smn.classList.remove("open"); if(!validateInvoice()) return; printDoc(); });
+  }
+  document.addEventListener("input",e=>{
+    const f=e.target&&e.target.closest?e.target.closest(".field.invalid"):null;
+    if(f) f.classList.remove("invalid");
+  });
   const sv=$("btn-save"); if(sv) sv.addEventListener("click",saveToHistory);
   const nw=$("btn-new"); if(nw) nw.addEventListener("click",()=>{ if(confirm("Start a new invoice? Your current draft will be cleared.")){ S=defaultState(); saveDraft(); fillForm(); renderItems(); renderTaxControls(); renderTemplates(); renderPreview(); renderHistory(); }});
 }
@@ -384,32 +397,81 @@ function printDoc(){
   setTimeout(restore,1500);
 }
 
-/* ---------- email invoice via mailto ---------- */
-function emailInvoice(){
-  const c=calc();
-  const to=(S.client.email||"").trim();
-  const biz=(S.business.name||"").trim();
-  const num=(S.meta.number||"").trim();
-  const due=(S.meta.showDue!==false&&S.meta.due)?new Date(S.meta.due+"T12:00:00").toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}):"";
-  const paid=!!S.meta.paid;
-  const subject="Invoice "+num+(biz?" from "+biz:"")+(paid?" — PAID":" — "+fmt(c.total)+(due?" (due "+due+")":""));
-  let body="Hi "+((S.client.name||"").trim()||"there")+",\n\n";
-  body+= paid
-    ? "This invoice "+num+" for "+fmt(c.total)+" has been paid in full — thank you!\n"
-    : "Please find attached invoice "+num+" for "+fmt(c.total)+(due?", due on "+due:"")+".\n";
-  if((S.payment||"").trim()) body+="\nPayment details:\n"+S.payment.trim()+"\n";
-  body+="\nThank you,\n"+(biz||"");
-  const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent||"");
-  if(mobile){
-    window.location.href="mailto:"+encodeURIComponent(to)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
-  }else{
-    window.open("https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(to)+"&su="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body),"_blank");
+/* ---------- required-field validation (no empty invoices out) ---------- */
+function markInvalid(el,msg){
+  const f=el.closest(".field"); if(!f) return;
+  f.classList.add("invalid");
+  let e=f.querySelector(".err");
+  if(!e){ e=document.createElement("div"); e.className="err"; f.appendChild(e); }
+  e.textContent=msg;
+}
+function validateInvoice(){
+  document.querySelectorAll(".app-form .field.invalid").forEach(f=>f.classList.remove("invalid"));
+  let ok=true, first=null;
+  [["b-name","Please fill in your company's name"],
+   ["c-name","Please fill in your client's name or their company name"]].forEach(([id,msg])=>{
+    const el=document.getElementById(id);
+    if(el&&!el.value.trim()){ markInvalid(el,msg); ok=false; first=first||el; }
+  });
+  const rows=[...document.querySelectorAll("#items-box .item-row")];
+  const hasItem=rows.some(r=>{
+    const d=r.querySelector('[data-k="desc"]'), rt=r.querySelector('[data-k="rate"]');
+    return d&&d.value.trim()&&rt&&parseFloat(rt.value)>0;
+  });
+  if(!hasItem){
+    ok=false;
+    const d=rows[0]&&rows[0].querySelector('[data-k="desc"]');
+    if(d){ markInvalid(d,"Add at least one item with a description and rate"); first=first||d; }
   }
-  toast("Email draft opened — attach the PDF you downloaded");
+  if(!ok){
+    toast("Please fill in the highlighted fields");
+    if(first){ first.scrollIntoView({behavior:"smooth",block:"center"}); setTimeout(()=>{try{first.focus({preventScroll:true});}catch(e){}},450); }
+  }
+  return ok;
 }
 
-/* ---------- whatsapp invoice via wa.me share ---------- */
-function whatsappInvoice(){
+/* ---------- real PDF generation (client-side, no server) ---------- */
+function pdfFileName(){
+  const doc=(S.meta.doc&&DOC_TYPES[S.meta.doc])?S.meta.doc:"invoice";
+  const lbl={invoice:"Invoice",quote:"Quote",receipt:"Receipt",proforma:"Proforma Invoice"}[doc]||"Invoice";
+  return lbl.replace(/\s+/g,"")+"-"+String(S.meta.number||"").replace(/[^\w-]/g,"")+".pdf";
+}
+function downloadBlob(blob,name){
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download=name;
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},4000);
+}
+async function generatePdfBlob(){
+  if(!window.html2canvas||!window.jspdf) throw new Error("pdf engine missing");
+  const src=document.querySelector(".invoice-sheet");
+  const W=src.offsetWidth;
+  const clone=src.cloneNode(true);
+  clone.style.boxShadow="none"; clone.style.margin="0"; clone.style.borderRadius="0";
+  const holder=document.createElement("div");
+  holder.style.cssText="position:fixed;left:-12000px;top:0;width:"+W+"px;background:#fff;";
+  holder.appendChild(clone); document.body.appendChild(holder);
+  try{
+    const canvas=await window.html2canvas(clone,{scale:2,backgroundColor:"#ffffff",useCORS:true,logging:false});
+    const img=canvas.toDataURL("image/png");
+    const pdf=new window.jspdf.jsPDF("p","mm","a4");
+    const pageW=210, pageH=297, m=10, ph=pageH-m;
+    const w=pageW-m*2, h=canvas.height*w/canvas.width;
+    let heightLeft=h, position=m;
+    pdf.addImage(img,"PNG",m,position,w,h);
+    heightLeft-= (ph-m);
+    while(heightLeft>0){
+      pdf.addPage();
+      position=m-(h-heightLeft);
+      pdf.addImage(img,"PNG",m,position,w,h);
+      heightLeft-= ph;
+    }
+    return pdf.output("blob");
+  }finally{ holder.remove(); }
+}
+
+/* ---------- shared invoice message ---------- */
+function invoiceShareText(){
   const c=calc();
   const biz=(S.business.name||"").trim();
   const num=(S.meta.number||"").trim();
@@ -421,8 +483,44 @@ function whatsappInvoice(){
     : "Please find attached invoice "+num+" for "+fmt(c.total)+(due?", due on "+due:"")+".\n";
   if((S.payment||"").trim()) msg+="\nPayment details:\n"+S.payment.trim()+"\n";
   msg+="\nThank you,\n"+(biz||"");
+  const subject="Invoice "+num+(biz?" from "+biz:"")+(paid?" — PAID":" — "+fmt(c.total)+(due?" (due "+due+")":""));
+  return {msg, subject};
+}
+
+/* ---------- save and send ---------- */
+function openSendModal(){ const n=$("send-inv-no"); if(n) n.textContent=S.meta.number||""; $("send-modal").hidden=false; }
+function closeSendModal(){ $("send-modal").hidden=true; }
+async function makePdfOrToast(){
+  if(!validateInvoice()) return null;
+  toast("Preparing PDF…");
+  try{ return await generatePdfBlob(); }
+  catch(e){ toast("Couldn't make the PDF — check your connection and try again"); return null; }
+}
+async function sendViaWhatsApp(){
+  closeSendModal();
+  const blob=await makePdfOrToast(); if(!blob) return;
+  const {msg}=invoiceShareText();
+  const fname=pdfFileName();
+  const file=new File([blob],fname,{type:"application/pdf"});
+  if(navigator.canShare&&navigator.canShare({files:[file]})){
+    try{ await navigator.share({files:[file],title:fname,text:msg}); return; }
+    catch(e){ if(e&&e.name==="AbortError") return; }
+  }
+  downloadBlob(blob,fname);
   window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
-  toast("Pick the contact in WhatsApp — then attach the PDF you downloaded");
+  toast("PDF downloaded — attach it in WhatsApp");
+}
+async function sendViaEmail(){
+  closeSendModal();
+  const blob=await makePdfOrToast(); if(!blob) return;
+  const fname=pdfFileName();
+  downloadBlob(blob,fname);
+  const to=(S.client.email||"").trim();
+  const {msg,subject}=invoiceShareText();
+  const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent||"");
+  if(mobile){ window.location.href="mailto:"+encodeURIComponent(to)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(msg); }
+  else{ window.open("https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(to)+"&su="+encodeURIComponent(subject)+"&body="+encodeURIComponent(msg),"_blank"); }
+  toast("PDF downloaded — attach it to the email");
 }
 
 /* ---------- "invoices generated" all-time counter ----------
