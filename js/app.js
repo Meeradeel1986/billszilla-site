@@ -15,7 +15,7 @@ function defaultState(){
   return {
     business:{name:"",address:"",email:"",phone:"",taxId:"",logo:""},
     client:{name:"",address:"",email:""},
-    meta:{doc:DOC,number:nextNumber(true,DOC),date:today(),due:today(14),terms:"",currency:"USD",lang:"en",template:"t-modern"},
+    meta:{doc:DOC,number:nextNumber(true,DOC),date:today(),due:today(14),showDue:true,paid:false,terms:"",currency:"USD",lang:"en",template:"t-modern"},
     items:[blankItem()],
     taxMode:"none", flatTax:0, gstType:"intrastate",
     discountType:"percent", discountVal:0, shipping:0,
@@ -100,13 +100,14 @@ function renderPreview(){
   }
   const b=S.business, cl=S.client;
   sheet.innerHTML=`
+    ${(doc==="invoice"&&S.meta.paid)?`<div class="inv-paid-stamp">PAID</div>`:""}
     <div class="inv-topbar">
     <div class="inv-head">
       <div>${logo}<div class="inv-title">${docTitle}</div></div>
       <div class="inv-meta">
         <div><strong>${docNo}</strong> ${esc(S.meta.number)}</div>
         <div><strong>${t.date}:</strong> ${esc(S.meta.date)}</div>
-        <div><strong>${t.dueDate}:</strong> ${esc(S.meta.due)}</div>
+        ${S.meta.showDue!==false?`<div><strong>${t.dueDate}:</strong> ${esc(S.meta.due)}</div>`:""}
       </div>
     </div>
     </div>
@@ -140,6 +141,10 @@ function renderPreview(){
 }
 
 /* ---------- form render ---------- */
+function toggleDueInput(){
+  const sd=$("m-show-due"), di=$("m-due");
+  if(sd&&di){ di.style.display=sd.checked?"":"none"; }
+}
 function renderItems(){
   const box=$("items-box"); if(!box) return;
   const showTax=(S.taxMode==="perline"||S.taxMode==="gst");
@@ -204,6 +209,8 @@ function fillForm(){
   set("b-phone",S.business.phone); set("b-taxid",S.business.taxId);
   set("c-name",S.client.name); set("c-addr",S.client.address); set("c-email",S.client.email);
   set("m-number",S.meta.number); set("m-date",S.meta.date); set("m-due",S.meta.due); set("m-terms",S.meta.terms);
+  const sd=$("m-show-due"); if(sd){ sd.checked=S.meta.showDue!==false; toggleDueInput(); }
+  const pd=$("m-paid"); if(pd){ pd.checked=!!S.meta.paid; }
   set("tax-mode",S.taxMode); set("disc-type",S.discountType); set("disc-val",S.discountVal); set("ship",S.shipping);
   set("notes",S.notes); set("pay",S.payment);
   const lp=$("logo-prev"); if(lp&&S.business.logo){lp.src=S.business.logo;lp.style.display="block";}
@@ -224,6 +231,8 @@ function bindForm(){
   const dt=$("disc-type"); if(dt) dt.addEventListener("change",e=>{S.discountType=e.target.value;autosave();renderPreview();});
   const cu=$("m-currency"); if(cu) cu.addEventListener("change",e=>{S.meta.currency=e.target.value;autosave();renderPreview();});
   const lg=$("m-lang"); if(lg) lg.addEventListener("change",e=>{S.meta.lang=e.target.value;autosave();renderPreview();});
+  const sd2=$("m-show-due"); if(sd2) sd2.addEventListener("change",e=>{S.meta.showDue=e.target.checked;toggleDueInput();autosave();renderPreview();});
+  const pd2=$("m-paid"); if(pd2) pd2.addEventListener("change",e=>{S.meta.paid=e.target.checked;autosave();renderPreview();});
   const add=$("add-item"); if(add) add.addEventListener("click",e=>{e.preventDefault();S.items.push(blankItem());autosave();renderItems();renderPreview();});
   const logo=$("b-logo");
   if(logo) logo.addEventListener("change",e=>{
@@ -305,10 +314,13 @@ function emailInvoice(){
   const to=(S.client.email||"").trim();
   const biz=(S.business.name||"").trim();
   const num=(S.meta.number||"").trim();
-  const due=S.meta.due?new Date(S.meta.due+"T12:00:00").toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}):"";
-  const subject="Invoice "+num+(biz?" from "+biz:"")+" — "+fmt(c.total)+(due?" (due "+due+")":"");
+  const due=(S.meta.showDue!==false&&S.meta.due)?new Date(S.meta.due+"T12:00:00").toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}):"";
+  const paid=!!S.meta.paid;
+  const subject="Invoice "+num+(biz?" from "+biz:"")+(paid?" — PAID":" — "+fmt(c.total)+(due?" (due "+due+")":""));
   let body="Hi "+((S.client.name||"").trim()||"there")+",\n\n";
-  body+="Please find attached invoice "+num+" for "+fmt(c.total)+(due?", due on "+due:"")+".\n";
+  body+= paid
+    ? "This invoice "+num+" for "+fmt(c.total)+" has been paid in full — thank you!\n"
+    : "Please find attached invoice "+num+" for "+fmt(c.total)+(due?", due on "+due:"")+".\n";
   if((S.payment||"").trim()) body+="\nPayment details:\n"+S.payment.trim()+"\n";
   body+="\nThank you,\n"+(biz||"");
   window.location.href="mailto:"+encodeURIComponent(to)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
