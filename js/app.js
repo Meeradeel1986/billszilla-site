@@ -100,7 +100,6 @@ function renderPreview(){
   }
   const b=S.business, cl=S.client;
   sheet.innerHTML=`
-    ${(doc==="invoice"&&S.meta.paid)?`<div class="inv-paid-stamp">PAID</div>`:""}
     <div class="inv-topbar">
     <div class="inv-head">
       <div>${logo}<div class="inv-title">${docTitle}</div></div>
@@ -133,6 +132,7 @@ function renderPreview(){
       ${c.ship>0?`<div class="trow"><span>${t.shipping}</span><span>${fmt(c.ship)}</span></div>`:""}
       ${taxRows}
       <div class="trow grand"><span>${t.totalDue}</span><span>${fmt(c.total)}</span></div>
+      ${(doc==="invoice"&&S.meta.paid)?`<div class="inv-paid-wrap"><div class="inv-paid-stamp">PAID</div></div>`:""}
     </div>
     ${S.meta.terms?`<div class="inv-notes"><h4>${t.paymentTerms}</h4><div>${esc(S.meta.terms).replace(/\n/g,"<br>")}</div></div>`:""}
     ${S.notes?`<div class="inv-notes"><h4>${t.notes}</h4><div>${esc(S.notes).replace(/\n/g,"<br>")}</div></div>`:""}
