@@ -241,7 +241,7 @@ function bindForm(){
     r.onload=ev=>{S.business.logo=ev.target.result;const lp=$("logo-prev");if(lp){lp.src=S.business.logo;lp.style.display="block";}autosave();renderPreview();};
     r.readAsDataURL(f);
   });
-  const dl=$("btn-download"); if(dl) dl.addEventListener("click",()=>window.print());
+  const dl=$("btn-download"); if(dl) dl.addEventListener("click",printDoc);
   const em=$("btn-email"); if(em) em.addEventListener("click",emailInvoice);
   const sv=$("btn-save"); if(sv) sv.addEventListener("click",saveToHistory);
   const nw=$("btn-new"); if(nw) nw.addEventListener("click",()=>{ if(confirm("Start a new invoice? Your current draft will be cleared.")){ S=defaultState(); saveDraft(); fillForm(); renderItems(); renderTaxControls(); renderTemplates(); renderPreview(); renderHistory(); }});
@@ -306,6 +306,18 @@ function toast(msg){
   if(!t){t=document.createElement("div");t.id="bz-toast";document.body.appendChild(t);}
   t.textContent=msg;t.classList.add("show");
   clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),2200);
+}
+
+/* ---------- print with a clean document title ---------- */
+function printDoc(){
+  const labels={invoice:"Invoice",quote:"Quote",receipt:"Receipt",proforma:"Proforma Invoice"};
+  const lbl=labels[DOC]||"Invoice";
+  const oldTitle=document.title;
+  document.title=lbl+" "+(S.meta.number||"")+(S.business.name?" - "+S.business.name:"").trim();
+  const restore=()=>{ document.title=oldTitle; window.removeEventListener("afterprint",restore); };
+  window.addEventListener("afterprint",restore);
+  window.print();
+  setTimeout(restore,1500);
 }
 
 /* ---------- email invoice via mailto ---------- */
