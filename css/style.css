@@ -133,10 +133,41 @@ section{padding:64px 0}
 .t-modern .inv-table th{border-color:var(--green);color:var(--green-dark)}
 .t-modern .inv-totals .grand{color:var(--green-dark);border-color:var(--green)}
 /* template: classic */
+/* ---------- template: classic — clean Zoho-style document ---------- */
 .t-classic{font-family:Georgia,"Times New Roman",serif}
-.t-classic .inv-title{font-size:2.2rem}
-.t-classic .inv-table th{border-top:2px solid #111827}
-.t-classic .inv-head{border-bottom:3px double #111827;padding-bottom:18px}
+.inv-zhead{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:34px}
+.inv-zlogo img{max-height:64px;max-width:180px;margin-bottom:8px}
+.inv-zbiz{font-size:1.05rem;font-weight:700}
+.inv-zaddr{font-size:.85rem;color:#4b5563;line-height:1.6;margin-top:4px}
+.inv-ztitlebox{text-align:right}
+.inv-zdoctitle{font-size:2.1rem;font-weight:700;letter-spacing:.02em}
+.inv-zdocno{font-size:.9rem;font-weight:700;margin-top:6px}
+.inv-zbaltop{margin-top:10px;font-size:.85rem;color:#4b5563}
+.inv-zbaltop strong{display:block;font-size:1.3rem;color:#111827;margin-top:2px}
+.inv-zparties{display:flex;justify-content:space-between;gap:24px;margin-bottom:30px}
+.inv-zcap{font-size:.85rem;color:#374151;margin-bottom:6px}
+.inv-zbillto{font-size:.9rem;line-height:1.65}
+.inv-zbillto .pname{font-weight:700}
+.inv-zmeta{min-width:230px}
+.inv-zmeta .zrow{display:flex;justify-content:space-between;gap:18px;font-size:.88rem;padding:3px 0}
+.inv-zmeta .zrow span{color:#374151}
+.inv-ztable{width:100%;border-collapse:collapse;margin-bottom:6px}
+.inv-ztable thead th{background:#111827;color:#fff;font-weight:600;font-size:.82rem;text-align:left;padding:10px}
+.inv-ztable thead th.num{text-align:right}
+.inv-ztable td{padding:12px 10px;border-bottom:1px solid #e5e7eb;font-size:.9rem;vertical-align:top}
+.inv-ztable td.num{text-align:right}
+.inv-ztable .zn{color:#6b7280;width:34px}
+.inv-ztable .zitem{font-weight:600}
+.inv-ztotals{width:292px;margin-left:auto;margin-top:4px}
+.inv-ztotals .trow{display:flex;justify-content:space-between;padding:6px 0;font-size:.9rem}
+.inv-ztotals .grand{font-weight:700;font-size:1rem;margin-top:4px}
+.inv-ztotals .baldue{background:#f3f4f6;margin:10px -12px 0;padding:10px 12px;font-weight:700}
+.inv-zbottom{display:flex;gap:32px;margin-top:34px}
+.inv-zbottom>div{flex:1}
+.inv-zbottom h4,.inv-zterms h4{font-size:.9rem;font-weight:700;margin-bottom:6px;font-family:Georgia,"Times New Roman",serif}
+.inv-zbottom,.inv-zterms{font-size:.85rem;color:#4b5563;line-height:1.6}
+.inv-zterms{margin-top:22px}
+.t-classic .inv-paid-wrap{margin:-70px 4px 0}
 /* template: minimal */
 .t-minimal .inv-title{font-weight:300;font-size:2.4rem;letter-spacing:.02em}
 .t-minimal .inv-table th{border:0;color:#9ca3af;font-weight:500}
