@@ -510,10 +510,18 @@ async function sendViaWhatsApp(){
       catch(e){ if(e&&e.name==="AbortError") return; }
     }
   }
-  /* desktop: no WhatsApp in the OS share dialog — download the PDF and open WhatsApp Web */
+  /* desktop: WhatsApp Web can't receive file attachments from a link (text only),
+     so copy the PDF to the clipboard (one Ctrl+V to attach) and download it as backup */
   downloadBlob(blob,fname);
+  let copied=false;
+  try{
+    if(navigator.clipboard&&window.ClipboardItem){
+      await navigator.clipboard.write([new ClipboardItem({[blob.type||"application/pdf"]:blob})]);
+      copied=true;
+    }
+  }catch(e){ copied=false; }
   window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
-  toast("PDF downloaded — attach it in WhatsApp");
+  toast(copied?"PDF copied — press Ctrl+V in the WhatsApp chat to attach it":"PDF downloaded — attach it in WhatsApp");
 }
 async function sendViaEmail(){
   closeSendModal();
