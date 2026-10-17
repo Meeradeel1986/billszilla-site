@@ -496,6 +496,17 @@ async function makePdfOrToast(){
   try{ return await generatePdfBlob(); }
   catch(e){ toast("Couldn't make the PDF — check your connection and try again"); return null; }
 }
+/* desktop: links can't carry attachments (mailto: and Gmail URLs are text-only),
+   so copy the PDF to the clipboard — one Ctrl+V attaches it in the composer */
+async function copyPdfToClipboard(blob){
+  try{
+    if(navigator.clipboard&&window.ClipboardItem){
+      await navigator.clipboard.write([new ClipboardItem({[blob.type||"application/pdf"]:blob})]);
+      return true;
+    }
+  }catch(e){}
+  return false;
+}
 async function sendViaWhatsApp(){
   closeSendModal();
   const blob=await makePdfOrToast(); if(!blob) return;
@@ -510,16 +521,8 @@ async function sendViaWhatsApp(){
       catch(e){ if(e&&e.name==="AbortError") return; }
     }
   }
-  /* desktop: WhatsApp Web can't receive file attachments from a link (text only),
-     so copy the PDF to the clipboard (one Ctrl+V to attach) and download it as backup */
   downloadBlob(blob,fname);
-  let copied=false;
-  try{
-    if(navigator.clipboard&&window.ClipboardItem){
-      await navigator.clipboard.write([new ClipboardItem({[blob.type||"application/pdf"]:blob})]);
-      copied=true;
-    }
-  }catch(e){ copied=false; }
+  const copied=await copyPdfToClipboard(blob);
   window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
   toast(copied?"PDF copied — press Ctrl+V in the WhatsApp chat to attach it":"PDF downloaded — attach it in WhatsApp");
 }
@@ -531,9 +534,14 @@ async function sendViaEmail(){
   const to=(S.client.email||"").trim();
   const {msg,subject}=invoiceShareText();
   const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent||"");
-  if(mobile){ window.location.href="mailto:"+encodeURIComponent(to)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(msg); }
-  else{ window.open("https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(to)+"&su="+encodeURIComponent(subject)+"&body="+encodeURIComponent(msg),"_blank"); }
-  toast("PDF downloaded — attach it to the email");
+  if(mobile){
+    window.location.href="mailto:"+encodeURIComponent(to)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(msg);
+    toast("PDF downloaded — attach it to the email");
+    return;
+  }
+  const copied=await copyPdfToClipboard(blob);
+  window.open("https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(to)+"&su="+encodeURIComponent(subject)+"&body="+encodeURIComponent(msg),"_blank");
+  toast(copied?"PDF copied — press Ctrl+V in the email to attach it":"PDF downloaded — attach it to the email");
 }
 
 /* ---------- "invoices generated" all-time counter ----------
