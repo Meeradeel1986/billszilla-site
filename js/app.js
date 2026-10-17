@@ -243,6 +243,7 @@ function bindForm(){
   });
   const dl=$("btn-download"); if(dl) dl.addEventListener("click",printDoc);
   const em=$("btn-email"); if(em) em.addEventListener("click",emailInvoice);
+  const wa=$("btn-whatsapp"); if(wa) wa.addEventListener("click",whatsappInvoice);
   const sv=$("btn-save"); if(sv) sv.addEventListener("click",saveToHistory);
   const nw=$("btn-new"); if(nw) nw.addEventListener("click",()=>{ if(confirm("Start a new invoice? Your current draft will be cleared.")){ S=defaultState(); saveDraft(); fillForm(); renderItems(); renderTaxControls(); renderTemplates(); renderPreview(); renderHistory(); }});
 }
@@ -335,8 +336,30 @@ function emailInvoice(){
     : "Please find attached invoice "+num+" for "+fmt(c.total)+(due?", due on "+due:"")+".\n";
   if((S.payment||"").trim()) body+="\nPayment details:\n"+S.payment.trim()+"\n";
   body+="\nThank you,\n"+(biz||"");
-  window.location.href="mailto:"+encodeURIComponent(to)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent||"");
+  if(mobile){
+    window.location.href="mailto:"+encodeURIComponent(to)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  }else{
+    window.open("https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(to)+"&su="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body),"_blank");
+  }
   toast("Email draft opened — attach the PDF you downloaded");
+}
+
+/* ---------- whatsapp invoice via wa.me share ---------- */
+function whatsappInvoice(){
+  const c=calc();
+  const biz=(S.business.name||"").trim();
+  const num=(S.meta.number||"").trim();
+  const due=(S.meta.showDue!==false&&S.meta.due)?new Date(S.meta.due+"T12:00:00").toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}):"";
+  const paid=!!S.meta.paid;
+  let msg="Hi "+((S.client.name||"").trim()||"there")+",\n\n";
+  msg+= paid
+    ? "This invoice "+num+" for "+fmt(c.total)+" has been paid in full — thank you!\n"
+    : "Please find attached invoice "+num+" for "+fmt(c.total)+(due?", due on "+due:"")+".\n";
+  if((S.payment||"").trim()) msg+="\nPayment details:\n"+S.payment.trim()+"\n";
+  msg+="\nThank you,\n"+(biz||"");
+  window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
+  toast("Pick the contact in WhatsApp — then attach the PDF you downloaded");
 }
 
 /* ---------- "invoices generated" all-time counter ----------
