@@ -232,7 +232,7 @@ function bindForm(){
   const cu=$("m-currency"); if(cu) cu.addEventListener("change",e=>{S.meta.currency=e.target.value;autosave();renderPreview();});
   const lg=$("m-lang"); if(lg) lg.addEventListener("change",e=>{S.meta.lang=e.target.value;autosave();renderPreview();});
   const sd2=$("m-show-due"); if(sd2) sd2.addEventListener("change",e=>{S.meta.showDue=e.target.checked;toggleDueInput();autosave();renderPreview();});
-  const pd2=$("m-paid"); if(pd2) pd2.addEventListener("change",e=>{S.meta.paid=e.target.checked;autosave();renderPreview();});
+  const pd2=$("m-paid"); if(pd2) pd2.addEventListener("change",e=>{S.meta.paid=e.target.checked;autosave();renderPreview();toast(S.meta.paid?"Marked as paid — PAID stamp added":"Marked as unpaid");});
   const add=$("add-item"); if(add) add.addEventListener("click",e=>{e.preventDefault();S.items.push(blankItem());autosave();renderItems();renderPreview();});
   const logo=$("b-logo");
   if(logo) logo.addEventListener("change",e=>{
