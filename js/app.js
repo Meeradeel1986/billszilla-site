@@ -501,11 +501,16 @@ async function sendViaWhatsApp(){
   const blob=await makePdfOrToast(); if(!blob) return;
   const {msg}=invoiceShareText();
   const fname=pdfFileName();
-  const file=new File([blob],fname,{type:"application/pdf"});
-  if(navigator.canShare&&navigator.canShare({files:[file]})){
-    try{ await navigator.share({files:[file],title:fname,text:msg}); return; }
-    catch(e){ if(e&&e.name==="AbortError") return; }
+  const mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent||"");
+  if(mobile){
+    /* phones: native share sheet carries the actual PDF into WhatsApp */
+    const file=new File([blob],fname,{type:"application/pdf"});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      try{ await navigator.share({files:[file],title:fname,text:msg}); return; }
+      catch(e){ if(e&&e.name==="AbortError") return; }
+    }
   }
+  /* desktop: no WhatsApp in the OS share dialog — download the PDF and open WhatsApp Web */
   downloadBlob(blob,fname);
   window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
   toast("PDF downloaded — attach it in WhatsApp");
