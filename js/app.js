@@ -15,7 +15,7 @@ function defaultState(){
   return {
     business:{name:"",address:"",email:"",phone:"",taxId:"",logo:""},
     client:{name:"",address:"",email:""},
-    meta:{doc:DOC,number:nextNumber(true,DOC),date:today(),due:today(14),showDue:true,paid:false,terms:"",currency:"USD",lang:"en",template:"t-modern"},
+    meta:{doc:DOC,number:nextNumber(true,DOC),date:today(),due:today(14),showDue:true,paid:false,terms:"",currency:"USD",lang:"en",template:"t-classic"},
     items:[blankItem()],
     taxMode:"none", flatTax:0, gstType:"intrastate",
     discountType:"percent", discountVal:0, shipping:0,
@@ -83,6 +83,7 @@ function renderPreview(){
   const docNo=doc==="invoice"?t.invoiceNo:(t[doc+"No"]||t.invoiceNo);
   sheet.className="invoice-sheet "+tpl;
   sheet.dir=t.rtl?"rtl":"ltr";
+  if(tpl==="t-classic"){ renderZohoClassic(sheet); return; }
   const logo=S.business.logo?`<div class="inv-logo"><img src="${esc(S.business.logo)}" alt="logo"></div>`:"";
   const rows=c.lines.map(({it,amt})=>{
     const taxCell=(S.taxMode==="perline"||S.taxMode==="gst")?`<td class="num">${esc(it.tax||0)}%</td>`:"";
@@ -137,6 +138,68 @@ function renderPreview(){
     ${S.meta.terms?`<div class="inv-notes"><h4>${t.paymentTerms}</h4><div>${esc(S.meta.terms).replace(/\n/g,"<br>")}</div></div>`:""}
     ${S.notes?`<div class="inv-notes"><h4>${t.notes}</h4><div>${esc(S.notes).replace(/\n/g,"<br>")}</div></div>`:""}
     ${S.payment?`<div class="inv-pay"><h4>${t.paymentDetails}</h4><div>${esc(S.payment).replace(/\n/g,"<br>")}</div></div>`:""}
+    <div class="inv-foot">${t.thankYou} · ${esc(b.name)}</div>`;
+}
+
+/* ---------- template: classic — clean Zoho-style layout ---------- */
+function renderZohoClassic(sheet){
+  const t=L(), c=calc();
+  const doc=(S.meta.doc&&DOC_TYPES[S.meta.doc])?S.meta.doc:"invoice";
+  const docTitle=(doc==="invoice"?t.invoice:(t[doc]||t.invoice)).toUpperCase();
+  const docNoLbl=doc==="invoice"?t.invoiceNo:(t[doc+"No"]||t.invoiceNo);
+  const b=S.business, cl=S.client;
+  const logo=b.logo?`<div class="inv-zlogo"><img src="${esc(b.logo)}" alt=""></div>`:"";
+  const bizLines=[b.address,b.email,b.phone,b.taxId].filter(x=>(x||"").trim()).map(x=>esc(x).replace(/\n/g,"<br>")).join("<br>");
+  const clLines=[cl.address,cl.email].filter(x=>(x||"").trim()).map(x=>esc(x).replace(/\n/g,"<br>")).join("<br>");
+  const taxHead=(S.taxMode==="perline"||S.taxMode==="gst")?`<th class="num">${t.tax}</th>`:"";
+  const rows=c.lines.map(({it,amt},i)=>{
+    const taxCell=(S.taxMode==="perline"||S.taxMode==="gst")?`<td class="num">${esc(it.tax||0)}%</td>`:"";
+    return `<tr><td class="zn">${i+1}</td><td><div class="zitem">${esc(it.desc)||"—"}</div></td><td class="num">${esc(it.qty)}</td><td class="num">${fmt(it.rate)}</td>${taxCell}<td class="num">${fmt(amt)}</td></tr>`;
+  }).join("");
+  let taxRows="";
+  if(S.taxMode==="gst"&&S.gstType==="intrastate"&&(c.cgst>0)){
+    taxRows=`<div class="trow"><span>CGST</span><span>${fmt(c.cgst)}</span></div><div class="trow"><span>SGST</span><span>${fmt(c.sgst)}</span></div>`;
+  }else if(S.taxMode==="gst"&&S.gstType!=="intrastate"&&(c.igst>0)){
+    taxRows=`<div class="trow"><span>IGST</span><span>${fmt(c.igst)}</span></div>`;
+  }else if(c.taxTotal>0){
+    const lbl=S.taxMode==="flat"?`${t.taxTotal} (${esc(S.flatTax)}%)`:t.taxTotal;
+    taxRows=`<div class="trow"><span>${lbl}</span><span>${fmt(c.taxTotal)}</span></div>`;
+  }
+  const balLbl=doc==="invoice"?t.balanceDue:t.total;
+  sheet.innerHTML=`
+    <div class="inv-zhead">
+      <div class="inv-zbrand">${logo}<div class="inv-zbiz">${esc(b.name)||"Your Business"}</div>${bizLines?`<div class="inv-zaddr">${bizLines}</div>`:""}</div>
+      <div class="inv-ztitlebox">
+        <div class="inv-zdoctitle">${docTitle}</div>
+        <div class="inv-zdocno">${docNoLbl} ${esc(S.meta.number)}</div>
+        <div class="inv-zbaltop"><span>${balLbl}</span><strong>${fmt(c.total)}</strong></div>
+      </div>
+    </div>
+    <div class="inv-zparties">
+      <div class="inv-zbillto"><div class="inv-zcap">${t.billTo}</div><div class="pname">${esc(cl.name)||"Client"}</div>${clLines?`<div>${clLines}</div>`:""}</div>
+      <div class="inv-zmeta">
+        <div class="zrow"><span>${t.date} :</span><b>${esc(S.meta.date)}</b></div>
+        ${S.meta.showDue!==false?`<div class="zrow"><span>${t.dueDate} :</span><b>${esc(S.meta.due)}</b></div>`:""}
+      </div>
+    </div>
+    <table class="inv-ztable">
+      <thead><tr><th class="zn">#</th><th>${t.description}</th><th class="num">${t.qty}</th><th class="num">${t.rate}</th>${taxHead}<th class="num">${t.amount}</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="inv-ztotals">
+      <div class="trow"><span>${t.subtotal}</span><span>${fmt(c.sub)}</span></div>
+      ${c.disc>0?`<div class="trow"><span>${t.discount}</span><span>−${fmt(c.disc)}</span></div>`:""}
+      ${c.ship>0?`<div class="trow"><span>${t.shipping}</span><span>${fmt(c.ship)}</span></div>`:""}
+      ${taxRows}
+      <div class="trow grand"><span>${t.grandTotal}</span><span>${fmt(c.total)}</span></div>
+      <div class="trow baldue"><span>${balLbl}</span><span>${fmt(c.total)}</span></div>
+      ${(doc==="invoice"&&S.meta.paid)?`<div class="inv-paid-wrap"><div class="inv-paid-stamp">PAID</div></div>`:""}
+    </div>
+    ${(S.notes||S.payment)?`<div class="inv-zbottom">
+      ${S.notes?`<div><h4>${t.notes}</h4><div>${esc(S.notes).replace(/\n/g,"<br>")}</div></div>`:""}
+      ${S.payment?`<div><h4>${t.paymentDetails}</h4><div>${esc(S.payment).replace(/\n/g,"<br>")}</div></div>`:""}
+    </div>`:""}
+    ${S.meta.terms?`<div class="inv-zterms"><h4>${t.paymentTerms}</h4><div>${esc(S.meta.terms).replace(/\n/g,"<br>")}</div></div>`:""}
     <div class="inv-foot">${t.thankYou} · ${esc(b.name)}</div>`;
 }
 
