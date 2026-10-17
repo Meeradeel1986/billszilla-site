@@ -496,17 +496,6 @@ async function makePdfOrToast(){
   try{ return await generatePdfBlob(); }
   catch(e){ toast("Couldn't make the PDF — check your connection and try again"); return null; }
 }
-/* desktop: links can't carry attachments (mailto: and Gmail URLs are text-only),
-   so copy the PDF to the clipboard — one Ctrl+V attaches it in the composer */
-async function copyPdfToClipboard(blob){
-  try{
-    if(navigator.clipboard&&window.ClipboardItem){
-      await navigator.clipboard.write([new ClipboardItem({[blob.type||"application/pdf"]:blob})]);
-      return true;
-    }
-  }catch(e){}
-  return false;
-}
 async function sendViaWhatsApp(){
   closeSendModal();
   const blob=await makePdfOrToast(); if(!blob) return;
@@ -522,9 +511,8 @@ async function sendViaWhatsApp(){
     }
   }
   downloadBlob(blob,fname);
-  const copied=await copyPdfToClipboard(blob);
   window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank");
-  toast(copied?"PDF copied — press Ctrl+V in the WhatsApp chat to attach it":"PDF downloaded — attach it in WhatsApp");
+  toast("PDF downloaded — attach it from your downloads in the chat");
 }
 async function sendViaEmail(){
   closeSendModal();
@@ -539,9 +527,8 @@ async function sendViaEmail(){
     toast("PDF downloaded — attach it to the email");
     return;
   }
-  const copied=await copyPdfToClipboard(blob);
   window.open("https://mail.google.com/mail/?view=cm&fs=1&to="+encodeURIComponent(to)+"&su="+encodeURIComponent(subject)+"&body="+encodeURIComponent(msg),"_blank");
-  toast(copied?"PDF copied — press Ctrl+V in the email to attach it":"PDF downloaded — attach it to the email");
+  toast("PDF downloaded — attach it from your downloads in the email");
 }
 
 /* ---------- "invoices generated" all-time counter ----------
