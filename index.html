@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://billszilla.com/">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
-<link rel="stylesheet" href="/css/style.css?v=5">
+<link rel="stylesheet" href="/css/style.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"BillsZilla","url":"https://billszilla.com/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free invoice generator with no signup and no watermark."}
 </script>
@@ -112,6 +112,7 @@
             <div class="frow">
               <div class="field"><label>Invoice number</label><input id="m-number"></div>
               <div class="field"><label>Currency</label><select id="m-currency"></select></div>
+              <div class="field"><label>PO / Reference no. (optional)</label><input id="m-po" placeholder="e.g. PO-1234"></div>
             </div>
             <div class="frow">
               <div class="field"><label>Issue date</label><input id="m-date" type="date"></div>
@@ -150,6 +151,17 @@
             <div class="frow single"><div class="field"><label>Notes</label><textarea id="notes" placeholder="Any extra notes for your client"></textarea></div></div>
             <div class="frow single"><div class="field"><label>Payment terms</label><textarea id="m-terms" placeholder="e.g. Payment due within 14 days"></textarea></div></div>
             <div class="frow single"><div class="field"><label>Payment details</label><textarea id="pay" placeholder="Bank account, IBAN, JazzCash / Easypaisa, etc."></textarea></div></div>
+          </fieldset>
+          <fieldset>
+            <legend>Signature (optional)</legend>
+            <div class="frow single"><div class="field">
+              <label>Draw or upload your signature — it prints on the invoice</label>
+              <canvas id="sig-pad" width="520" height="160"></canvas>
+              <div class="sig-row">
+                <button type="button" id="sig-clear" class="link-btn">Clear</button>
+                <label class="link-btn file-btn">Upload image<input type="file" id="sig-upload" accept="image/*" hidden></label>
+              </div>
+            </div></div>
           </fieldset>
         </div>
         <div class="app-preview">
@@ -291,8 +303,8 @@
 </div>
 <script src="/js/vendor/html2canvas.min.js?v=2"></script>
 <script src="/js/vendor/jspdf.umd.min.js?v=2"></script>
-<script src="/js/data.js?v=2"></script>
-<script src="/js/app.js?v=6"></script>
+<script src="/js/data.js?v=3"></script>
+<script src="/js/app.js?v=7"></script>
 <script src="/js/chat.js?v=2"></script>
 <script src="/js/install.js?v=2"></script>
 </body>

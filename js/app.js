@@ -13,9 +13,9 @@ const LS_DRAFT="billzilla_draft_v1_"+DOC, LS_HIST="billzilla_history_v1", LS_COU
 function blankItem(){return {desc:"",qty:1,rate:0,tax:0}}
 function defaultState(){
   return {
-    business:{name:"",address:"",email:"",phone:"",taxId:"",logo:""},
+    business:{name:"",address:"",email:"",phone:"",taxId:"",logo:"",signature:""},
     client:{name:"",address:"",email:""},
-    meta:{doc:DOC,number:nextNumber(true,DOC),date:today(),due:today(14),showDue:true,paid:false,terms:"",currency:"USD",lang:"en",template:"t-classic"},
+    meta:{doc:DOC,number:nextNumber(true,DOC),date:today(),due:today(14),showDue:true,paid:false,terms:"",currency:"USD",lang:"en",template:"t-classic",po:""},
     items:[blankItem()],
     taxMode:"none", flatTax:0, gstType:"intrastate",
     discountType:"percent", discountVal:0, shipping:0,
@@ -27,6 +27,50 @@ let S = loadDraft() || defaultState();
 function today(plusDays){
   const d=new Date(); if(plusDays) d.setDate(d.getDate()+plusDays);
   return d.toISOString().slice(0,10);
+}
+
+/* ---------- amount in words (English) ---------- */
+const CURR_WORDS={
+  USD:["Dollar","Dollars","Cent","Cents"],EUR:["Euro","Euros","Cent","Cents"],
+  GBP:["Pound","Pounds","Penny","Pence"],PKR:["Rupee","Rupees","Paisa","Paise"],
+  INR:["Rupee","Rupees","Paisa","Paise"],AED:["Dirham","Dirhams","Fils","Fils"],
+  SAR:["Riyal","Riyals","Halala","Halalas"],BDT:["Taka","Takas","Paisa","Paise"],
+  PHP:["Peso","Pesos","Centavo","Centavos"],CAD:["Dollar","Dollars","Cent","Cents"],
+  AUD:["Dollar","Dollars","Cent","Cents"],NZD:["Dollar","Dollars","Cent","Cents"],
+  CHF:["Franc","Francs","Centime","Centimes"],JPY:["Yen","Yen","Sen","Sen"],
+  CNY:["Yuan","Yuan","Fen","Fen"],SGD:["Dollar","Dollars","Cent","Cents"],
+  HKD:["Dollar","Dollars","Cent","Cents"],MYR:["Ringgit","Ringgits","Sen","Sen"]
+};
+function currWords(code){
+  if(CURR_WORDS[code]) return CURR_WORDS[code];
+  const c=(typeof CURRENCIES!=="undefined"?CURRENCIES.find(x=>x[0]===code):null);
+  const nm=c?c[2]:"Dollar";
+  return [nm,nm+"s","Cent","Cents"];
+}
+const _ONES=["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"];
+const _TENS=["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+function _twoW(n){return n<20?_ONES[n]:_TENS[Math.floor(n/10)]+(n%10?" "+_ONES[n%10]:"");}
+function _threeW(n){const h=Math.floor(n/100),r=n%100;return (h?_ONES[h]+" Hundred"+(r?" ":""):"")+(r?_twoW(r):"");}
+function numToWords(n){
+  n=Math.floor(Math.abs(n));
+  if(n===0) return "Zero";
+  const scales=[["Billion",1e9],["Million",1e6],["Thousand",1e3]];
+  let out="";
+  for(const [name,val] of scales){
+    const q=Math.floor(n/val);
+    if(q>0){ out+=(out?" ":"")+_threeW(q)+" "+name; n%=val; }
+  }
+  if(n>0) out+=(out?" ":"")+_threeW(n);
+  return out;
+}
+function amountInWords(total,code){
+  if(total==null||isNaN(total)) return "";
+  const neg=total<0; total=Math.abs(Math.round(total*100)/100);
+  const intP=Math.floor(total), fracP=Math.round((total-intP)*100);
+  const [u,up,su,sup]=currWords(code);
+  let s=numToWords(intP)+" "+(intP===1?u:up);
+  if(fracP>0) s+=" and "+numToWords(fracP)+" "+(fracP===1?su:sup);
+  return (neg?"Minus ":"")+s+" Only";
 }
 function nextNumber(bump,doc){
   const d=(doc&&DOC_TYPES[doc])?doc:DOC, key=LS_COUNT+"_"+d, pfx=DOC_TYPES[d].prefix;
@@ -84,6 +128,8 @@ function renderPreview(){
   sheet.className="invoice-sheet "+tpl;
   sheet.dir=t.rtl?"rtl":"ltr";
   if(tpl==="t-classic"){ renderZohoClassic(sheet); return; }
+  const words=(S.meta.lang==="en")?amountInWords(c.total,S.meta.currency):"";
+  const sigHtml=S.business.signature?`<div class="inv-sig"><img src="${esc(S.business.signature)}" alt="signature"><div class="sig-cap">${t.authSig}</div></div>`:"";
   const logo=S.business.logo?`<div class="inv-logo"><img src="${esc(S.business.logo)}" alt="logo"></div>`:"";
   const rows=c.lines.map(({it,amt})=>{
     const taxCell=(S.taxMode==="perline"||S.taxMode==="gst")?`<td class="num">${esc(it.tax||0)}%</td>`:"";
@@ -106,6 +152,7 @@ function renderPreview(){
       <div>${logo}<div class="inv-title">${docTitle}</div></div>
       <div class="inv-meta">
         <div><strong>${docNo}</strong> ${esc(S.meta.number)}</div>
+        ${S.meta.po?`<div><strong>${t.poNo}:</strong> ${esc(S.meta.po)}</div>`:""}
         <div><strong>${t.date}:</strong> ${esc(S.meta.date)}</div>
         ${S.meta.showDue!==false?`<div><strong>${t.dueDate}:</strong> ${esc(S.meta.due)}</div>`:""}
       </div>
@@ -135,6 +182,8 @@ function renderPreview(){
       <div class="trow grand"><span>${t.totalDue}</span><span>${fmt(c.total)}</span></div>
       ${(doc==="invoice"&&S.meta.paid)?`<div class="inv-paid-wrap"><div class="inv-paid-stamp">PAID</div></div>`:""}
     </div>
+    ${words?`<div class="inv-words"><strong>${t.amtWords}:</strong> ${esc(words)}</div>`:""}
+    ${sigHtml}
     ${S.meta.terms?`<div class="inv-notes"><h4>${t.paymentTerms}</h4><div>${esc(S.meta.terms).replace(/\n/g,"<br>")}</div></div>`:""}
     ${S.notes?`<div class="inv-notes"><h4>${t.notes}</h4><div>${esc(S.notes).replace(/\n/g,"<br>")}</div></div>`:""}
     ${S.payment?`<div class="inv-pay"><h4>${t.paymentDetails}</h4><div>${esc(S.payment).replace(/\n/g,"<br>")}</div></div>`:""}
@@ -166,6 +215,8 @@ function renderZohoClassic(sheet){
     taxRows=`<div class="trow"><span>${lbl}</span><span>${fmt(c.taxTotal)}</span></div>`;
   }
   const balLbl=doc==="invoice"?t.balanceDue:t.total;
+  const words=(S.meta.lang==="en")?amountInWords(c.total,S.meta.currency):"";
+  const sigHtml=S.business.signature?`<div class="inv-zsig"><img src="${esc(S.business.signature)}" alt="signature"><div class="sig-cap">${t.authSig}</div></div>`:"";
   sheet.innerHTML=`
     <div class="inv-zhead">
       <div class="inv-zbrand">${logo}<div class="inv-zbiz">${esc(b.name)||"Your Business"}</div>${bizLines?`<div class="inv-zaddr">${bizLines}</div>`:""}</div>
@@ -180,6 +231,7 @@ function renderZohoClassic(sheet){
       <div class="inv-zmeta">
         <div class="zrow"><span>${t.date} :</span><b>${esc(S.meta.date)}</b></div>
         ${S.meta.showDue!==false?`<div class="zrow"><span>${t.dueDate} :</span><b>${esc(S.meta.due)}</b></div>`:""}
+        ${S.meta.po?`<div class="zrow"><span>${t.poNo} :</span><b>${esc(S.meta.po)}</b></div>`:""}
       </div>
     </div>
     <table class="inv-ztable">
@@ -195,6 +247,8 @@ function renderZohoClassic(sheet){
       <div class="trow baldue"><span>${balLbl}</span><span>${fmt(c.total)}</span></div>
       ${(doc==="invoice"&&S.meta.paid)?`<div class="inv-paid-wrap"><div class="inv-paid-stamp">PAID</div></div>`:""}
     </div>
+    ${words?`<div class="inv-zwords"><strong>${t.amtWords}:</strong> ${esc(words)}</div>`:""}
+    ${sigHtml}
     ${(S.notes||S.payment)?`<div class="inv-zbottom">
       ${S.notes?`<div><h4>${t.notes}</h4><div>${esc(S.notes).replace(/\n/g,"<br>")}</div></div>`:""}
       ${S.payment?`<div><h4>${t.paymentDetails}</h4><div>${esc(S.payment).replace(/\n/g,"<br>")}</div></div>`:""}
@@ -271,12 +325,13 @@ function fillForm(){
   set("b-name",S.business.name); set("b-addr",S.business.address); set("b-email",S.business.email);
   set("b-phone",S.business.phone); set("b-taxid",S.business.taxId);
   set("c-name",S.client.name); set("c-addr",S.client.address); set("c-email",S.client.email);
-  set("m-number",S.meta.number); set("m-date",S.meta.date); set("m-due",S.meta.due); set("m-terms",S.meta.terms);
+  set("m-number",S.meta.number); set("m-date",S.meta.date); set("m-due",S.meta.due); set("m-terms",S.meta.terms); set("m-po",S.meta.po);
   const sd=$("m-show-due"); if(sd){ sd.checked=S.meta.showDue!==false; toggleDueInput(); }
   const pd=$("m-paid"); if(pd){ pd.checked=!!S.meta.paid; }
   set("tax-mode",S.taxMode); set("disc-type",S.discountType); set("disc-val",S.discountVal); set("ship",S.shipping);
   set("notes",S.notes); set("pay",S.payment);
   const lp=$("logo-prev"); if(lp&&S.business.logo){lp.src=S.business.logo;lp.style.display="block";}
+  sigRender();
   const cur=$("m-currency"), lang=$("m-lang");
   if(cur){cur.innerHTML=CURRENCIES.map(c=>`<option value="${c[0]}" ${S.meta.currency===c[0]?"selected":""}>${c[0]} (${c[1]}) — ${c[2]}</option>`).join("");}
   if(lang){lang.innerHTML=Object.keys(LANGUAGES).map(k=>`<option value="${k}" ${S.meta.lang===k?"selected":""}>${LANGUAGES[k].name}</option>`).join("");}
@@ -287,7 +342,7 @@ function bindForm(){
   bind("b-name",v=>S.business.name=v); bind("b-addr",v=>S.business.address=v);
   bind("b-email",v=>S.business.email=v); bind("b-phone",v=>S.business.phone=v); bind("b-taxid",v=>S.business.taxId=v);
   bind("c-name",v=>S.client.name=v); bind("c-addr",v=>S.client.address=v); bind("c-email",v=>S.client.email=v);
-  bind("m-number",v=>S.meta.number=v); bind("m-date",v=>S.meta.date=v); bind("m-due",v=>S.meta.due=v); bind("m-terms",v=>S.meta.terms=v);
+  bind("m-number",v=>S.meta.number=v); bind("m-date",v=>S.meta.date=v); bind("m-due",v=>S.meta.due=v); bind("m-terms",v=>S.meta.terms=v); bind("m-po",v=>S.meta.po=v);
   bind("disc-val",v=>S.discountVal=v); bind("ship",v=>S.shipping=v);
   bind("notes",v=>S.notes=v); bind("pay",v=>S.payment=v);
   const tm=$("tax-mode"); if(tm) tm.addEventListener("change",e=>{S.taxMode=e.target.value;autosave();renderItems();renderTaxControls();renderPreview();});
@@ -322,6 +377,59 @@ function bindForm(){
   });
   const sv=$("btn-save"); if(sv) sv.addEventListener("click",saveToHistory);
   const nw=$("btn-new"); if(nw) nw.addEventListener("click",()=>{ if(confirm("Start a new invoice? Your current draft will be cleared.")){ S=defaultState(); saveDraft(); fillForm(); renderItems(); renderTaxControls(); renderTemplates(); renderPreview(); renderHistory(); }});
+}
+
+/* ---------- signature pad ---------- */
+let _sigDrawing=false;
+function sigRender(){
+  const pad=$("sig-pad"); if(!pad) return;
+  const ctx=pad.getContext("2d");
+  ctx.clearRect(0,0,pad.width,pad.height);
+  if(S.business.signature){
+    const img=new Image();
+    img.onload=()=>{const s=Math.min(pad.width/img.width,pad.height/img.height,1);const w=img.width*s,h=img.height*s;ctx.drawImage(img,(pad.width-w)/2,(pad.height-h)/2,w,h);};
+    img.src=S.business.signature;
+  }
+}
+function sigPadInit(){
+  const pad=$("sig-pad"); if(!pad||pad.dataset.wired) return;
+  pad.dataset.wired="1";
+  const ctx=pad.getContext("2d");
+  ctx.strokeStyle="#1e293b"; ctx.lineWidth=2.5; ctx.lineCap="round"; ctx.lineJoin="round";
+  const pos=e=>{
+    const r=pad.getBoundingClientRect();
+    const t=(e.touches&&e.touches[0])||e;
+    return [(t.clientX-r.left)*(pad.width/r.width),(t.clientY-r.top)*(pad.height/r.height)];
+  };
+  const start=e=>{e.preventDefault();_sigDrawing=true;const[x,y]=pos(e);ctx.beginPath();ctx.moveTo(x,y);};
+  const move=e=>{if(!_sigDrawing)return;e.preventDefault();const[x,y]=pos(e);ctx.lineTo(x,y);ctx.stroke();};
+  const end=()=>{if(!_sigDrawing)return;_sigDrawing=false;S.business.signature=pad.toDataURL("image/png");autosave();renderPreview();};
+  pad.addEventListener("mousedown",start);
+  pad.addEventListener("mousemove",move);
+  document.addEventListener("mouseup",end);
+  pad.addEventListener("touchstart",start,{passive:false});
+  pad.addEventListener("touchmove",move,{passive:false});
+  pad.addEventListener("touchend",end);
+  const clr=$("sig-clear");
+  if(clr) clr.addEventListener("click",()=>{S.business.signature="";sigRender();autosave();renderPreview();});
+  const up=$("sig-upload");
+  if(up) up.addEventListener("change",e=>{
+    const f=e.target.files[0]; if(!f) return;
+    const r=new FileReader();
+    r.onload=ev=>{
+      const img=new Image();
+      img.onload=()=>{
+        ctx.clearRect(0,0,pad.width,pad.height);
+        const s=Math.min(pad.width/img.width,pad.height/img.height,1);
+        const w=img.width*s,h=img.height*s;
+        ctx.drawImage(img,(pad.width-w)/2,(pad.height-h)/2,w,h);
+        S.business.signature=pad.toDataURL("image/png");
+        autosave();renderPreview();
+      };
+      img.src=ev.target.result;
+    };
+    r.readAsDataURL(f);
+  });
 }
 
 /* ---------- history ---------- */
@@ -579,7 +687,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   initChrome();
   tickInvoiceCounter();
   if(!$("invoice-sheet")) return; /* not the generator page */
-  fillForm(); bindForm(); renderItems(); renderTaxControls(); renderTemplates(); renderPreview(); renderHistory();
+  fillForm(); bindForm(); sigPadInit(); renderItems(); renderTaxControls(); renderTemplates(); renderPreview(); renderHistory();
   importTimeEntries();
 });
 })();
