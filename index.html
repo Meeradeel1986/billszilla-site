@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://billszilla.com/">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
-<link rel="stylesheet" href="/css/style.css?v=6">
+<link rel="stylesheet" href="/css/style.css?v=7">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"BillsZilla","url":"https://billszilla.com/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free invoice generator with no signup and no watermark."}
 </script>
@@ -116,9 +116,12 @@
             </div>
             <div class="frow">
               <div class="field"><label>Issue date</label><input id="m-date" type="date"></div>
-              <div class="field"><label>Due date</label><input id="m-due" type="date"><label class="checkline"><input type="checkbox" id="m-show-due" checked> Include due date</label></div>
+              <div class="field"><label>Due date</label><input id="m-due" type="date"></div>
             </div>
-            <div class="frow single"><div class="field"><label class="checkline paid-check"><input type="checkbox" id="m-paid"> Mark this invoice as paid</label></div></div>
+            <div class="frow">
+              <div class="field"><label class="checkline"><input type="checkbox" id="m-show-due" checked> Include due date</label></div>
+              <div class="field"><label class="checkline paid-check"><input type="checkbox" id="m-paid"> Mark this invoice as paid</label></div>
+            </div>
             <div class="frow single"><div class="field"><label>Invoice language</label><select id="m-lang"></select></div></div>
           </fieldset>
           <fieldset>
@@ -150,7 +153,9 @@
             <legend>Notes &amp; Payment</legend>
             <div class="frow single"><div class="field"><label>Notes</label><textarea id="notes" placeholder="Any extra notes for your client"></textarea></div></div>
             <div class="frow single"><div class="field"><label>Payment terms</label><textarea id="m-terms" placeholder="e.g. Payment due within 14 days"></textarea></div></div>
-            <div class="frow single"><div class="field"><label>Payment details</label><textarea id="pay" placeholder="Bank account, IBAN, JazzCash / Easypaisa, etc."></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Payment details</label><textarea id="pay" placeholder="Bank account, IBAN, payment link, wallet address, etc."></textarea></div></div>
+            <div class="frow single"><div class="field"><label class="checkline"><input type="checkbox" id="m-qr"> Include a QR code on the invoice</label></div></div>
+            <div class="frow single" id="qr-text-wrap" style="display:none"><div class="field"><label>QR code content (optional)</label><input id="m-qr-text" placeholder="Link or text — defaults to your payment details above"></div></div>
           </fieldset>
           <fieldset>
             <legend>Signature (optional)</legend>
@@ -303,8 +308,9 @@
 </div>
 <script src="/js/vendor/html2canvas.min.js?v=2"></script>
 <script src="/js/vendor/jspdf.umd.min.js?v=2"></script>
-<script src="/js/data.js?v=3"></script>
-<script src="/js/app.js?v=7"></script>
+<script src="/js/vendor/qrcode.min.js?v=1"></script>
+<script src="/js/data.js?v=4"></script>
+<script src="/js/app.js?v=8"></script>
 <script src="/js/chat.js?v=2"></script>
 <script src="/js/install.js?v=2"></script>
 </body>

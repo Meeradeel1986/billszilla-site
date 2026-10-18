@@ -15,7 +15,7 @@ function defaultState(){
   return {
     business:{name:"",address:"",email:"",phone:"",taxId:"",logo:"",signature:""},
     client:{name:"",address:"",email:""},
-    meta:{doc:DOC,number:nextNumber(true,DOC),date:today(),due:today(14),showDue:true,paid:false,terms:"",currency:"USD",lang:"en",template:"t-classic",po:""},
+    meta:{doc:DOC,number:nextNumber(true,DOC),date:today(),due:today(14),showDue:true,paid:false,terms:"",currency:"USD",lang:"en",template:"t-classic",po:"",qr:false,qrText:""},
     items:[blankItem()],
     taxMode:"none", flatTax:0, gstType:"intrastate",
     discountType:"percent", discountVal:0, shipping:0,
@@ -71,6 +71,20 @@ function amountInWords(total,code){
   let s=numToWords(intP)+" "+(intP===1?u:up);
   if(fracP>0) s+=" and "+numToWords(fracP)+" "+(fracP===1?su:sup);
   return (neg?"Minus ":"")+s+" Only";
+}
+
+/* ---------- payment QR code ---------- */
+function qrImg(t){
+  if(!S.meta.qr||typeof qrcode==="undefined") return "";
+  const txt=((S.meta.qrText||"").trim()||(S.payment||"").trim());
+  if(!txt) return "";
+  try{
+    const q=qrcode(0,"M"); q.addData(txt); q.make();
+    return `<div class="inv-qr"><img src="${q.createDataURL(4,6)}" alt="QR code"><div>${t.scanToPay}</div></div>`;
+  }catch(e){ return ""; }
+}
+function toggleQrWrap(){
+  const w=$("qr-text-wrap"); if(w) w.style.display=(S.meta.qr?"":"none");
 }
 function nextNumber(bump,doc){
   const d=(doc&&DOC_TYPES[doc])?doc:DOC, key=LS_COUNT+"_"+d, pfx=DOC_TYPES[d].prefix;
@@ -129,6 +143,7 @@ function renderPreview(){
   sheet.dir=t.rtl?"rtl":"ltr";
   if(tpl==="t-classic"){ renderZohoClassic(sheet); return; }
   const words=(S.meta.lang==="en")?amountInWords(c.total,S.meta.currency):"";
+  const qr=qrImg(t);
   const sigHtml=S.business.signature?`<div class="inv-sig"><img src="${esc(S.business.signature)}" alt="signature"><div class="sig-cap">${t.authSig}</div></div>`:"";
   const logo=S.business.logo?`<div class="inv-logo"><img src="${esc(S.business.logo)}" alt="logo"></div>`:"";
   const rows=c.lines.map(({it,amt})=>{
@@ -186,7 +201,7 @@ function renderPreview(){
     ${sigHtml}
     ${S.meta.terms?`<div class="inv-notes"><h4>${t.paymentTerms}</h4><div>${esc(S.meta.terms).replace(/\n/g,"<br>")}</div></div>`:""}
     ${S.notes?`<div class="inv-notes"><h4>${t.notes}</h4><div>${esc(S.notes).replace(/\n/g,"<br>")}</div></div>`:""}
-    ${S.payment?`<div class="inv-pay"><h4>${t.paymentDetails}</h4><div>${esc(S.payment).replace(/\n/g,"<br>")}</div></div>`:""}
+    ${(S.payment||qr)?`<div class="inv-pay"><h4>${t.paymentDetails}</h4><div class="inv-pay-flex">${S.payment?`<div>${esc(S.payment).replace(/\n/g,"<br>")}</div>`:""}${qr}</div></div>`:""}
     <div class="inv-foot">${t.thankYou} · ${esc(b.name)}</div>`;
 }
 
@@ -216,6 +231,7 @@ function renderZohoClassic(sheet){
   }
   const balLbl=doc==="invoice"?t.balanceDue:t.total;
   const words=(S.meta.lang==="en")?amountInWords(c.total,S.meta.currency):"";
+  const qr=qrImg(t);
   const sigHtml=S.business.signature?`<div class="inv-zsig"><img src="${esc(S.business.signature)}" alt="signature"><div class="sig-cap">${t.authSig}</div></div>`:"";
   sheet.innerHTML=`
     <div class="inv-zhead">
@@ -249,9 +265,9 @@ function renderZohoClassic(sheet){
     </div>
     ${words?`<div class="inv-zwords"><strong>${t.amtWords}:</strong> ${esc(words)}</div>`:""}
     ${sigHtml}
-    ${(S.notes||S.payment)?`<div class="inv-zbottom">
+    ${(S.notes||S.payment||qr)?`<div class="inv-zbottom">
       ${S.notes?`<div><h4>${t.notes}</h4><div>${esc(S.notes).replace(/\n/g,"<br>")}</div></div>`:""}
-      ${S.payment?`<div><h4>${t.paymentDetails}</h4><div>${esc(S.payment).replace(/\n/g,"<br>")}</div></div>`:""}
+      ${(S.payment||qr)?`<div><h4>${t.paymentDetails}</h4><div class="inv-pay-flex">${S.payment?`<div>${esc(S.payment).replace(/\n/g,"<br>")}</div>`:""}${qr}</div></div>`:""}
     </div>`:""}
     ${S.meta.terms?`<div class="inv-zterms"><h4>${t.paymentTerms}</h4><div>${esc(S.meta.terms).replace(/\n/g,"<br>")}</div></div>`:""}
     <div class="inv-foot">${t.thankYou} · ${esc(b.name)}</div>`;
@@ -326,6 +342,7 @@ function fillForm(){
   set("b-phone",S.business.phone); set("b-taxid",S.business.taxId);
   set("c-name",S.client.name); set("c-addr",S.client.address); set("c-email",S.client.email);
   set("m-number",S.meta.number); set("m-date",S.meta.date); set("m-due",S.meta.due); set("m-terms",S.meta.terms); set("m-po",S.meta.po);
+  const qr=$("m-qr"); if(qr){qr.checked=!!S.meta.qr;} set("m-qr-text",S.meta.qrText); toggleQrWrap();
   const sd=$("m-show-due"); if(sd){ sd.checked=S.meta.showDue!==false; toggleDueInput(); }
   const pd=$("m-paid"); if(pd){ pd.checked=!!S.meta.paid; }
   set("tax-mode",S.taxMode); set("disc-type",S.discountType); set("disc-val",S.discountVal); set("ship",S.shipping);
@@ -342,7 +359,8 @@ function bindForm(){
   bind("b-name",v=>S.business.name=v); bind("b-addr",v=>S.business.address=v);
   bind("b-email",v=>S.business.email=v); bind("b-phone",v=>S.business.phone=v); bind("b-taxid",v=>S.business.taxId=v);
   bind("c-name",v=>S.client.name=v); bind("c-addr",v=>S.client.address=v); bind("c-email",v=>S.client.email=v);
-  bind("m-number",v=>S.meta.number=v); bind("m-date",v=>S.meta.date=v); bind("m-due",v=>S.meta.due=v); bind("m-terms",v=>S.meta.terms=v); bind("m-po",v=>S.meta.po=v);
+  bind("m-number",v=>S.meta.number=v); bind("m-date",v=>S.meta.date=v); bind("m-due",v=>S.meta.due=v); bind("m-terms",v=>S.meta.terms=v); bind("m-po",v=>S.meta.po=v); bind("m-qr-text",v=>S.meta.qrText=v);
+  const qr2=$("m-qr"); if(qr2) qr2.addEventListener("change",e=>{S.meta.qr=e.target.checked;toggleQrWrap();autosave();renderPreview();});
   bind("disc-val",v=>S.discountVal=v); bind("ship",v=>S.shipping=v);
   bind("notes",v=>S.notes=v); bind("pay",v=>S.payment=v);
   const tm=$("tax-mode"); if(tm) tm.addEventListener("change",e=>{S.taxMode=e.target.value;autosave();renderItems();renderTaxControls();renderPreview();});
@@ -523,13 +541,13 @@ function validateInvoice(){
   });
   const rows=[...document.querySelectorAll("#items-box .item-row")];
   const hasItem=rows.some(r=>{
-    const d=r.querySelector('[data-k="desc"]'), rt=r.querySelector('[data-k="rate"]');
-    return d&&d.value.trim()&&rt&&parseFloat(rt.value)>0;
+    const d=r.querySelector('[data-k="desc"]');
+    return d&&d.value.trim();
   });
   if(!hasItem){
     ok=false;
     const d=rows[0]&&rows[0].querySelector('[data-k="desc"]');
-    if(d){ markInvalid(d,"Add at least one item with a description and rate"); first=first||d; }
+    if(d){ markInvalid(d,"Add at least one item with a description"); first=first||d; }
   }
   if(!ok){
     toast("Please fill in the highlighted fields");
