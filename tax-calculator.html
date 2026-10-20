@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free VAT, GST &amp; Sales Tax Calculator — BillsZilla</title>
+<meta name="description" content="VAT, GST and sales tax calculator: add tax to a price or remove it from a total, instantly. Free, no signup, any rate.">
+<link rel="canonical" href="https://billszilla.com/tax-calculator">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"BillsZilla Free VAT, GST & Sales Tax Calculator","url":"https://billszilla.com/tax-calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free VAT, GST and sales tax calculator. Add tax to a price or remove it from a total, instantly."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I add VAT to a price?","acceptedAnswer":{"@type":"Answer","text":"Multiply the net price by the VAT rate and add it on: a 1,000 item at 20% VAT is 1,000 + 200 = 1,200. In the calculator, choose 'Add tax', enter the amount and rate, and the tax and total appear instantly."}},{"@type":"Question","name":"How do I remove VAT from a total that already includes it?","acceptedAnswer":{"@type":"Answer","text":"Divide the gross total by (1 + rate ÷ 100). At 20% VAT, a 1,200 total divides by 1.2 to give a 1,000 net — the VAT inside it is 200. Choose 'Remove tax' in the calculator and it does this for you."}},{"@type":"Question","name":"What is the difference between VAT, GST and sales tax?","acceptedAnswer":{"@type":"Answer","text":"VAT and GST are the same idea under different names: a tax on value added, charged at each stage of the supply chain with input credits. Sales tax is charged once, at the final retail sale. The maths for adding or removing them from a price is identical, which is why one calculator covers all three."}},{"@type":"Question","name":"What are the standard VAT rates?","acceptedAnswer":{"@type":"Answer","text":"The UK charges 20% standard VAT with a 5% reduced rate. Most EU countries sit between 17% and 27% standard. The presets above cover the most common ones, and you can type any rate."}},{"@type":"Question","name":"What are the standard GST rates?","acceptedAnswer":{"@type":"Answer","text":"India uses 5%, 12%, 18% and 28% GST slabs. Canada charges 5% federal GST, Australia 10%, New Zealand 15%, and Singapore 9%. Pick a preset or enter your exact rate."}},{"@type":"Question","name":"Is this tax calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — unlimited calculations, no signup, no watermark. Everything runs in your browser; nothing you type is uploaded anywhere."}},{"@type":"Question","name":"Can I use a tax rate that isn't in the presets?","acceptedAnswer":{"@type":"Answer","text":"Yes. The presets are shortcuts — type any rate into the tax rate field, including decimals like 8.25%, and the results update live."}},{"@type":"Question","name":"How do I show this tax on an invoice?","acceptedAnswer":{"@type":"Answer","text":"Use the free BillsZilla invoice generator: add your items, choose flat tax, per-line tax or GST mode, and the tax is calculated and shown on the invoice automatically — ready to download as a PDF."}}]}
+</script>
+<meta property="og:title" content="Free VAT, GST &amp; Sales Tax Calculator — BillsZilla">
+<meta property="og:description" content="Add tax to a price or strip it out of a total — instantly, for any VAT, GST or sales tax rate. Free forever. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://billszilla.com/tax-calculator">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="/css/style.css?v=8">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#059669">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/logo.png?v=2" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Invoice Generator</a>
+      <a href="/payment-reminder">Payment Reminders</a>
+      <a href="/hourly-rate-calculator">Rate Calculator</a>
+      <a href="/time-tracker">Time Tracker</a>
+      <a href="/quote">Quotes</a>
+      <a href="/receipt">Receipts</a>
+      <a href="/proforma">Proforma</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/#app" class="btn nav-cta">Create Invoice</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>VAT, GST &amp; Sales Tax Calculator</h1>
+    <p>Add tax to a price — or strip it out of a total — in one click. Works for any VAT, GST or sales tax rate, anywhere in the world. Free forever.</p>
+  </div>
+</section>
+
+<section class="app-section" id="app">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;margin-bottom:26px">
+      <h2 class="sec-title">Tax Calculator</h2>
+      <p class="sec-sub">Results update live as you type. Nothing leaves your browser.</p>
+    </div>
+    <div class="app-shell">
+      <div class="app-grid cols2">
+        <div class="app-form">
+          <fieldset>
+            <legend>Your Numbers</legend>
+            <div class="frow single"><div class="field"><label>What do you want to do?</label>
+              <div class="mode-toggle">
+                <button type="button" id="tc-mode-add" class="active">Add tax</button>
+                <button type="button" id="tc-mode-remove">Remove tax</button>
+              </div>
+            </div></div>
+            <div class="frow">
+              <div class="field"><label id="tc-amount-label">Amount (before tax)</label><input id="tc-amount" type="number" min="0" step="any" value="1000"></div>
+              <div class="field"><label>Tax rate %</label><input id="tc-rate" type="number" min="0" step="any" value="20"></div>
+            </div>
+            <div class="field"><label>Common rates</label>
+              <div class="chip-row">
+                <button type="button" class="chip" data-rate="20">VAT 20%</button>
+                <button type="button" class="chip" data-rate="5">VAT 5%</button>
+                <button type="button" class="chip" data-rate="18">GST 18%</button>
+                <button type="button" class="chip" data-rate="5">GST 5%</button>
+                <button type="button" class="chip" data-rate="8">Sales Tax 8%</button>
+              </div>
+            </div>
+            <div class="hint">“Add tax” starts from a net price. “Remove tax” works backwards from a total that already includes tax — handy for receipts and competitor prices.</div>
+          </fieldset>
+        </div>
+        <div class="app-preview">
+          <div class="preview-label"><span><span class="live-dot"></span>Your result</span></div>
+          <div class="rate-result">
+            <div class="rate-big" id="tc-big">0.00</div>
+            <div class="rate-sub" id="tc-big-label">total including tax</div>
+            <div class="rate-rows">
+              <div class="rate-row"><span>Net amount (before tax)</span><b id="tc-net">0.00</b></div>
+              <div class="rate-row"><span>Tax amount</span><b id="tc-tax">0.00</b></div>
+              <div class="rate-row"><span>Gross amount (with tax)</span><b id="tc-gross">0.00</b></div>
+            </div>
+            <div class="rate-formula" id="tc-formula"></div>
+            <a href="/#app" class="btn" style="margin-top:18px">Add this to a free invoice →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="marketing">
+  <div class="wrap" style="max-width:820px">
+    <h2 class="sec-title">How to calculate tax in 3 steps</h2>
+    <ol class="steps">
+      <li><strong>Enter your amount.</strong> Type the price you are working with — either before tax or tax-inclusive, depending on what you have.</li>
+      <li><strong>Pick the rate and direction.</strong> Choose a preset (VAT 20%, GST 18%…) or type any rate, then select “Add tax” or “Remove tax”.</li>
+      <li><strong>Read the split instantly.</strong> You get the net amount, the exact tax, and the gross total — ready to quote, invoice, or check a receipt against.</li>
+    </ol>
+    <h2 class="sec-title" style="margin-top:34px">Why getting the tax split right matters</h2>
+    <p>Quote a client a tax-inclusive price without realising it, and the tax comes out of your pocket. Add tax on top of a price your client assumed was final, and the invoice turns into an argument. This calculator removes the guesswork both ways: it adds VAT, GST or sales tax to a net price, and works backwards from a gross total to show how much of it is really tax. When the numbers are right, drop them straight into the free <a href="/">invoice generator</a> — flat tax, per-line tax and GST modes are built in. Not sure what to charge before tax? Work out your rate with the <a href="/hourly-rate-calculator">hourly rate calculator</a> first.</p>
+  </div>
+</section>
+
+<section class="marketing">
+  <div class="wrap" style="max-width:820px">
+    <h2 class="sec-title">Tax calculator FAQ</h2>
+    <div class="faq-item"><button class="faq-q">How do I add VAT to a price?</button><div class="faq-a">Multiply the net price by the VAT rate and add it on: a 1,000 item at 20% VAT is 1,000 + 200 = 1,200. In the calculator, choose “Add tax”, enter the amount and rate, and the tax and total appear instantly.</div></div>
+    <div class="faq-item"><button class="faq-q">How do I remove VAT from a total that already includes it?</button><div class="faq-a">Divide the gross total by (1 + rate ÷ 100). At 20% VAT, a 1,200 total divides by 1.2 to give a 1,000 net — the VAT inside it is 200. Choose “Remove tax” in the calculator and it does this for you.</div></div>
+    <div class="faq-item"><button class="faq-q">What is the difference between VAT, GST and sales tax?</button><div class="faq-a">VAT and GST are the same idea under different names: a tax on value added, charged at each stage of the supply chain with input credits. Sales tax is charged once, at the final retail sale. The maths for adding or removing them from a price is identical, which is why one calculator covers all three.</div></div>
+    <div class="faq-item"><button class="faq-q">What are the standard VAT rates?</button><div class="faq-a">The UK charges 20% standard VAT with a 5% reduced rate. Most EU countries sit between 17% and 27% standard. The presets above cover the most common ones, and you can type any rate.</div></div>
+    <div class="faq-item"><button class="faq-q">What are the standard GST rates?</button><div class="faq-a">India uses 5%, 12%, 18% and 28% GST slabs. Canada charges 5% federal GST, Australia 10%, New Zealand 15%, and Singapore 9%. Pick a preset or enter your exact rate.</div></div>
+    <div class="faq-item"><button class="faq-q">Is this tax calculator free?</button><div class="faq-a">Yes — unlimited calculations, no signup, no watermark. Everything runs in your browser; nothing you type is uploaded anywhere.</div></div>
+    <div class="faq-item"><button class="faq-q">Can I use a tax rate that isn't in the presets?</button><div class="faq-a">Yes. The presets are shortcuts — type any rate into the tax rate field, including decimals like 8.25%, and the results update live.</div></div>
+    <div class="faq-item"><button class="faq-q">How do I show this tax on an invoice?</button><div class="faq-a">Use the free <a href="/">invoice generator</a>: add your items, choose flat tax, per-line tax or GST mode, and the tax is calculated and shown on the invoice automatically — ready to download as a PDF.</div></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" style="color:#fff"><img src="/logo.png?v=2" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+        <p>The free invoice generator that respects your privacy. No signup, no watermark, no servers.</p>
+      </div>
+      <div><h4>Tools</h4><a href="/#app">Invoice Generator</a><a href="/quote">Quote Generator</a><a href="/receipt">Receipt Generator</a><a href="/proforma">Proforma Invoice</a><a href="/payment-reminder">Payment Reminder</a><a href="/hourly-rate-calculator">Rate Calculator</a><a href="/time-tracker">Time Tracker</a><a href="/tax-calculator">Tax Calculator</a><a href="/invoice-templates">Invoice Templates</a></div>
+      <div><h4>Templates</h4><a href="/freelancer-invoice-template">Freelancer Invoice</a><a href="/contractor-invoice-template">Contractor Invoice</a><a href="/photographer-invoice-template">Photographer Invoice</a><a href="/consultant-invoice-template">Consultant Invoice</a><a href="/designer-invoice-template">Designer Invoice</a><a href="/cleaning-service-invoice-template">Cleaning Service Invoice</a></div>
+      <div><h4>Resources</h4><a href="https://pdfzippy.com">PDFZippy — Free PDF Tools</a><a href="/blog/">Blog</a><a href="/#faq">FAQ</a><a href="/#templates">Templates</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Made for freelancers everywhere.</span></div>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<script src="/js/data.js?v=4"></script>
+<script src="/js/tax-calculator.js?v=1"></script>
+<script src="/js/chat.js?v=2"></script>
+<script src="/js/install.js?v=2"></script>
+</body>
+</html>

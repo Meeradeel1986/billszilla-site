@@ -283,7 +283,7 @@ section{padding:64px 0}
 
 /* ---------- footer ---------- */
 .site-footer{background:var(--slate);color:#cbd5e1;padding:56px 0 28px;margin-top:0}
-.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:36px}
+.foot-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:36px}
 .foot-grid h4{color:#fff;font-size:.9rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:.05em}
 .foot-grid a{color:#94a3b8;font-size:.92rem;display:block;margin-bottom:9px}
 .foot-grid a:hover{color:#fff}
@@ -434,3 +434,55 @@ section{padding:64px 0}
 .inv-qr{flex:none;text-align:center}
 .inv-qr img{width:112px;height:112px;display:block}
 .inv-qr div{font-size:.75rem;color:#6b7280;margin-top:4px}
+
+/* ---------- tax calculator + templates gallery + industry pages (2026-10-20) ---------- */
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--ink);font-family:inherit}
+.chip:hover{border-color:var(--green)}
+.chip.active{background:var(--green);border-color:var(--green);color:#fff}
+.mode-toggle{display:flex;background:#f1f5f9;border:1px solid var(--line);border-radius:10px;padding:4px;gap:4px}
+.mode-toggle button{flex:1;border:0;background:transparent;padding:9px 10px;border-radius:7px;font-weight:700;font-size:.9rem;cursor:pointer;color:var(--muted);font-family:inherit}
+.mode-toggle button.active{background:#fff;color:var(--green-dark);box-shadow:0 2px 8px rgba(15,23,42,.12)}
+.tax-note{font-size:.85rem;color:var(--muted);text-align:center;margin-top:10px}
+.tpl-preview{background:#eef2f7;padding:20px 14px;display:flex;justify-content:center}
+.mini-inv{background:#fff;width:216px;padding:14px 16px;box-shadow:0 6px 18px rgba(15,23,42,.13);font-size:.54rem;color:#374151;line-height:1.55;text-align:left}
+.mini-inv .mi-title{font-size:1.02rem;font-weight:800;color:#0f172a}
+.mini-inv .mi-row{display:flex;justify-content:space-between;gap:8px}
+.mini-inv .mi-meta{text-align:right;color:#6b7280;flex:none}
+.mini-inv .mi-party{font-weight:700;color:#111827}
+.mini-inv table{width:100%;border-collapse:collapse;margin:8px 0 6px}
+.mini-inv th,.mini-inv td{padding:3px 4px;border-bottom:1px solid #e5e7eb;text-align:left}
+.mini-inv td.n,.mini-inv th.n{text-align:right}
+.mini-inv .mi-total{display:flex;justify-content:space-between;font-weight:800;border-top:2px solid #0f172a;padding-top:4px;margin-top:2px}
+.mini-inv .mi-foot{color:#9ca3af;margin-top:6px;font-size:.5rem}
+.mini-modern .mi-title{color:#059669}
+.mini-modern th{color:#065f46;border-bottom:2px solid #10b981}
+.mini-classic{font-family:Georgia,"Times New Roman",serif}
+.mini-minimal .mi-title{font-weight:300;letter-spacing:.03em}
+.mini-minimal th{color:#9ca3af;border-bottom:0;font-weight:500}
+.mini-minimal td{border-color:#f3f4f6}
+.mini-bold .mi-top{background:#0f172a;color:#fff;margin:-14px -16px 8px;padding:10px 16px}
+.mini-bold .mi-title{color:#fff}
+.mini-bold .mi-meta{color:#cbd5e1}
+.mini-bold th{background:#0f172a;color:#fff;border-bottom:0}
+.mini-fresh{border-radius:12px}
+.mini-fresh .mi-title{color:#059669}
+.mini-fresh th{background:#d1fae5;color:#065f46;border-bottom:0}
+.mini-mono{font-family:Consolas,"Liberation Mono",Menlo,monospace}
+.mini-mono .mi-title{font-size:.85rem}
+.mini-mono th{border-bottom:1px dashed #111827}
+.dl-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.dl-row .btn{flex:1;text-align:center;white-space:nowrap}
+.sample-wrap{background:#fff;border:1px solid var(--line);border-radius:12px;overflow-x:auto;box-shadow:0 4px 14px rgba(15,23,42,.04)}
+.sample-table{width:100%;border-collapse:collapse;min-width:520px}
+.sample-table th{background:#f8fafc;text-align:left;padding:12px 16px;font-size:.85rem;color:var(--slate);border-bottom:1px solid var(--line)}
+.sample-table td{padding:11px 16px;border-bottom:1px solid #f1f5f9;font-size:.93rem;color:var(--ink)}
+.sample-table td.n,.sample-table th.n{text-align:right}
+.sample-table tr:last-child td{border-bottom:0}
+.sample-table .tot td{font-weight:800;background:#f0fdf4;color:var(--slate)}
+.check-list{list-style:none;padding:0;margin:0}
+.check-list li{padding:9px 0 9px 30px;position:relative;border-bottom:1px solid #f1f5f9;color:var(--ink)}
+.check-list li:last-child{border-bottom:0}
+.check-list li::before{content:"✓";position:absolute;left:2px;color:var(--green-dark);font-weight:800}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 30px}
+@media(max-width:700px){.check-grid{grid-template-columns:1fr}}
