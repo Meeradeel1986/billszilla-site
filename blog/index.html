@@ -14,7 +14,7 @@
 {"@context":"https://schema.org","@type":"Blog","url":"https://billszilla.com/blog/","name":"The BillsZilla Blog","description":"Practical invoicing guides for freelancers and small businesses."}
 </script>
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
-<link rel="stylesheet" href="/css/style.css?v=8">
+<link rel="stylesheet" href="/css/style.css?v=9">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#059669">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -26,9 +26,30 @@
     <button class="menu-toggle" aria-label="Menu">☰</button>
     <nav class="nav-links">
       <a href="/">Invoice Generator</a>
-      <a href="/quote">Quotes</a>
-      <a href="/receipt">Receipts</a>
-      <a href="/proforma">Proforma</a>
+      <a href="/payment-reminder">Payment Reminders</a>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Tools <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/quote">Quote Generator</a>
+          <a href="/receipt">Receipt Generator</a>
+          <a href="/proforma">Proforma Invoice</a>
+          <a href="/hourly-rate-calculator">Hourly Rate Calculator</a>
+          <a href="/time-tracker">Time Tracker</a>
+          <a href="/tax-calculator">Tax Calculator</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Templates <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/invoice-templates">All Invoice Templates</a>
+          <a href="/freelancer-invoice-template">Freelancer Invoice Template</a>
+          <a href="/contractor-invoice-template">Contractor Invoice Template</a>
+          <a href="/photographer-invoice-template">Photographer Invoice Template</a>
+          <a href="/consultant-invoice-template">Consultant Invoice Template</a>
+          <a href="/designer-invoice-template">Designer Invoice Template</a>
+          <a href="/cleaning-service-invoice-template">Cleaning Service Invoice Template</a>
+        </div>
+      </div>
       <a href="/blog/">Blog</a>
       <a href="/contact">Contact</a>
       <a href="/#app" class="btn nav-cta">Create Invoice</a>
@@ -83,5 +104,6 @@
 <script src="/js/app.js?v=9"></script>
 <script src="/js/chat.js?v=2"></script>
 <script src="/js/install.js?v=2"></script>
+<script src="/js/nav.js?v=1"></script>
 </body>
 </html>

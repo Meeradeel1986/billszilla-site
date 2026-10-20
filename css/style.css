@@ -73,6 +73,32 @@ section{padding:64px 0}
 .nav-cta{padding:8px 14px;font-size:.85rem;white-space:nowrap}
 .menu-toggle{display:none;background:none;border:0;font-size:1.6rem;cursor:pointer;color:var(--slate)}
 
+/* ---------- header dropdowns ---------- */
+.nav-dd{position:relative}
+.nav-dd-toggle{background:none;border:0;cursor:pointer;font:inherit;color:var(--ink);font-weight:500;font-size:.88rem;white-space:nowrap;display:flex;align-items:center;gap:5px;padding:0}
+.nav-dd-toggle:hover{color:var(--green-dark)}
+.nav-caret{font-size:.65rem;color:var(--muted);transition:transform .15s}
+.nav-dd.open .nav-caret{transform:rotate(180deg)}
+.nav-dd-menu{position:absolute;top:calc(100% + 12px);left:0;min-width:250px;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:6px;z-index:60;opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s,transform .15s,visibility .15s}
+.nav-dd-menu::before{content:"";position:absolute;top:-12px;left:0;right:0;height:12px}
+.nav-dd-menu a{display:block;padding:8px 12px;border-radius:6px}
+.nav-dd-menu a:hover{background:var(--green-pale);color:var(--green-dark);text-decoration:none}
+.nav-dd.open .nav-dd-menu{opacity:1;visibility:visible;transform:none}
+@media(min-width:961px){
+  .nav-dd:hover .nav-dd-menu,.nav-dd:focus-within .nav-dd-menu{opacity:1;visibility:visible;transform:none}
+}
+@media(max-width:960px){
+  .nav-dd{width:100%}
+  .nav-dd-toggle{width:100%;padding:10px 0;border-bottom:1px solid var(--line);justify-content:space-between}
+  .nav-dd-menu{position:static;min-width:0;border:0;box-shadow:none;border-radius:0;padding:0 0 4px 14px;opacity:1;visibility:visible;transform:none;display:none}
+  .nav-dd-menu::before{display:none}
+  .nav-dd.open .nav-dd-menu{display:block}
+}
+@media(min-width:961px){
+  /* set by nav.js on Escape: force-hide until the pointer leaves the dropdown */
+  .nav-dd.suppress .nav-dd-menu{opacity:0;visibility:hidden;transform:translateY(4px)}
+}
+
 /* ---------- hero ---------- */
 .hero{background:linear-gradient(180deg,#ecfdf5 0%,#f8fafc 100%);text-align:center;padding:84px 0 60px}
 .hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;color:var(--slate);font-weight:800;letter-spacing:-.02em}
