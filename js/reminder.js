@@ -1,4 +1,4 @@
-/* BillsZilla payment reminder generator — all local, no network calls. */
+/* BillsZilla payment reminder generator — all local; only network call is an anonymous usage-count ping (see js/track.js). */
 (function(){
 "use strict";
 var $ = function(id){ return document.getElementById(id); };
@@ -39,6 +39,11 @@ function esc(s){
     return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
   });
 }
+
+/* ---------- usage tracking (anonymous aggregate counts only) ---------- */
+var BZ_SLUG = "payment-reminder";
+function bzStart(){ try{ if(window.bzStarted) window.bzStarted(BZ_SLUG); }catch(e){} }
+function bzDone(){ try{ if(window.bzPing) window.bzPing(BZ_SLUG, "completed"); }catch(e){} }
 
 /* ---------- letter templates ---------- */
 function buildLetter(d){
@@ -116,6 +121,7 @@ function render(){
 
 /* ---------- actions ---------- */
 function doCopy(){
+  bzDone(); /* "completed" = reminder letter copied for sending */
   var L = render();
   var text = "Subject: " + L.subject + "\n\n" + L.body;
   function done(){ toast("Reminder copied — paste it into your email"); }
@@ -131,11 +137,12 @@ function fallbackCopy(text){
   document.body.removeChild(ta);
 }
 function doEmail(){
+  bzDone(); /* "completed" = reminder opened in email */
   var L = render();
   var href = "mailto:?subject=" + encodeURIComponent(L.subject) + "&body=" + encodeURIComponent(L.body);
   window.location.href = href;
 }
-function doPrint(){ window.print(); }
+function doPrint(){ bzDone(); window.print(); } /* "completed" = reminder printed */
 
 /* ---------- init ---------- */
 document.addEventListener("DOMContentLoaded", function(){
@@ -172,13 +179,13 @@ document.addEventListener("DOMContentLoaded", function(){
   });
   var tones = document.querySelectorAll('input[name="tone"]');
   tones.forEach(function(r){
-    r.addEventListener("change", function(){ manualTone = true; render(); });
+    r.addEventListener("change", function(){ manualTone = true; bzStart(); render(); });
   });
 
-  /* live re-render */
+  /* live re-render — first edit also counts the tool as "started" (once) */
   ["r-sender","r-client","r-inv","r-amount","r-currency","r-issued","r-due","r-pay","r-note"].forEach(function(id){
     var el = $(id);
-    if(el) el.addEventListener("input", render);
+    if(el) el.addEventListener("input", function(){ bzStart(); render(); });
   });
 
   $("btn-copy").addEventListener("click", doCopy);

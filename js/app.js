@@ -1,6 +1,8 @@
 /* ============================================================
    BILLZILLA app.js — 100% client-side invoice generator.
-   No network calls. Draft autosaves to localStorage.
+   Invoice data never leaves the browser; the only network call
+   is an anonymous usage-count ping (see js/track.js).
+   Draft autosaves to localStorage.
    ============================================================ */
 (function(){
 "use strict";
@@ -100,6 +102,10 @@ function loadDraft(){
 function saveDraft(){ try{ localStorage.setItem(LS_DRAFT,JSON.stringify(S)); }catch(e){} }
 let saveT=null;
 function autosave(){ clearTimeout(saveT); saveT=setTimeout(saveDraft,400); }
+
+/* ---------- usage tracking (anonymous aggregate counts only) ---------- */
+function bzStart(){ try{ if(window.bzStarted) window.bzStarted(DOC); }catch(e){} }
+function bzDone(){ try{ if(window.bzPing) window.bzPing(DOC,"completed"); }catch(e){} }
 
 /* ---------- helpers ---------- */
 const $=id=>document.getElementById(id);
@@ -355,6 +361,9 @@ function fillForm(){
 }
 
 function bindForm(){
+  /* "started" = first meaningful interaction with the generator (once per page) */
+  document.addEventListener("input",bzStart);
+  document.addEventListener("change",bzStart);
   const bind=(id,fn)=>{const el=$(id); if(el) el.addEventListener("input",e=>{fn(e.target.value);autosave();renderPreview();});};
   bind("b-name",v=>S.business.name=v); bind("b-addr",v=>S.business.address=v);
   bind("b-email",v=>S.business.email=v); bind("b-phone",v=>S.business.phone=v); bind("b-taxid",v=>S.business.taxId=v);
@@ -513,6 +522,7 @@ function toast(msg){
 
 /* ---------- print with a clean document title ---------- */
 function printDoc(){
+  bzDone(); /* "completed" = document printed (print path bypasses PDF generation) */
   const labels={invoice:"Invoice",quote:"Quote",receipt:"Receipt",proforma:"Proforma Invoice"};
   const lbl=labels[DOC]||"Invoice";
   const oldTitle=document.title;
@@ -619,7 +629,7 @@ function closeSendModal(){ $("send-modal").hidden=true; }
 async function makePdfOrToast(){
   if(!validateInvoice()) return null;
   toast("Preparing PDF…");
-  try{ return await generatePdfBlob(); }
+  try{ const b=await generatePdfBlob(); bzDone(); return b; }
   catch(e){ toast("Couldn't make the PDF — check your connection and try again"); return null; }
 }
 async function sendViaWhatsApp(){
@@ -700,6 +710,21 @@ function importTimeEntries(){
   toast("Imported "+imp.length+" time "+(imp.length===1?"entry":"entries")+" from the time tracker");
 }
 
+/* ---------- industry template seed import ---------- */
+function importTemplateSeed(){
+  if(DOC!=="invoice") return;
+  let imp=null;
+  try{ imp=JSON.parse(localStorage.getItem("billzilla_template_import_v1")||"null"); }catch(e){}
+  if(!imp || !imp.items || !imp.items.length) return;
+  try{ localStorage.removeItem("billzilla_template_import_v1"); }catch(e){}
+  /* never clobber a real draft: only seed when every current item is still blank */
+  const hasContent=S.items.some(it=>((it.desc||"").trim()||(Number(it.rate)||0)>0));
+  if(hasContent) return;
+  S.items=imp.items.map(e=>({desc:String(e.desc||"Service"), qty:Number(e.qty)||1, rate:Number(e.rate)||0, tax:0}));
+  saveDraft(); fillForm(); renderItems(); renderPreview();
+  toast("Loaded sample "+(imp.industry?imp.industry+" ":"")+"invoice items — edit them to make it yours");
+}
+
 /* ---------- init ---------- */
 document.addEventListener("DOMContentLoaded",()=>{
   initChrome();
@@ -707,5 +732,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(!$("invoice-sheet")) return; /* not the generator page */
   fillForm(); bindForm(); sigPadInit(); renderItems(); renderTaxControls(); renderTemplates(); renderPreview(); renderHistory();
   importTimeEntries();
+  importTemplateSeed();
 });
 })();

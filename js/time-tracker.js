@@ -1,4 +1,4 @@
-/* BillsZilla time tracker — all local, no network calls. */
+/* BillsZilla time tracker — all local; only network call is an anonymous usage-count ping (see js/track.js). */
 (function(){
 "use strict";
 var $ = function(id){ return document.getElementById(id); };
@@ -47,6 +47,11 @@ function toast(msg){
   t.textContent = msg; t.classList.add("show");
   clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove("show"); }, 2200);
 }
+
+/* ---------- usage tracking (anonymous aggregate counts only) ---------- */
+var BZ_SLUG = "time-tracker";
+function bzStart(){ try{ if(window.bzStarted) window.bzStarted(BZ_SLUG); }catch(e){} }
+function bzDone(){ try{ if(window.bzPing) window.bzPing(BZ_SLUG, "completed"); }catch(e){} }
 
 var running = load(LS_RUNNING, null); /* {start, client, desc, rate} */
 var tickTimer = null;
@@ -133,6 +138,7 @@ function toggleTimer(){
         rate: parseFloat(running.rate)||0
       });
       save(LS_ENTRIES, entries);
+      bzDone(); /* "completed" = a time entry was logged */
       toast("Logged " + fmtDurShort(sec));
     }
     running = null;
@@ -141,6 +147,7 @@ function toggleTimer(){
   } else {
     var rate = parseFloat($("tt-rate").value);
     if(isNaN(rate) || rate < 0){ toast("Enter an hourly rate first"); $("tt-rate").focus(); return; }
+    bzStart(); /* "started" = timer started */
     running = {
       start: Date.now(),
       client: $("tt-client").value,
@@ -163,6 +170,7 @@ function sendToInvoice(){
     return { desc: label, client: e.client || "", hours: Math.round((e.seconds/3600)*100)/100, rate: e.rate };
   });
   save(LS_IMPORT, items);
+  bzDone(); /* "completed" = tracked time sent to an invoice */
   window.location.href = "/#app";
 }
 
