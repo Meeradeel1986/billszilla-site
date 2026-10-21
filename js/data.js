@@ -54,8 +54,3 @@ const DOC_TYPES = {
   proforma: {prefix:"PRO-"}
 };
 
-/* Affiliate links — swap these placeholder URLs for real affiliate links once approved. */
-var AFFILIATE_LINKS = {
-  freshbooks: "https://www.freshbooks.com",
-  quickbooks: "https://quickbooks.intuit.com"
-};

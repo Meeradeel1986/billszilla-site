@@ -46,8 +46,8 @@ var KB=[
   a:"Yes, you need an internet connection to load and use BillsZilla."},
  {k:["human","person","support","contact","email","help me"],q:"How do I contact support?",
   a:"Email us at <a href=\"mailto:"+EMAIL+"\">"+EMAIL+"</a> — we aim to reply within 2 business days."},
- {k:["accounting","software","freshbooks","quickbooks","xero","bookkeeping"],q:"Which accounting software do you recommend?",
-  a:"For full accounting beyond invoicing, we recommend <a data-aff=\"freshbooks\" href=\"#\">FreshBooks</a> and <a data-aff=\"quickbooks\" href=\"#\">QuickBooks</a> — see our <a href=\"/#recommended\">recommended tools</a>."},
+ {k:["accounting","software","bookkeeping"],q:"Which accounting software do you recommend?",
+  a:"BillsZilla focuses on fast, free invoice documents. For full accounting — expenses, payroll and tax reports — look at dedicated accounting software and pick the one that fits your country and budget."},
  {k:["hello","hi","salam","hey"],q:"Hello!",
   a:"Hello! Ask me anything about creating invoices, quotes, receipts, or proformas with BillsZilla."},
  {k:["thank","thanks","shukriya"],q:"Thanks!",
@@ -93,7 +93,6 @@ function addMsg(html,who){
   var d=document.createElement("div");
   d.className="bz-msg "+who;d.innerHTML=html;
   box.appendChild(d);box.scrollTop=box.scrollHeight;
-  if(window.wireAffiliateLinks) wireAffiliateLinks(d);
 }
 function botSay(html){ setTimeout(function(){addMsg(html,"bot");},350); }
 function ask(text){
