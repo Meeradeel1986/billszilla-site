@@ -570,8 +570,28 @@ function downloadBlob(blob,name){
   document.body.appendChild(a); a.click();
   setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},4000);
 }
+/* PDF libraries (html2canvas + jspdf, ~550KB) load lazily on first use so
+   they never block or slow the initial page load. */
+let _pdfLibsPromise=null;
+function ensurePdfLibs(){
+  if(window.html2canvas&&window.jspdf) return Promise.resolve();
+  if(_pdfLibsPromise) return _pdfLibsPromise;
+  const load=(src)=>new Promise((res,rej)=>{
+    const s=document.createElement("script");
+    s.src=src; s.onload=res; s.onerror=()=>rej(new Error("pdf engine load failed"));
+    document.head.appendChild(s);
+  });
+  _pdfLibsPromise=Promise.all([
+    load("/js/vendor/html2canvas.min.js?v=2"),
+    load("/js/vendor/jspdf.umd.min.js?v=2")
+  ]).then(()=>{
+    if(!window.html2canvas||!window.jspdf) throw new Error("pdf engine missing");
+  });
+  _pdfLibsPromise.catch(()=>{ _pdfLibsPromise=null; }); /* allow retry after a failed load */
+  return _pdfLibsPromise;
+}
 async function generatePdfBlob(){
-  if(!window.html2canvas||!window.jspdf) throw new Error("pdf engine missing");
+  await ensurePdfLibs();
   const src=document.querySelector(".invoice-sheet");
   const W=src.offsetWidth;
   const clone=src.cloneNode(true);
