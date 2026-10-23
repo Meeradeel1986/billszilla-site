@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>BillsZilla Admin</title>
+<!-- After adding the ADMIN_PASSWORD secret in Cloudflare, redeploy so functions pick it up. -->
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<style>
+:root{--green:#10b981;--green-dark:#059669;--ink:#1f2937;--slate:#0f172a;--mut:#6b7280;--line:#e5e7eb;--bg:#f8fafc;--card:#fff;--blue:#2563eb}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);font-size:15px}
+.top{background:var(--slate);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:5}
+.top img{width:28px;height:28px;border-radius:7px;background:#fff}
+.top b{font-size:17px}.top b span{color:var(--green)}
+.top .sp{flex:1}
+.top button{background:#1e293b;color:#fff;border:0;border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer}
+.tabs{display:flex;gap:6px;padding:12px 16px 0;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 16px;font-size:14px;cursor:pointer}
+.tabs button.on{background:var(--slate);color:#fff;border-color:var(--slate)}
+.wrap{max-width:960px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{font-size:15px;margin-bottom:10px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpi .n{font-size:26px;font-weight:700}
+.kpi .l{font-size:12px;color:var(--mut);margin-top:2px}
+.range{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.range button{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:7px 14px;font-size:13px;cursor:pointer}
+.range button.on{background:var(--green);color:#fff;border-color:var(--green)}
+canvas.chart{width:100%;height:220px;display:block}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;color:var(--mut);font-weight:600;font-size:12px;padding:8px 6px;border-bottom:1px solid var(--line)}
+td{padding:8px 6px;border-bottom:1px solid #f1f2f6}
+.bar{height:8px;background:#eef0f4;border-radius:4px;overflow:hidden;min-width:80px}
+.bar i{display:block;height:100%;background:var(--green);border-radius:4px}
+.row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f1f2f6}
+.row:last-child{border-bottom:0}
+.row .nm{flex:1}.row .nm small{color:var(--mut);display:block;font-size:12px}
+input[type=text],input[type=password],textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:15px;font-family:inherit}
+.btn{background:var(--green);color:#fff;border:0;border-radius:10px;padding:11px 20px;font-size:15px;font-weight:600;cursor:pointer}
+.btn.ghost{background:#eef0f4;color:var(--ink)}
+.btn:disabled{opacity:.5}
+.lbl{font-size:13px;color:var(--mut);margin:12px 0 6px;display:block}
+.loginwrap{max-width:380px;margin:8vh auto;padding:0 16px}
+.loginwrap .card{padding:28px}
+.loginwrap h2{margin-bottom:4px}.loginwrap p{color:var(--mut);font-size:14px;margin-bottom:16px}
+.loginwrap .lg{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.loginwrap .lg img{width:38px;height:38px;border-radius:9px}
+.err{background:#fdecec;color:#b91c1c;border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:12px;display:none}
+.okmsg{background:#ecfdf3;color:#15803d;border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:12px;display:none}
+.hint{font-size:13px;color:var(--mut);margin-top:8px}
+[hidden]{display:none!important}
+@media(max-width:560px){table .hide-m{display:none}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginView" class="loginwrap" hidden>
+  <div class="card">
+    <div class="lg"><img src="/logo.png?v=3" alt=""><h2>BillsZilla <span style="color:var(--green-dark)">Admin</span></h2></div>
+    <p>Sign in to manage your site.</p>
+    <div class="err" id="loginErr"></div>
+    <label class="lbl" style="margin-top:0">Password</label>
+    <input type="password" id="pw" autocomplete="current-password" placeholder="Admin password">
+    <div style="margin-top:14px"><button class="btn" id="loginBtn" style="width:100%">Sign in</button></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appView" hidden>
+  <div class="top"><img src="/logo.png?v=3" alt=""><b>BillsZilla <span>Admin</span></b><div class="sp"></div><button id="logoutBtn">Log out</button></div>
+  <div class="wrap">
+    <div class="tabs">
+      <button data-tab="stats" class="on">📊 Stats</button>
+      <button data-tab="settings">⚙️ Settings</button>
+    </div>
+
+    <!-- STATS -->
+    <div id="tab-stats" style="margin-top:14px">
+      <div class="range" id="rangeBtns">
+        <button data-days="7">Last 7 days</button>
+        <button data-days="30" class="on">Last 30 days</button>
+        <button data-days="90">Last 90 days</button>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="n" id="kStarts">–</div><div class="l">Tool uses started</div></div>
+        <div class="kpi"><div class="n" id="kDone">–</div><div class="l">Completed</div></div>
+        <div class="kpi"><div class="n" id="kRate">–</div><div class="l">Completion rate</div></div>
+      </div>
+      <div class="card"><h3>Daily activity</h3>
+        <div style="display:flex;gap:16px;font-size:13px;color:var(--mut);margin-bottom:8px">
+          <span><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#10b981;margin-right:5px"></i>Started</span>
+          <span><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#2563eb;margin-right:5px"></i>Completed</span>
+        </div>
+        <div style="position:relative">
+          <canvas class="chart" id="dayChart" style="height:220px"></canvas>
+          <div id="chartTip" style="position:absolute;pointer-events:none;background:#0f172a;color:#fff;border-radius:10px;padding:9px 12px;font-size:13px;line-height:1.6;display:none;white-space:nowrap;z-index:5;box-shadow:0 4px 14px rgba(0,0,0,.25)"></div>
+        </div>
+        <p class="hint">Tap or hover any point for exact numbers.</p>
+      </div>
+      <div class="card"><h3>Per tool</h3><div style="overflow-x:auto"><table>
+        <thead><tr><th>Tool</th><th>Started</th><th>Done</th><th class="hide-m">Rate</th><th style="width:30%">Share</th></tr></thead>
+        <tbody id="toolRows"></tbody>
+      </table></div></div>
+      <div class="card"><h3>Homepage "invoices generated" counter</h3>
+        <div id="counterBody"><p class="hint" style="margin:0">Loading…</p></div>
+      </div>
+      <div class="card"><h3>Website traffic <span style="color:var(--mut);font-weight:400;font-size:13px">· Cloudflare, last 30 days</span></h3>
+        <div id="cfBody"><p class="hint">Loading traffic…</p></div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="tab-settings" style="margin-top:14px" hidden>
+      <div class="card">
+        <h3>Cloudflare traffic</h3>
+        <p class="hint" style="margin:0 0 10px">Connect a read-only Cloudflare API token to show website traffic graphs (requests, page views, top pages, countries) in the Stats tab. Create one in Cloudflare: <b>My Profile → API Tokens → Create Token → Custom token</b> with permissions <b>Zone → Analytics: Read</b> and <b>Zone → Zone: Read</b>, for zone billszilla.com only.</p>
+        <div id="cfTokenState"><p class="hint">Checking…</p></div>
+        <label class="lbl">API token</label>
+        <input type="password" id="cfTokenInput" placeholder="Paste Cloudflare API token" autocomplete="off" style="max-width:440px">
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn" id="cfTokenSaveBtn">Save token</button>
+          <button class="btn ghost" id="cfTokenRemoveBtn" style="color:#b91c1c">Remove token</button>
+        </div>
+        <div class="err" id="cfTokenErr"></div>
+        <div class="okmsg" id="cfTokenOk">Saved ✓</div>
+      </div>
+      <div class="card">
+        <h3>Change password</h3>
+        <div class="err" id="pwErr"></div>
+        <label class="lbl" style="margin-top:0">Current password</label>
+        <input type="password" id="pwCur" autocomplete="current-password">
+        <label class="lbl">New password (min 8 characters)</label>
+        <input type="password" id="pwNew" autocomplete="new-password">
+        <div style="margin-top:14px"><button class="btn ghost" id="pwBtn">Change password</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+var TOOLS=[
+["invoice","Invoice Generator"],["quote","Quote Generator"],["receipt","Receipt Generator"],
+["proforma","Proforma Invoice"],["payment-reminder","Payment Reminder"],
+["hourly-rate-calculator","Hourly Rate Calculator"],["time-tracker","Time Tracker"]
+];
+var toolName={}; TOOLS.forEach(function(t){toolName[t[0]]=t[1];});
+
+/* ---------- auth ---------- */
+function show(view){$("loginView").hidden=view!=="login";$("appView").hidden=view!=="app";}
+async function api(path,opts){
+  var r=await fetch(path,opts||{});
+  if(r.status===401){show("login");throw new Error("auth");}
+  var j=null; try{j=await r.json();}catch(e){}
+  if(!j||j.ok===false)throw new Error((j&&j.error)||("http "+r.status));
+  return j;
+}
+async function checkAuth(){
+  try{await api("/api/admin/cftoken");return true;}catch(e){return false;}
+}
+$("loginBtn").onclick=doLogin;
+$("pw").addEventListener("keydown",function(e){if(e.key==="Enter")doLogin();});
+async function doLogin(){
+  var err=$("loginErr");err.style.display="none";
+  $("loginBtn").disabled=true;
+  try{
+    var r=await fetch("/api/admin/login",{method:"POST",headers:{"content-type":"application/json"},
+      body:JSON.stringify({password:$("pw").value})});
+    var j=await r.json();
+    if(!j.ok)throw new Error(j.error==="wrong-password"?"Wrong password. Try again."
+      :j.error==="admin-not-configured"?"Admin isn't set up yet: add the ADMIN_PASSWORD secret in Cloudflare Pages settings, then redeploy."
+      :"Login failed ("+j.error+")");
+    $("pw").value="";enter();
+  }catch(e){err.textContent=e.message;err.style.display="block";}
+  $("loginBtn").disabled=false;
+}
+$("logoutBtn").onclick=async function(){
+  try{await fetch("/api/admin/logout",{method:"POST"});}catch(e){}
+  show("login");
+};
+function enter(){show("app");loadStats(30);loadTraffic();loadCfTokenState();}
+
+/* ---------- tabs ---------- */
+document.querySelectorAll(".tabs button").forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll(".tabs button").forEach(function(x){x.classList.remove("on");});
+    b.classList.add("on");
+    ["stats","settings"].forEach(function(t){$("tab-"+t).hidden=t!==b.dataset.tab;});
+  };
+});
+
+/* ---------- stats ---------- */
+var curDays=30;
+document.querySelectorAll("#rangeBtns button").forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll("#rangeBtns button").forEach(function(x){x.classList.remove("on");});
+    b.classList.add("on");curDays=parseInt(b.dataset.days,10);loadStats(curDays);
+  };
+});
+function fmt(n){return n>=1000?(n/1000).toFixed(1).replace(/\.0$/,"")+"k":String(n);}
+async function loadStats(days){
+  var d;
+  try{d=await api("/api/admin/stats?days="+days);}
+  catch(e){if(e.message!=="auth"){$("kStarts").textContent="!";}return;}
+  $("kStarts").textContent=fmt(d.totals.started);
+  $("kDone").textContent=fmt(d.totals.completed);
+  $("kRate").textContent=d.totals.rate+"%";
+  drawChart(d.byDay);
+  var max=0;d.byTool.forEach(function(t){max=Math.max(max,t.started+t.completed);});
+  var html=d.byTool.map(function(t){
+    var tot=t.started+t.completed,rate=t.started?Math.round(t.completed/t.started*100):0;
+    return "<tr><td>"+(toolName[t.tool]||t.tool)+"</td><td>"+fmt(t.started)+"</td><td>"+fmt(t.completed)+"</td>"+
+      "<td class='hide-m'>"+rate+"%</td>"+
+      "<td><div class='bar'><i style='width:"+Math.round(tot/Math.max(1,max)*100)+"%'></i></div></td></tr>";
+  }).join("");
+  $("toolRows").innerHTML=html||"<tr><td colspan='5' style='color:var(--mut)'>No usage recorded in this period yet.</td></tr>";
+  if(d.counter){
+    var s=d.counter.seeded,r=d.counter.real;
+    $("counterBody").innerHTML=
+      '<div class="row"><div class="nm"><b>What visitors see</b><small>Seeded display value — base '+s.base.toLocaleString()+' + ~'+s.perDay+'/day since '+s.launch+'</small></div><b>'+s.display.toLocaleString()+'</b></div>'+
+      '<div class="row"><div class="nm"><b>Real invoices started</b><small>Actually tracked by usage counting since '+r.trackingSince+'</small></div><b>'+r.started.toLocaleString()+'</b></div>'+
+      '<div class="row"><div class="nm"><b>Real invoices completed</b><small>Downloaded / sent from the generator</small></div><b>'+r.completed.toLocaleString()+'</b></div>'+
+      '<p class="hint">The homepage counter is still the seeded display number. These real counts grow as the site gets traffic — switch the homepage to real data once they are meaningful.</p>';
+  }
+}
+var chartPts=[],chartHl=-1,chartData=[];
+function paintChart(){
+  var byDay=chartData;
+  var c=$("dayChart");
+  var dpr=window.devicePixelRatio||1;
+  var w=c.clientWidth||c.parentElement.clientWidth||600,h=220;
+  c.width=w*dpr;c.height=h*dpr;
+  var x=c.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);
+  x.clearRect(0,0,w,h);
+  var max=1;byDay.forEach(function(d){max=Math.max(max,d.started,d.completed);});
+  max=Math.ceil(max/10)*10||10;
+  var n=byDay.length,padL=34,padR=10,padT=10,padB=22;
+  function px(i){return padL+i*(w-padL-padR)/Math.max(1,n-1);}
+  function py(v){return padT+(1-v/max)*(h-padT-padB);}
+  x.strokeStyle="#eef0f4";x.lineWidth=1;x.fillStyle="#9aa0ae";x.font="11px system-ui";x.textAlign="right";
+  for(var g=0;g<=4;g++){
+    var v=Math.round(max*g/4),gy=py(v);
+    x.beginPath();x.moveTo(padL,gy);x.lineTo(w-padR,gy);x.stroke();
+    x.fillText(fmt(v),padL-6,gy+4);
+  }
+  function series(key,color,fill){
+    if(fill){
+      var gr=x.createLinearGradient(0,0,0,h);
+      gr.addColorStop(0,"rgba(16,185,129,.22)");gr.addColorStop(1,"rgba(16,185,129,0)");
+      x.beginPath();
+      byDay.forEach(function(d,i){i?x.lineTo(px(i),py(d[key])):x.moveTo(px(i),py(d[key]));});
+      x.lineTo(px(n-1),h-padB);x.lineTo(px(0),h-padB);x.closePath();x.fillStyle=gr;x.fill();
+    }
+    x.beginPath();
+    byDay.forEach(function(d,i){i?x.lineTo(px(i),py(d[key])):x.moveTo(px(i),py(d[key]));});
+    x.strokeStyle=color;x.lineWidth=2.5;x.lineJoin="round";x.stroke();
+  }
+  series("started","#10b981",true);
+  series("completed","#2563eb",false);
+  chartPts=byDay.map(function(d,i){return{i:i,x:px(i),ys:py(d.started),yc:py(d.completed),d:d};});
+  byDay.forEach(function(d,i){
+    if(n>=40)return;
+    x.fillStyle="#10b981";x.beginPath();x.arc(px(i),py(d.started),3,0,7);x.fill();
+    x.fillStyle="#2563eb";x.beginPath();x.arc(px(i),py(d.completed),3,0,7);x.fill();
+  });
+  if(chartHl>=0&&chartPts[chartHl]){
+    var q=chartPts[chartHl];
+    x.strokeStyle="#0f172a";x.lineWidth=2;
+    x.beginPath();x.arc(q.x,q.ys,7,0,7);x.stroke();
+    x.beginPath();x.arc(q.x,q.yc,7,0,7);x.stroke();
+  }
+  x.fillStyle="#9aa0ae";x.font="11px system-ui";x.textAlign="center";
+  var step=Math.ceil(n/6);
+  byDay.forEach(function(d,i){if(i%step===0||i===n-1)x.fillText(d.date.slice(5),px(i),h-6);});
+}
+function drawChart(byDay){
+  chartData=byDay;chartHl=-1;
+  $("chartTip").style.display="none";
+  paintChart();
+  var c=$("dayChart"),tip=$("chartTip");
+  function nearest(mx){
+    var best=null,bd=1e9;
+    chartPts.forEach(function(p){var dd=Math.abs(p.x-mx);if(dd<bd){bd=dd;best=p;}});
+    return best;
+  }
+  function showTip(clientX){
+    var r=c.getBoundingClientRect(),mx=clientX-r.left,p=nearest(mx);
+    if(!p)return;
+    chartHl=p.i;paintChart();
+    var d=p.d,rate=d.started?Math.round(d.completed/d.started*100):0;
+    tip.innerHTML="<b>"+d.date+"</b><br>"+
+      "<span style='color:#34d399'>●</span> Started: <b>"+d.started+"</b><br>"+
+      "<span style='color:#60a5fa'>●</span> Completed: <b>"+d.completed+"</b><br>"+
+      "<span style='color:#9aa0ae'>Rate: "+rate+"%</span>";
+    tip.style.display="block";
+    var tw=tip.offsetWidth,th=tip.offsetHeight;
+    var lx=p.x+12;if(lx+tw>r.width-4)lx=p.x-tw-12;
+    var ly=8;if(ly+th>r.height-4)ly=r.height-th-4;
+    tip.style.left=lx+"px";tip.style.top=ly+"px";
+  }
+  function hideTip(){tip.style.display="none";if(chartHl!==-1){chartHl=-1;paintChart();}}
+  c.onmousemove=function(e){showTip(e.clientX);};
+  c.onmouseleave=hideTip;
+  c.ontouchstart=function(e){showTip(e.touches[0].clientX);};
+  c.ontouchmove=function(e){showTip(e.touches[0].clientX);e.preventDefault();};
+  c.ontouchend=hideTip;
+}
+
+/* ---------- password ---------- */
+$("pwBtn").onclick=async function(){
+  var err=$("pwErr");err.style.display="none";
+  try{
+    await api("/api/admin/password",{method:"POST",headers:{"content-type":"application/json"},
+      body:JSON.stringify({current:$("pwCur").value,next:$("pwNew").value})});
+    $("pwCur").value="";$("pwNew").value="";
+    alert("Password changed. Please sign in again.");
+    try{await fetch("/api/admin/logout",{method:"POST"});}catch(e){}
+    show("login");
+  }catch(e){
+    err.textContent=e.message==="too-short"?"New password must be at least 8 characters.":e.message==="wrong-password"?"Current password is wrong.":"Failed: "+e.message;
+    err.style.display="block";
+  }
+};
+
+/* ---------- Cloudflare website traffic ---------- */
+var cfPts=null;
+function cfEsc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function drawTrafficChart(){
+  var cv=$("cfChart");if(!cv||!cfPts||!cfPts.length)return;
+  var dpr=Math.min(3,window.devicePixelRatio||1);
+  var W=cv.clientWidth,H=cv.clientHeight;
+  cv.width=W*dpr;cv.height=H*dpr;
+  var ctx=cv.getContext("2d");ctx.scale(dpr,dpr);ctx.clearRect(0,0,W,H);
+  var padL=46,padB=26,padT=12,padR=10;
+  var cw=W-padL-padR,ch=H-padT-padB;
+  var maxV=1;cfPts.forEach(function(p){maxV=Math.max(maxV,p.req,p.pv);});
+  var nice=Math.pow(10,Math.floor(Math.log10(maxV)));var n2=maxV/nice;
+  var step=nice*((n2<=1)?1:(n2<=2)?2:(n2<=2.5)?2.5:(n2<=5)?5:10);
+  maxV=Math.ceil(maxV/step)*step;
+  function X(i){return padL+(i/(cfPts.length-1||1))*cw;}
+  function Y(v){return padT+ch-(v/maxV)*ch;}
+  ctx.font="11px system-ui";ctx.fillStyle="#8a8f98";ctx.textAlign="right";
+  ctx.strokeStyle="#eceef2";ctx.lineWidth=1;
+  for(var v=0;v<=maxV+1e-9;v+=step){
+    var y=Y(v);
+    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+    ctx.fillText(v>=1000?(v/1000)+"k":(""+v),padL-8,y+4);
+  }
+  ctx.textAlign="center";
+  cfPts.forEach(function(p,i){
+    if(cfPts.length>14&&i%Math.ceil(cfPts.length/7)!==0)return;
+    ctx.fillText(p.date.slice(5).replace("-","/"),X(i),H-8);
+  });
+  function line(key,color,fill){
+    if(fill){var g=ctx.createLinearGradient(0,padT,0,padT+ch);
+      g.addColorStop(0,color+"44");g.addColorStop(1,color+"00");
+      ctx.beginPath();ctx.moveTo(X(0),Y(0));
+      cfPts.forEach(function(p,i){ctx.lineTo(X(i),Y(p[key]));});
+      ctx.lineTo(X(cfPts.length-1),Y(0));ctx.closePath();ctx.fillStyle=g;ctx.fill();}
+    ctx.beginPath();
+    cfPts.forEach(function(p,i){if(i===0)ctx.moveTo(X(i),Y(p[key]));else ctx.lineTo(X(i),Y(p[key]));});
+    ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.lineJoin="round";ctx.stroke();
+    cfPts.forEach(function(p,i){ctx.beginPath();ctx.arc(X(i),Y(p[key]),2.5,0,7);ctx.fillStyle=color;ctx.fill();});
+  }
+  line("pv","#059669",true);line("req","#2563eb",false);
+  cv.onmousemove=function(e){
+    var r=cv.getBoundingClientRect(),mx=e.clientX-r.left;
+    var best=0,bd=1e9;
+    cfPts.forEach(function(p,i){var d=Math.abs(X(i)-mx);if(d<bd){bd=d;best=i;}});
+    if(bd>cw/(cfPts.length)*1.5){$("cfTip").style.display="none";return;}
+    var p=cfPts[best],tip=$("cfTip");
+    tip.innerHTML="<b>"+p.date+"</b><br>Requests: <b>"+p.req.toLocaleString()+"</b><br>Page views: <b>"+p.pv.toLocaleString()+"</b><br>Visitors: <b>"+p.uv.toLocaleString()+"</b>";
+    tip.style.display="block";
+    var tx=X(best)+14,ty=Math.max(4,Math.min(H-90,Y(p.req)-40));
+    if(tx+r.left>window.innerWidth-200)tx=X(best)-190;
+    tip.style.left=tx+"px";tip.style.top=ty+"px";
+  };
+  cv.onmouseleave=function(){$("cfTip").style.display="none";};
+}
+function loadTraffic(){
+  var body=$("cfBody");
+  api("/api/admin/traffic?days=30").then(function(d){
+    renderTraffic(d);
+  }).catch(function(e){
+    if(e.message==="auth")return;
+    if(e.message==="no-token"){
+      body.innerHTML='<p class="hint" style="margin:0">Not connected yet — paste a read-only Cloudflare API token in <b>Settings → Cloudflare traffic</b> and the graphs will appear here.</p>';
+    }else if(e.message==="bad-token"){
+      body.innerHTML='<p class="err" style="margin:0">The saved Cloudflare token was rejected — check it in <b>Settings → Cloudflare traffic</b>.</p>';
+    }else{
+      body.innerHTML='<p class="hint" style="margin:0">Couldn\'t load traffic — try again in a minute.</p>';
+    }
+  });
+  function renderTraffic(d){
+    if(!d.ok){
+      if(d.error==="no-token"){
+        body.innerHTML='<p class="hint" style="margin:0">Not connected yet — paste a read-only Cloudflare API token in <b>Settings → Cloudflare traffic</b> and the graphs will appear here.</p>';
+      }else if(d.error==="bad-token"){
+        body.innerHTML='<p class="err" style="margin:0">The saved Cloudflare token was rejected — check it in <b>Settings → Cloudflare traffic</b>.</p>';
+      }else{
+        body.innerHTML='<p class="hint" style="margin:0">Couldn\'t reach Cloudflare right now — try again in a minute.</p>';
+      }
+      return;
+    }
+    var t=d.totals;
+    var html='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:14px">';
+    html+='<div class="kpi"><div class="n" style="color:#2563eb">'+t.requests.toLocaleString()+'</div><div class="l">Requests (30d)</div></div>';
+    html+='<div class="kpi"><div class="n" style="color:#059669">'+t.pageViews.toLocaleString()+'</div><div class="l">Page views (30d)</div></div>';
+    html+='<div class="kpi"><div class="n">'+t.uniques.toLocaleString()+'</div><div class="l">Visitors (30d)</div></div>';
+    html+='</div>';
+    html+='<div style="display:flex;gap:16px;font-size:13px;color:var(--mut);margin-bottom:8px"><span><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#2563eb;margin-right:5px"></i>Requests</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#059669;margin-right:5px"></i>Page views</span></div>';
+    html+='<div style="position:relative"><canvas class="chart" id="cfChart" style="height:220px"></canvas><div id="cfTip" style="position:absolute;pointer-events:none;background:#0f172a;color:#fff;border-radius:10px;padding:9px 12px;font-size:13px;line-height:1.6;display:none;white-space:nowrap;z-index:5;box-shadow:0 4px 14px rgba(0,0,0,.25)"></div></div>';
+    html+='<p class="hint">Tap or hover any point for exact numbers.</p>';
+    function bars(title,rows,label){
+      if(!rows||!rows.length)return "";
+      var s='<h4 style="margin:14px 0 6px;font-size:14px">'+title+'</h4>';
+      rows.forEach(function(r){
+        var mx=rows[0].count||1,pct=Math.round(r.count/mx*100);
+        s+='<div style="display:flex;align-items:center;gap:10px;margin:5px 0;font-size:13px"><span style="width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--mut)">'+cfEsc(label(r))+'</span><span style="flex:1;height:8px;background:#f0f1f4;border-radius:4px;overflow:hidden"><span style="display:block;height:100%;width:'+pct+'%;background:#2563eb;border-radius:4px"></span></span><b style="min-width:44px;text-align:right">'+r.count.toLocaleString()+'</b></div>';
+      });
+      return s;
+    }
+    html+=bars("Top pages",d.topPages,function(r){return r.path||"/";});
+    html+=bars("Top countries",d.topCountries,function(r){return r.country||"—";});
+    html+=bars("Devices",d.devices,function(r){return ({desktop:"Desktop",mobile:"Mobile",tablet:"Tablet"}[r.type]||r.type||"—");});
+    html+='<p class="hint" style="margin-top:12px">Traffic refreshes every 10 minutes.</p>';
+    body.innerHTML=html;
+    cfPts=(d.daily||[]).map(function(r){return {date:r.date,req:r.requests,pv:r.pageViews,uv:r.uniques};});
+    drawTrafficChart();
+  }
+}
+function loadCfTokenState(){
+  api("/api/admin/cftoken").then(function(d){
+    $("cfTokenState").innerHTML='<p class="hint" style="margin:0">'+(d.set
+      ?'<b style="color:var(--green-dark)">● Connected</b> — traffic graphs are live in the Stats tab.'
+      :'Not connected — paste your token below.')+'</p>';
+  }).catch(function(){});
+}
+$("cfTokenSaveBtn").onclick=async function(){
+  var v=$("cfTokenInput").value.trim();$("cfTokenErr").textContent="";
+  if(v.length<20){$("cfTokenErr").textContent="That doesn't look like a valid token.";return;}
+  try{await api("/api/admin/cftoken",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({token:v})});
+    $("cfTokenOk").style.display="inline-block";$("cfTokenInput").value="";
+    setTimeout(function(){$("cfTokenOk").style.display="none";},2500);
+    loadCfTokenState();loadTraffic();
+  }catch(e){$("cfTokenErr").textContent="Couldn't save the token.";}
+};
+$("cfTokenRemoveBtn").onclick=async function(){
+  try{await api("/api/admin/cftoken",{method:"DELETE"});loadCfTokenState();loadTraffic();}
+  catch(e){}
+};
+
+/* ---------- boot ---------- */
+checkAuth().then(function(ok){show(ok?"app":"login");if(ok)enter();});
+window.BZAdminTest={drawChart:drawChart,getPts:function(){return chartPts;}};
+})();
+</script>
+</body>
+</html>
