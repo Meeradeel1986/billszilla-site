@@ -11,6 +11,10 @@ article's <figure class="hero">, its og:image meta + JSON-LD image, and on /blog
 (featured slot if newest, else a grid card). Template: blog/article-template.html.
 Never publish an article without its hero photo.
 
+## News posts (from 2026-10-25 — fresh invoicing/tax/payment news, worldwide framing)
+
+- 2026-10-25 — "E-Invoicing Is Going Mandatory: The 2026–2028 Deadlines You Need to Know" — https://billszilla.com/blog/e-invoicing-mandates-2026-2028 — Sources: https://www.vatupdate.com/2026/10/17/how-to-adapt-to-mandatory-b2b-e-invoicing/ , https://avask.com/blog/e-invoicing-mandate/ , https://www.taxually.com/blog/uae-e-invoicing-2027 , https://sharedserviceslink.com/news/ireland-s-finance-bill-sets-out-e-invoicing-scope-and-vat-reporting-deadlines
+
 ## Queued
 
 Re-ranked 2026-10-23 by low-competition keyword audit (allintitle + top-5 weakness).
