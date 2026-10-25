@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+BILLSZILLA BLOG ARTICLE TEMPLATE — rules for every new weekly article (mirrors PDFZippy's blog rule):
+1. HERO PHOTO (REQUIRED, no exceptions): generate a photographic hero image on the article's
+   topic (invoice/freelance/small-business/office theme, no readable text in the image).
+   Save it as assets/blog/{{SLUG}}.jpg, ~1200px wide, compressed to under ~150KB.
+   It must appear in THREE places: (a) the <figure class="hero"> below, (b) og:image above,
+   (c) the JSON-LD "image" field above — and on /blog/ index (featured slot if it is the
+   newest article, otherwise a grid card with the same photo, kicker, title and excerpt).
+2. Do NOT change: posting cadence (weekly, Mondays ~10:20), article URL/slug pattern
+   (blog/{{SLUG}}.html on disk, clean /blog/{{SLUG}} canonical), the shared site
+   header/nav/footer, or sitemap structure (add the new URL to sitemap.xml).
+3. Worldwide audience framing only — never country-specific angles (no GST-only, no
+   PKR-only, no IRS-only posts). User-facing copy never names a specific email provider.
+4. Link the new article from the blog index; the previous featured article moves to the grid.
+5. Keep /css/blog.css?v=1 linked in the head; bump ?v= if blog.css ever changes.
+-->
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} — BillsZilla Blog</title>
+<meta name="description" content="{{META_DESCRIPTION_MAX_155_CHARS}}">
+<link rel="canonical" href="https://billszilla.com/blog/{{SLUG}}">
+<meta property="og:title" content="{{TITLE}} — BillsZilla Blog">
+<meta property="og:description" content="{{OG_DESCRIPTION}}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://billszilla.com/blog/{{SLUG}}">
+<meta property="og:image" content="https://billszilla.com/assets/blog/{{SLUG}}.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"{{TITLE}}","url":"https://billszilla.com/blog/{{SLUG}}","image":"https://billszilla.com/assets/blog/{{SLUG}}.jpg","author":{"@type":"Organization","name":"BillsZilla"},"publisher":{"@type":"Organization","name":"BillsZilla"}}
+</script>
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="/css/style.css?v=9">
+<link rel="stylesheet" href="/css/blog.css?v=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#059669">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body class="bz-blog">
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/logo.png?v=3" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Invoice Generator</a>
+      <a href="/payment-reminder">Payment Reminders</a>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Tools <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/quote">Quote Generator</a>
+          <a href="/receipt">Receipt Generator</a>
+          <a href="/proforma">Proforma Invoice</a>
+          <a href="/hourly-rate-calculator">Hourly Rate Calculator</a>
+          <a href="/time-tracker">Time Tracker</a>
+          <a href="/tax-calculator">Tax Calculator</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Templates <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/invoice-templates">All Invoice Templates</a>
+          <a href="/freelancer-invoice-template">Freelancer Invoice Template</a>
+          <a href="/contractor-invoice-template">Contractor Invoice Template</a>
+          <a href="/photographer-invoice-template">Photographer Invoice Template</a>
+          <a href="/consultant-invoice-template">Consultant Invoice Template</a>
+          <a href="/designer-invoice-template">Designer Invoice Template</a>
+          <a href="/cleaning-service-invoice-template">Cleaning Service Invoice Template</a>
+        </div>
+      </div>
+      <a href="/blog/">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/#app" class="btn nav-cta">Create Invoice</a>
+    </nav>
+  </div>
+</header>
+<section class="page-hero"><div class="wrap"><h1>{{TITLE}}</h1><p>{{SUBTITLE}}</p></div></section>
+<section><div class="wrap"><figure class="hero"><img src="/assets/blog/{{SLUG}}.jpg" alt="{{HERO_ALT_TEXT}}" fetchpriority="high"></figure><div class="prose">
+{{ARTICLE_BODY_HTML}}
+</div></div></section>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" style="color:#fff"><img src="/logo.png?v=3" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+        <p>The free invoice generator that respects your privacy. No signup, no watermark, no servers.</p>
+      </div>
+      <div><h4>Tools</h4><a href="/#app">Invoice Generator</a><a href="/quote">Quote Generator</a><a href="/receipt">Receipt Generator</a><a href="/proforma">Proforma Invoice</a><a href="/tax-calculator">Tax Calculator</a><a href="/invoice-templates">Invoice Templates</a></div>
+      <div><h4>Resources</h4><a href="https://pdfzippy.com">PDFZippy — Free PDF Tools</a><a href="/blog/">Blog</a><a href="/#faq">FAQ</a><a href="/#templates">Templates</a></div>
+      <div><h4>Templates</h4><a href="/freelancer-invoice-template">Freelancer Invoice</a><a href="/contractor-invoice-template">Contractor Invoice</a><a href="/photographer-invoice-template">Photographer Invoice</a><a href="/consultant-invoice-template">Consultant Invoice</a><a href="/designer-invoice-template">Designer Invoice</a><a href="/cleaning-service-invoice-template">Cleaning Service Invoice</a></div><div><h4>Company</h4><a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Made for freelancers everywhere.</span></div>
+  </div>
+</footer>
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<script src="/js/data.js?v=5"></script>
+<script src="/js/app.js?v=11"></script>
+<script src="/js/chat.js?v=3"></script>
+<script src="/js/install.js?v=2"></script>
+<script src="/js/nav.js?v=1"></script>
+</body>
+</html>
