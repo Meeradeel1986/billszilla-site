@@ -14,6 +14,7 @@ Never publish an article without its hero photo.
 ## News posts (from 2026-10-25 — fresh invoicing/tax/payment news, worldwide framing)
 
 - 2026-10-25 — "E-Invoicing Is Going Mandatory: The 2026–2028 Deadlines You Need to Know" — https://billszilla.com/blog/e-invoicing-mandates-2026-2028 — Sources: https://www.vatupdate.com/2026/10/17/how-to-adapt-to-mandatory-b2b-e-invoicing/ , https://avask.com/blog/e-invoicing-mandate/ , https://www.taxually.com/blog/uae-e-invoicing-2027 , https://sharedserviceslink.com/news/ireland-s-finance-bill-sets-out-e-invoicing-scope-and-vat-reporting-deadlines
+- 2026-10-26 — "UAE E-Invoicing Deadline: Appoint a Provider by 30 October or Face AED 5,000 Monthly Fines" — https://billszilla.com/blog/uae-e-invoicing-deadline-penalties — Sources: https://www.gulftoday.ae/business/2026/10/25/fta-calls-for-compliance-with-e-invoicing-deadlines-to-avoid-penalties , https://gulfnews.com/business/tax-news/uae-e-invoicing-deadline-businesses-face-dh5000-monthly-fines-for-delays-1.500722869 , https://www.khaleejtimes.com/business/dh5000-fine-a-month-uae-firms-have-5-days-to-appoint-e-invoicing-provider
 
 ## Queued
 
