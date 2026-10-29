@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Late Fee Calculator — Overdue Invoices | BillsZilla</title>
+<meta name="description" content="Calculate late fees on overdue invoices instantly: monthly, annual or flat-fee rules. Free, no signup — see the fee and total due live.">
+<link rel="canonical" href="https://billszilla.com/late-fee-calculator">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"BillsZilla Free Late Fee Calculator","url":"https://billszilla.com/late-fee-calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free late fee calculator for overdue invoices: monthly, annual or flat-fee rules, with the fee and total due calculated live."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is a monthly late fee calculated?","acceptedAnswer":{"@type":"Answer","text":"Multiply the overdue amount by the monthly rate, then by the days overdue divided by 30. A $1,000 invoice at 1.5% per month, 60 days overdue, is 1,000 × 1.5% × 60 ÷ 30 = $30.00 in late fees, for a $1,030.00 total due."}},{"@type":"Question","name":"How does an annual late fee rate work?","acceptedAnswer":{"@type":"Answer","text":"Multiply the overdue amount by the annual rate, then by the days overdue divided by 365. A $1,000 invoice at 12% per year, 60 days overdue, is 1,000 × 12% × 60 ÷ 365 = $19.73 in late fees, for a $1,019.73 total due."}},{"@type":"Question","name":"What is a flat late fee?","acceptedAnswer":{"@type":"Answer","text":"A single fixed amount charged once, no matter how many days the invoice is overdue — for example $25 or $50 per overdue invoice. It is simple to explain to clients, but it does not grow with the delay the way a percentage fee does."}},{"@type":"Question","name":"Should I charge late fees at all?","acceptedAnswer":{"@type":"Answer","text":"Only if your contract or invoice terms say so, and only within what your local rules allow — some places cap late fees or require the rate to be agreed in advance. Put the rule in writing on the invoice before the work starts, not after the payment is already late."}},{"@type":"Question","name":"How do I add a late fee to an invoice?","acceptedAnswer":{"@type":"Answer","text":"Add it as its own line item on the invoice, labelled as a late fee with the rule you applied — for example 'Late fee: 1.5% per month, 60 days overdue'. Use the free BillsZilla invoice generator to create the invoice, then send it with a payment reminder."}},{"@type":"Question","name":"Is this late fee calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — unlimited calculations, no signup, no watermark. Everything runs in your browser; nothing you type is uploaded anywhere."}}]}
+</script>
+<meta property="og:title" content="Free Late Fee Calculator — Overdue Invoices | BillsZilla">
+<meta property="og:description" content="Work out late fees on overdue invoices in seconds — monthly, annual or flat-fee rules. Free forever. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://billszilla.com/late-fee-calculator">
+<meta property="og:image" content="https://billszilla.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="/css/style.css?v=9">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#059669">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/logo.png?v=3" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Invoice Generator</a>
+      <a href="/payment-reminder">Payment Reminders</a>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Tools <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/quote">Quote Generator</a>
+          <a href="/receipt">Receipt Generator</a>
+          <a href="/proforma">Proforma Invoice</a>
+          <a href="/hourly-rate-calculator">Hourly Rate Calculator</a>
+          <a href="/time-tracker">Time Tracker</a>
+          <a href="/tax-calculator">Tax Calculator</a>
+          <a href="/late-fee-calculator">Late Fee Calculator</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Templates <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/invoice-templates">All Invoice Templates</a>
+          <a href="/freelancer-invoice-template">Freelancer Invoice Template</a>
+          <a href="/contractor-invoice-template">Contractor Invoice Template</a>
+          <a href="/photographer-invoice-template">Photographer Invoice Template</a>
+          <a href="/consultant-invoice-template">Consultant Invoice Template</a>
+          <a href="/designer-invoice-template">Designer Invoice Template</a>
+          <a href="/cleaning-service-invoice-template">Cleaning Service Invoice Template</a>
+        </div>
+      </div>
+      <a href="/blog/">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/#app" class="btn nav-cta">Create Invoice</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Late Fee Calculator</h1>
+    <p>Work out what a late-paying client actually owes — monthly, annual or flat-fee rules, calculated live. Free forever, anywhere in the world.</p>
+  </div>
+</section>
+
+<section class="app-section" id="app">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;margin-bottom:26px">
+      <h2 class="sec-title">Late Fee Calculator</h2>
+      <p class="sec-sub">Results update live as you type. Nothing leaves your browser.</p>
+    </div>
+    <div class="app-shell">
+      <div class="app-grid cols2">
+        <div class="app-form">
+          <fieldset>
+            <legend>Your Numbers</legend>
+            <div class="frow single"><div class="field"><label>What late-fee rule do you use?</label>
+              <div class="mode-toggle">
+                <button type="button" id="lf-mode-month" class="active">% per month</button>
+                <button type="button" id="lf-mode-year">% per year</button>
+                <button type="button" id="lf-mode-flat">Flat fee</button>
+              </div>
+            </div></div>
+            <div class="frow">
+              <div class="field"><label>Overdue invoice amount</label><input aria-label="Overdue invoice amount" id="lf-amount" type="number" min="0" step="any" value="1000"></div>
+              <div class="field" id="lf-days-wrap"><label>Days overdue</label><input aria-label="Days overdue" id="lf-days" type="number" min="0" step="any" value="60"></div>
+              <div class="field"><label id="lf-rate-label">Rate % per month</label><input aria-label="Late fee rate" id="lf-rate" type="number" min="0" step="any" value="1.5"></div>
+            </div>
+            <div class="field"><label>Common rules</label>
+              <div class="chip-row">
+                <button type="button" class="chip" data-mode="month" data-rate="1">1% / month</button>
+                <button type="button" class="chip" data-mode="month" data-rate="1.5">1.5% / month</button>
+                <button type="button" class="chip" data-mode="month" data-rate="2">2% / month</button>
+                <button type="button" class="chip" data-mode="year" data-rate="12">12% / year</button>
+                <button type="button" class="chip" data-mode="year" data-rate="18">18% / year</button>
+                <button type="button" class="chip" data-mode="flat" data-rate="25">Flat 25</button>
+                <button type="button" class="chip" data-mode="flat" data-rate="50">Flat 50</button>
+              </div>
+            </div>
+            <div class="hint">Monthly fees use a 30-day month; annual fees use a 365-day year. A flat fee is charged once, however many days the invoice is overdue. Always check what your contract — and your local rules — allow before charging a late fee.</div>
+          </fieldset>
+        </div>
+        <div class="app-preview">
+          <div class="preview-label"><span><span class="live-dot"></span>Your result</span></div>
+          <div class="rate-result">
+            <div class="rate-big" id="lf-big">0.00</div>
+            <div class="rate-sub" id="lf-big-label">total due</div>
+            <div class="rate-rows">
+              <div class="rate-row"><span>Overdue invoice amount</span><b id="lf-amount-out">0.00</b></div>
+              <div class="rate-row"><span>Late fee</span><b id="lf-fee">0.00</b></div>
+              <div class="rate-row"><span>Total due</span><b id="lf-total">0.00</b></div>
+            </div>
+            <div class="rate-formula" id="lf-formula"></div>
+            <a href="/#app" class="btn" style="margin-top:18px">Create a free invoice →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="marketing">
+  <div class="wrap" style="max-width:820px">
+    <h2 class="sec-title">How to calculate a late fee in 3 steps</h2>
+    <ol class="steps">
+      <li><strong>Enter the overdue amount.</strong> Type what the client still owes on the invoice.</li>
+      <li><strong>Pick your rule.</strong> Choose a percentage per month, a percentage per year, or a flat fee — use a preset or type your own rate.</li>
+      <li><strong>Read the total due instantly.</strong> You get the late fee and the new total, with the exact formula shown — ready to put on the invoice or in a reminder.</li>
+    </ol>
+    <h2 class="sec-title" style="margin-top:34px">Why a clear late-fee rule gets you paid</h2>
+    <p>A late fee is not really about the money — it is about the deadline. When an invoice quietly sits unpaid, there is no cost to the client for waiting. A stated rule changes that: 1.5% a month, or a flat fee after 30 days, turns “pay whenever” into a date with a price. The trick is stating the rule before the work starts, in the payment terms on the invoice itself, and then applying it consistently. This calculator gives you the exact number to quote, whether your rule is monthly, annual or flat. Once you have it, add the fee as its own line on the invoice with the free <a href="/">invoice generator</a>, and follow up with the <a href="/payment-reminder">payment reminder generator</a> — a polite reminder with a precise total lands very differently from a vague “just checking in”.</p>
+  </div>
+</section>
+
+<section class="marketing">
+  <div class="wrap" style="max-width:820px">
+    <h2 class="sec-title">Late fee calculator FAQ</h2>
+    <div class="faq-item"><button class="faq-q">How is a monthly late fee calculated?</button><div class="faq-a">Multiply the overdue amount by the monthly rate, then by the days overdue divided by 30. A $1,000 invoice at 1.5% per month, 60 days overdue, is 1,000 × 1.5% × 60 ÷ 30 = $30.00 in late fees, for a $1,030.00 total due.</div></div>
+    <div class="faq-item"><button class="faq-q">How does an annual late fee rate work?</button><div class="faq-a">Multiply the overdue amount by the annual rate, then by the days overdue divided by 365. A $1,000 invoice at 12% per year, 60 days overdue, is 1,000 × 12% × 60 ÷ 365 = $19.73 in late fees, for a $1,019.73 total due.</div></div>
+    <div class="faq-item"><button class="faq-q">What is a flat late fee?</button><div class="faq-a">A single fixed amount charged once, no matter how many days the invoice is overdue — for example $25 or $50 per overdue invoice. It is simple to explain to clients, but it does not grow with the delay the way a percentage fee does.</div></div>
+    <div class="faq-item"><button class="faq-q">Should I charge late fees at all?</button><div class="faq-a">Only if your contract or invoice terms say so, and only within what your local rules allow — some places cap late fees or require the rate to be agreed in advance. Put the rule in writing on the invoice before the work starts, not after the payment is already late.</div></div>
+    <div class="faq-item"><button class="faq-q">How do I add a late fee to an invoice?</button><div class="faq-a">Add it as its own line item on the invoice, labelled as a late fee with the rule you applied — for example “Late fee: 1.5% per month, 60 days overdue”. Use the free <a href="/">invoice generator</a> to create the invoice, then send it with a <a href="/payment-reminder">payment reminder</a>.</div></div>
+    <div class="faq-item"><button class="faq-q">Is this late fee calculator free?</button><div class="faq-a">Yes — unlimited calculations, no signup, no watermark. Everything runs in your browser; nothing you type is uploaded anywhere.</div></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" style="color:#fff"><img src="/logo.png?v=3" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+        <p>The free invoice generator that respects your privacy. No signup, no watermark, no servers.</p>
+      </div>
+      <div><h4>Tools</h4><a href="/#app">Invoice Generator</a><a href="/quote">Quote Generator</a><a href="/receipt">Receipt Generator</a><a href="/proforma">Proforma Invoice</a><a href="/payment-reminder">Payment Reminder</a><a href="/hourly-rate-calculator">Rate Calculator</a><a href="/time-tracker">Time Tracker</a><a href="/tax-calculator">Tax Calculator</a><a href="/late-fee-calculator">Late Fee Calculator</a><a href="/invoice-templates">Invoice Templates</a></div>
+      <div><h4>Templates</h4><a href="/freelancer-invoice-template">Freelancer Invoice</a><a href="/contractor-invoice-template">Contractor Invoice</a><a href="/photographer-invoice-template">Photographer Invoice</a><a href="/consultant-invoice-template">Consultant Invoice</a><a href="/designer-invoice-template">Designer Invoice</a><a href="/cleaning-service-invoice-template">Cleaning Service Invoice</a></div>
+      <div><h4>Resources</h4><a href="https://pdfzippy.com">PDFZippy — Free PDF Tools</a><a href="/blog/">Blog</a><a href="/#faq">FAQ</a><a href="/#templates">Templates</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Made for freelancers everywhere.</span></div>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<script src="/js/data.js?v=5"></script>
+<script src="/js/late-fee-calculator.js?v=1"></script>
+<script src="/js/chat.js?v=3"></script>
+<script src="/js/install.js?v=2"></script>
+<script src="/js/nav.js?v=1"></script>
+</body>
+</html>
