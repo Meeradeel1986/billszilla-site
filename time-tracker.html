@@ -3,13 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Time Tracker for Freelancers — BillsZilla | Track Hours, Invoice Them</title>
+<title>Free Time Tracker for Freelancers — BillsZilla</title>
 <meta name="description" content="Free time tracker for freelancers: log billable hours and turn them into an invoice in one click. No signup, everything stays in your browser.">
 <link rel="canonical" href="https://billszilla.com/time-tracker">
 <meta property="og:title" content="Free Time Tracker for Freelancers — BillsZilla">
 <meta property="og:description" content="Track billable hours, then turn them into an invoice in one click. Free forever. No signup.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://billszilla.com/time-tracker.html">
+<meta property="og:image" content="https://billszilla.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="/css/style.css?v=9">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -84,12 +88,12 @@
         <div class="tt-elapsed" id="tt-elapsed">00:00:00</div>
         <div class="tt-status" id="tt-status">Timer stopped</div>
         <div class="frow">
-          <div class="field"><label>Client / project</label><input id="tt-client" placeholder="Acme Studio"></div>
-          <div class="field"><label>What are you working on?</label><input id="tt-desc" placeholder="Homepage redesign"></div>
+          <div class="field"><label>Client / project</label><input aria-label="Client / project" id="tt-client" placeholder="Acme Studio"></div>
+          <div class="field"><label>What are you working on?</label><input aria-label="What are you working on?" id="tt-desc" placeholder="Homepage redesign"></div>
         </div>
         <div class="frow">
-          <div class="field"><label>Currency</label><select id="tt-currency"></select></div>
-          <div class="field"><label>Hourly rate</label><input id="tt-rate" type="number" min="0" step="any" placeholder="50.00"></div>
+          <div class="field"><label>Currency</label><select aria-label="Currency" id="tt-currency"></select></div>
+          <div class="field"><label>Hourly rate</label><input aria-label="Hourly rate" id="tt-rate" type="number" min="0" step="any" placeholder="50.00"></div>
         </div>
         <button class="btn tt-toggle" id="tt-toggle" type="button">▶ Start timer</button>
         <div class="hint" style="margin-top:10px">Don't know your rate? <a href="/hourly-rate-calculator">Calculate it here</a>.</div>

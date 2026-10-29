@@ -1,0 +1,32 @@
+{
+  "faqs": [
+    {
+      "question": "Is BillsZilla really free?",
+      "answer": "Yes — free forever, with no limits on the number of invoices, no watermark, and no account required."
+    },
+    {
+      "question": "Do I need to sign up?",
+      "answer": "No. Everything works without an account. Your invoices are saved in your own browser's local storage."
+    },
+    {
+      "question": "Is my business data private?",
+      "answer": "Yes. All invoice data is processed locally in your browser. Nothing is uploaded to any server."
+    },
+    {
+      "question": "Can I make a GST invoice?",
+      "answer": "Yes. Choose the GST tax mode and enter the GST % per line item. BillsZilla splits CGST/SGST for intra-state invoices and shows IGST for inter-state ones."
+    },
+    {
+      "question": "Which currencies and languages are supported?",
+      "answer": "Over 50 currencies including PKR, INR, AED, SAR, USD, EUR and GBP. Invoices can be generated in English, Spanish, French, German, Portuguese, Arabic, Hindi and Urdu — Arabic and Urdu use proper right-to-left layout."
+    },
+    {
+      "question": "How do I download my invoice as PDF?",
+      "answer": "Click “Download PDF” — your browser's print dialog opens with the invoice formatted for A4. Choose “Save as PDF” and you're done."
+    },
+    {
+      "question": "Will my saved invoices sync across devices?",
+      "answer": "Saved invoices live in the browser you created them in. Because there's no account and no server, they don't sync across devices — that's the trade-off for total privacy."
+    }
+  ]
+}

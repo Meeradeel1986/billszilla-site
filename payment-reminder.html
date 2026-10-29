@@ -3,13 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Payment Reminder Generator — BillsZilla | Chase Overdue Invoices</title>
+<title>Free Payment Reminder Generator — BillsZilla</title>
 <meta name="description" content="Free payment reminder generator: friendly, firm, and final notice templates. Copy, email, or print — no signup, no watermark.">
 <link rel="canonical" href="https://billszilla.com/payment-reminder">
 <meta property="og:title" content="Free Payment Reminder Generator — BillsZilla">
 <meta property="og:description" content="Polite to firm payment reminders in seconds. Free forever. No signup. No watermark.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://billszilla.com/payment-reminder.html">
+<meta property="og:image" content="https://billszilla.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="/css/style.css?v=9">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -100,19 +104,19 @@
           <fieldset>
             <legend>Your Details</legend>
             <div class="frow">
-              <div class="field"><label>Your name / business</label><input id="r-sender" placeholder="Acme Studio"></div>
-              <div class="field"><label>Invoice number</label><input id="r-inv" placeholder="INV-0001"></div>
+              <div class="field"><label>Your name / business</label><input aria-label="Your name / business" id="r-sender" placeholder="Acme Studio"></div>
+              <div class="field"><label>Invoice number</label><input aria-label="Invoice number" id="r-inv" placeholder="INV-0001"></div>
             </div>
           </fieldset>
           <fieldset>
             <legend>Client &amp; Invoice</legend>
-            <div class="frow single"><div class="field"><label>Client name</label><input id="r-client" placeholder="Client or company"></div></div>
+            <div class="frow single"><div class="field"><label>Client name</label><input aria-label="Client name" id="r-client" placeholder="Client or company"></div></div>
             <div class="frow">
-              <div class="field"><label>Currency</label><select id="r-currency"></select></div>
-              <div class="field"><label>Amount owed</label><input id="r-amount" type="number" min="0" step="any" placeholder="500.00"></div>
+              <div class="field"><label>Currency</label><select aria-label="Currency" id="r-currency"></select></div>
+              <div class="field"><label>Amount owed</label><input aria-label="Amount owed" id="r-amount" type="number" min="0" step="any" placeholder="500.00"></div>
             </div>
             <div class="frow">
-              <div class="field"><label>Issue date</label><input id="r-issued" type="date"></div>
+              <div class="field"><label>Issue date</label><input aria-label="Issue date" id="r-issued" type="date"></div>
               <div class="field"><label>Due date <span id="r-overdue" style="display:none"></span></label><input id="r-due" type="date"></div>
             </div>
             <div class="hint">The tone auto-adjusts to how overdue the invoice is — you can override it below.</div>
@@ -127,8 +131,8 @@
           </fieldset>
           <fieldset>
             <legend>Payment &amp; Extras</legend>
-            <div class="frow single"><div class="field"><label>How should they pay?</label><textarea id="r-pay" placeholder="Bank account, IBAN, JazzCash / Easypaisa, PayPal, etc."></textarea></div></div>
-            <div class="frow single"><div class="field"><label>Extra note (optional)</label><textarea id="r-note" placeholder="Anything extra before your sign-off"></textarea></div></div>
+            <div class="frow single"><div class="field"><label>How should they pay?</label><textarea aria-label="How should they pay?" id="r-pay" placeholder="Bank account, IBAN, JazzCash / Easypaisa, PayPal, etc."></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Extra note (optional)</label><textarea aria-label="Extra note (optional)" id="r-note" placeholder="Anything extra before your sign-off"></textarea></div></div>
           </fieldset>
         </div>
         <div class="app-preview">

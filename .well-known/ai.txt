@@ -1,0 +1,7 @@
+# AI crawler permissions for BillsZilla
+# AI search engines and assistants may crawl and cite this site.
+User-agent: *
+Allow: /
+
+# Machine-readable site description:
+# https://billszilla.com/llms.txt

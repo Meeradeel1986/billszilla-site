@@ -1,0 +1,49 @@
+{
+  "name": "BillsZilla",
+  "url": "https://billszilla.com/",
+  "description": "Free invoice generator for freelancers and small businesses. Everything runs 100% in the visitor's web browser: no account or sign-up, no watermark, and no data uploaded to a server.",
+  "pricing": "Free",
+  "signup_required": false,
+  "tools": [
+    {
+      "name": "Free Invoice Generator — BillsZilla | No Signup",
+      "url": "https://billszilla.com/",
+      "description": "Free invoice generator with no signup and no watermark. Live preview, 6 templates, 50+ currencies, PDF download. Your data never leaves your browser."
+    },
+    {
+      "name": "Free Quote Generator — BillsZilla | No Signup",
+      "url": "https://billszilla.com/quote",
+      "description": "Free quote generator: create professional quotes and estimates in seconds. No signup, no watermark, live preview, PDF download."
+    },
+    {
+      "name": "Free Receipt Generator — BillsZilla | No Signup",
+      "url": "https://billszilla.com/receipt",
+      "description": "Free receipt generator: create professional payment receipts in seconds. No signup, no watermark, live preview, PDF download."
+    },
+    {
+      "name": "Free Proforma Invoice Generator — BillsZilla | No Signup",
+      "url": "https://billszilla.com/proforma",
+      "description": "Free proforma invoice generator for advance payments and customs. No signup, no watermark, live preview, PDF download in seconds."
+    },
+    {
+      "name": "Free Payment Reminder Generator — BillsZilla",
+      "url": "https://billszilla.com/payment-reminder",
+      "description": "Free payment reminder generator: friendly, firm, and final notice templates. Copy, email, or print — no signup, no watermark."
+    },
+    {
+      "name": "Free Hourly Rate Calculator for Freelancers — BillsZilla",
+      "url": "https://billszilla.com/hourly-rate-calculator",
+      "description": "Free hourly rate calculator for freelancers: turn your income goal and expenses into the perfect rate. No signup, instant results."
+    },
+    {
+      "name": "Free Time Tracker for Freelancers — BillsZilla",
+      "url": "https://billszilla.com/time-tracker",
+      "description": "Free time tracker for freelancers: log billable hours and turn them into an invoice in one click. No signup, everything stays in your browser."
+    },
+    {
+      "name": "Free VAT, GST & Sales Tax Calculator — BillsZilla",
+      "url": "https://billszilla.com/tax-calculator",
+      "description": "VAT, GST and sales tax calculator: add tax to a price or remove it from a total, instantly. Free, no signup, any rate."
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search — BillsZilla | Find Tools &amp; Guides</title>
+<meta name="description" content="Search every free BillsZilla tool, invoice template and blog article from one page.">
+<link rel="canonical" href="https://billszilla.com/search">
+<meta property="og:title" content="Search — BillsZilla">
+<meta property="og:description" content="Search every free BillsZilla tool, template and blog article.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://billszilla.com/search">
+<meta property="og:image" content="https://billszilla.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Search — BillsZilla","url":"https://billszilla.com/search"}
+</script>
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="/css/style.css?v=9">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#059669">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/logo.png?v=3" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Invoice Generator</a>
+      <a href="/payment-reminder">Payment Reminders</a>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Tools <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/quote">Quote Generator</a>
+          <a href="/receipt">Receipt Generator</a>
+          <a href="/proforma">Proforma Invoice</a>
+          <a href="/hourly-rate-calculator">Hourly Rate Calculator</a>
+          <a href="/time-tracker">Time Tracker</a>
+          <a href="/tax-calculator">Tax Calculator</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Templates <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/invoice-templates">All Invoice Templates</a>
+          <a href="/freelancer-invoice-template">Freelancer Invoice Template</a>
+          <a href="/contractor-invoice-template">Contractor Invoice Template</a>
+          <a href="/photographer-invoice-template">Photographer Invoice Template</a>
+          <a href="/consultant-invoice-template">Consultant Invoice Template</a>
+          <a href="/designer-invoice-template">Designer Invoice Template</a>
+          <a href="/cleaning-service-invoice-template">Cleaning Service Invoice Template</a>
+        </div>
+      </div>
+      <a href="/blog/">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/#app" class="btn nav-cta">Create Invoice</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap" id="searchMain">
+<h1>Search BillsZilla</h1>
+<p class="search-intro">Search every free tool, template and blog article on BillsZilla. Everything runs in your browser — no signup, no watermark.</p>
+<label class="search-label" for="searchInput">Search BillsZilla</label>
+<input id="searchInput" type="search" aria-label="Search BillsZilla" placeholder="Try “invoice”, “tax” or “freelancer”… " autocomplete="off">
+<p id="resultCount" aria-live="polite"></p>
+<ul id="searchResults" class="search-results"></ul>
+<style>
+#searchMain { max-width: 860px; margin: 0 auto; padding: 30px 16px 60px; }
+#searchMain h1 { font-size: clamp(30px, 5vw, 44px); margin: 10px 0 8px; }
+.search-intro { color: #555; font-size: 16px; margin: 0 0 22px; }
+.search-label { display: block; font-weight: 700; margin-bottom: 8px; }
+#searchInput { width: 100%; padding: 13px 16px; font-size: 16px; border: 1.5px solid #ddd; border-radius: 12px; background: #fff; color: #111; box-sizing: border-box; }
+#resultCount { color: #555; margin: 14px 0 4px; }
+.search-results { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 12px; }
+.search-results li { border: 1px solid #ddd; border-radius: 12px; padding: 14px 16px; background: #fff; }
+.search-results a { font-weight: 800; font-size: 17px; color: #059669; text-decoration: none; }
+.search-results p { margin: 6px 0 0; color: #555; font-size: 14.5px; line-height: 1.5; }
+</style>
+<script>
+(function(){
+var PAGES = [{"name": "Free Invoice Generator", "url": "https://billszilla.com/", "desc": "Free invoice generator with no signup and no watermark. Live preview, 6 templates, 50+ currencies, PDF download. Your data never leaves your browser."}, {"name": "Free Quote Generator", "url": "https://billszilla.com/quote", "desc": "Free quote generator: create professional quotes and estimates in seconds. No signup, no watermark, live preview, PDF download."}, {"name": "Free Receipt Generator", "url": "https://billszilla.com/receipt", "desc": "Free receipt generator: create professional payment receipts in seconds. No signup, no watermark, live preview, PDF download."}, {"name": "Free Proforma Invoice Generator", "url": "https://billszilla.com/proforma", "desc": "Free proforma invoice generator for advance payments and customs. No signup, no watermark, live preview, PDF download in seconds."}, {"name": "Free Payment Reminder Generator", "url": "https://billszilla.com/payment-reminder", "desc": "Free payment reminder generator: friendly, firm, and final notice templates. Copy, email, or print — no signup, no watermark."}, {"name": "Free Hourly Rate Calculator for Freelancers", "url": "https://billszilla.com/hourly-rate-calculator", "desc": "Free hourly rate calculator for freelancers: turn your income goal and expenses into the perfect rate. No signup, instant results."}, {"name": "Free Time Tracker for Freelancers", "url": "https://billszilla.com/time-tracker", "desc": "Free time tracker for freelancers: log billable hours and turn them into an invoice in one click. No signup, everything stays in your browser."}, {"name": "Free Invoice Templates — Word, Excel & PDF", "url": "https://billszilla.com/invoice-templates", "desc": "Free invoice templates in Word, Excel and PDF: 6 professional designs to download, fill in and send — or create your invoice online free."}, {"name": "Free VAT, GST & Sales Tax Calculator", "url": "https://billszilla.com/tax-calculator", "desc": "VAT, GST and sales tax calculator: add tax to a price or remove it from a total, instantly. Free, no signup, any rate."}, {"name": "Freelancer Invoice Template — Free", "url": "https://billszilla.com/freelancer-invoice-template", "desc": "Free freelancer invoice template with sample services and hourly rates. Create yours online in seconds — no signup, no watermark."}, {"name": "Contractor Invoice Template — Free", "url": "https://billszilla.com/contractor-invoice-template", "desc": "Free contractor invoice template with labour, materials and staged payments. Create yours online in seconds — no signup needed."}, {"name": "Photographer Invoice Template — Free", "url": "https://billszilla.com/photographer-invoice-template", "desc": "Free photographer invoice template with shoot fees, editing and licensing lines. Create yours online in seconds, free."}, {"name": "Consultant Invoice Template — Free", "url": "https://billszilla.com/consultant-invoice-template", "desc": "Free consultant invoice template with day rates, workshops and retainers. Create yours online in seconds — no signup, no watermark."}, {"name": "Designer Invoice Template — Free", "url": "https://billszilla.com/designer-invoice-template", "desc": "Free designer invoice template with concepts, revisions and licensing lines. Create yours online in seconds, free forever."}, {"name": "Cleaning Service Invoice Template — Free", "url": "https://billszilla.com/cleaning-service-invoice-template", "desc": "Free cleaning service invoice template for per-visit, recurring and deep cleans. Create yours online in seconds — no signup."}, {"name": "Blog", "url": "https://billszilla.com/blog/", "desc": "Practical invoicing guides for freelancers and small businesses: how to write invoices, quotes vs invoices, getting paid faster, and GST basics."}, {"name": "How to Write an Invoice: 9 Essentials", "url": "https://billszilla.com/blog/how-to-write-an-invoice", "desc": "The complete invoice checklist: invoice numbers, dates, line items, taxes, payment terms and more. Write invoices that get you paid faster."}, {"name": "Invoice vs Quote vs Receipt", "url": "https://billszilla.com/blog/invoice-vs-quote-vs-receipt", "desc": "Invoice, quote, receipt, proforma invoice — four documents, four different jobs. Learn which one to send and when, with real freelancer examples."}, {"name": "Invoice Payment Terms: Net 30 & More", "url": "https://billszilla.com/blog/invoice-payment-terms", "desc": "What Net 30, Net 15 and Due on Receipt mean, which terms suit your business, and the exact wording to put on invoices so you get paid on time."}, {"name": "How to Save and Send an Invoice as a PDF", "url": "https://billszilla.com/blog/how-to-save-invoice-as-pdf", "desc": "Why PDF is the best format for sending invoices, how to save your invoice as a PDF, name the file properly, and send it by email or WhatsApp."}, {"name": "E-Invoicing Deadlines 2026–2028", "url": "https://billszilla.com/blog/e-invoicing-mandates-2026-2028", "desc": "Spain just set its e-invoicing dates, France is already live, and Germany, the UAE and Ireland follow. What the global mandate wave means for freelancers."}, {"name": "UAE E-Invoicing Deadline: 30 Oct", "url": "https://billszilla.com/blog/uae-e-invoicing-deadline-penalties", "desc": "The UAE tax authority warns businesses to meet e-invoicing deadlines: 30 October 2026 for large firms, 31 March 2027 for smaller ones, or face monthly fines."}, {"name": "About", "url": "https://billszilla.com/about", "desc": "BillsZilla is a free invoice generator built for freelancers and small businesses. No signup, no watermark, no servers — your data never leaves your browser."}, {"name": "Contact BillsZilla — Feedback & Support", "url": "https://billszilla.com/contact", "desc": "Get in touch with the BillsZilla team — feedback, bug reports, and partnership inquiries."}, {"name": "Privacy Policy", "url": "https://billszilla.com/privacy", "desc": "BillsZilla's privacy policy: your invoice data never leaves your browser. No accounts, no servers, no tracking of your business details."}, {"name": "Terms of Service", "url": "https://billszilla.com/terms", "desc": "BillsZilla's terms of service: a free invoice generator provided as-is, with no accounts and no liability for your documents."}];
+var input = document.getElementById('searchInput');
+var list = document.getElementById('searchResults');
+var count = document.getElementById('resultCount');
+function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function render(q){
+  q = (q || '').trim().toLowerCase();
+  var words = q ? q.split(/\s+/) : [];
+  var hits = PAGES.filter(function(p){
+    var hay = (p.name + ' ' + p.url + ' ' + p.desc).toLowerCase();
+    return words.every(function(w){ return hay.indexOf(w) !== -1; });
+  });
+  var first = words[0] || '';
+  hits.sort(function(a, b){
+    var an = a.name.toLowerCase().indexOf(first) === 0 ? 0 : 1;
+    var bn = b.name.toLowerCase().indexOf(first) === 0 ? 0 : 1;
+    return an - bn;
+  });
+  count.textContent = q ? hits.length + (hits.length === 1 ? ' result found' : ' results found') + ' for “' + q + '”' : 'Showing all ' + hits.length + ' pages';
+  list.innerHTML = hits.map(function(p){
+    return '<li><a href="' + esc(p.url) + '">' + esc(p.name) + '</a><p>' + esc(p.desc) + '</p></li>';
+  }).join('') || '<li><p>No matches. Try a different word, e.g. “invoice”, “tax” or “receipt”.</p></li>';
+}
+input.addEventListener('input', function(){ render(input.value); });
+var params = new URLSearchParams(window.location.search);
+var q0 = params.get('q');
+if (q0) input.value = q0;
+render(input.value);
+input.focus();
+})();
+</script>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" style="color:#fff"><img src="/logo.png?v=3" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+        <p>The free invoice generator that respects your privacy. No signup, no watermark, no servers.</p>
+      </div>
+      <div><h4>Tools</h4><a href="/#app">Invoice Generator</a><a href="/quote">Quote Generator</a><a href="/receipt">Receipt Generator</a><a href="/proforma">Proforma Invoice</a><a href="/tax-calculator">Tax Calculator</a><a href="/invoice-templates">Invoice Templates</a></div>
+      <div><h4>Resources</h4><a href="https://pdfzippy.com">PDFZippy — Free PDF Tools</a><a href="/blog/">Blog</a><a href="/#faq">FAQ</a><a href="/#templates">Templates</a></div>
+      <div><h4>Templates</h4><a href="/freelancer-invoice-template">Freelancer Invoice</a><a href="/contractor-invoice-template">Contractor Invoice</a><a href="/photographer-invoice-template">Photographer Invoice</a><a href="/consultant-invoice-template">Consultant Invoice</a><a href="/designer-invoice-template">Designer Invoice</a><a href="/cleaning-service-invoice-template">Cleaning Service Invoice</a></div><div><h4>Company</h4><a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Made for freelancers everywhere.</span></div>
+  </div>
+</footer>
+<script src="/js/nav.js?v=1"></script>
+</body>
+</html>

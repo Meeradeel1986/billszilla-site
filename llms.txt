@@ -1,0 +1,36 @@
+# BillsZilla
+> BillsZilla is a free invoice generator for freelancers and small businesses. Everything runs 100% in the visitor's web browser: no account or sign-up, no watermark on output files, and no data uploaded to a server. The site is funded by display advertising, not by selling user data.
+## Tools
+- [Free Invoice Generator — BillsZilla | No Signup](https://billszilla.com/): Free invoice generator with no signup and no watermark. Live preview, 6 templates, 50+ currencies, PDF download. Your data never leaves your browser.
+- [Free Quote Generator — BillsZilla | No Signup](https://billszilla.com/quote): Free quote generator: create professional quotes and estimates in seconds. No signup, no watermark, live preview, PDF download.
+- [Free Receipt Generator — BillsZilla | No Signup](https://billszilla.com/receipt): Free receipt generator: create professional payment receipts in seconds. No signup, no watermark, live preview, PDF download.
+- [Free Proforma Invoice Generator — BillsZilla | No Signup](https://billszilla.com/proforma): Free proforma invoice generator for advance payments and customs. No signup, no watermark, live preview, PDF download in seconds.
+- [Free Payment Reminder Generator — BillsZilla](https://billszilla.com/payment-reminder): Free payment reminder generator: friendly, firm, and final notice templates. Copy, email, or print — no signup, no watermark.
+- [Free Hourly Rate Calculator for Freelancers — BillsZilla](https://billszilla.com/hourly-rate-calculator): Free hourly rate calculator for freelancers: turn your income goal and expenses into the perfect rate. No signup, instant results.
+- [Free Time Tracker for Freelancers — BillsZilla](https://billszilla.com/time-tracker): Free time tracker for freelancers: log billable hours and turn them into an invoice in one click. No signup, everything stays in your browser.
+- [Free VAT, GST & Sales Tax Calculator — BillsZilla](https://billszilla.com/tax-calculator): VAT, GST and sales tax calculator: add tax to a price or remove it from a total, instantly. Free, no signup, any rate.
+
+## Templates
+- [Free Invoice Templates — Word, Excel & PDF | BillsZilla](https://billszilla.com/invoice-templates): Free invoice templates in Word, Excel and PDF: 6 professional designs to download, fill in and send — or create your invoice online free.
+- [Freelancer Invoice Template — Free | BillsZilla](https://billszilla.com/freelancer-invoice-template): Free freelancer invoice template with sample services and hourly rates. Create yours online in seconds — no signup, no watermark.
+- [Contractor Invoice Template — Free | BillsZilla](https://billszilla.com/contractor-invoice-template): Free contractor invoice template with labour, materials and staged payments. Create yours online in seconds — no signup needed.
+- [Photographer Invoice Template — Free | BillsZilla](https://billszilla.com/photographer-invoice-template): Free photographer invoice template with shoot fees, editing and licensing lines. Create yours online in seconds, free.
+- [Consultant Invoice Template — Free | BillsZilla](https://billszilla.com/consultant-invoice-template): Free consultant invoice template with day rates, workshops and retainers. Create yours online in seconds — no signup, no watermark.
+- [Designer Invoice Template — Free | BillsZilla](https://billszilla.com/designer-invoice-template): Free designer invoice template with concepts, revisions and licensing lines. Create yours online in seconds, free forever.
+- [Cleaning Service Invoice Template — Free | BillsZilla](https://billszilla.com/cleaning-service-invoice-template): Free cleaning service invoice template for per-visit, recurring and deep cleans. Create yours online in seconds — no signup.
+
+## Blog
+- [Blog — BillsZilla | Invoicing Guides for Freelancers](https://billszilla.com/blog/): Practical invoicing guides for freelancers and small businesses: how to write invoices, quotes vs invoices, getting paid faster, and GST basics.
+- [How to Write an Invoice: 9 Essentials — BillsZilla](https://billszilla.com/blog/how-to-write-an-invoice): The complete invoice checklist: invoice numbers, dates, line items, taxes, payment terms and more. Write invoices that get you paid faster.
+- [Invoice vs Quote vs Receipt — BillsZilla Blog](https://billszilla.com/blog/invoice-vs-quote-vs-receipt): Invoice, quote, receipt, proforma invoice — four documents, four different jobs. Learn which one to send and when, with real freelancer examples.
+- [Invoice Payment Terms: Net 30 & More — BillsZilla](https://billszilla.com/blog/invoice-payment-terms): What Net 30, Net 15 and Due on Receipt mean, which terms suit your business, and the exact wording to put on invoices so you get paid on time.
+- [How to Save and Send an Invoice as a PDF — BillsZilla Blog](https://billszilla.com/blog/how-to-save-invoice-as-pdf): Why PDF is the best format for sending invoices, how to save your invoice as a PDF, name the file properly, and send it by email or WhatsApp.
+- [E-Invoicing Deadlines 2026–2028 — BillsZilla Blog](https://billszilla.com/blog/e-invoicing-mandates-2026-2028): Spain just set its e-invoicing dates, France is already live, and Germany, the UAE and Ireland follow. What the global mandate wave means for freelancers.
+- [UAE E-Invoicing Deadline: 30 Oct — BillsZilla Blog](https://billszilla.com/blog/uae-e-invoicing-deadline-penalties): The UAE tax authority warns businesses to meet e-invoicing deadlines: 30 October 2026 for large firms, 31 March 2027 for smaller ones, or face monthly fines.
+
+## Company
+- [About — BillsZilla | Free Invoice Generator](https://billszilla.com/about): BillsZilla is a free invoice generator built for freelancers and small businesses. No signup, no watermark, no servers — your data never leaves your browser.
+- [Contact BillsZilla — Feedback & Support](https://billszilla.com/contact): Get in touch with the BillsZilla team — feedback, bug reports, and partnership inquiries.
+- [Privacy Policy — BillsZilla](https://billszilla.com/privacy): BillsZilla's privacy policy: your invoice data never leaves your browser. No accounts, no servers, no tracking of your business details.
+- [Terms of Service — BillsZilla](https://billszilla.com/terms): BillsZilla's terms of service: a free invoice generator provided as-is, with no accounts and no liability for your documents.
+

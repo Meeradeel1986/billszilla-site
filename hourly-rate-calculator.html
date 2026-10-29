@@ -10,6 +10,10 @@
 <meta property="og:description" content="Find the hourly rate that actually covers your income goal and expenses. Free forever. No signup.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://billszilla.com/hourly-rate-calculator.html">
+<meta property="og:image" content="https://billszilla.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="/css/style.css?v=9">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -84,14 +88,14 @@
         <div class="app-form">
           <fieldset>
             <legend>Your Numbers</legend>
-            <div class="frow single"><div class="field"><label>Currency</label><select id="rc-currency"></select></div></div>
+            <div class="frow single"><div class="field"><label>Currency</label><select aria-label="Currency" id="rc-currency"></select></div></div>
             <div class="frow">
-              <div class="field"><label>Target yearly income</label><input id="rc-income" type="number" min="0" step="any" value="60000"></div>
-              <div class="field"><label>Yearly business expenses</label><input id="rc-expenses" type="number" min="0" step="any" value="6000"></div>
+              <div class="field"><label>Target yearly income</label><input aria-label="Target yearly income" id="rc-income" type="number" min="0" step="any" value="60000"></div>
+              <div class="field"><label>Yearly business expenses</label><input aria-label="Yearly business expenses" id="rc-expenses" type="number" min="0" step="any" value="6000"></div>
             </div>
             <div class="frow">
-              <div class="field"><label>Billable hours / week</label><input id="rc-hours" type="number" min="1" max="80" step="any" value="30"></div>
-              <div class="field"><label>Weeks off / year</label><input id="rc-weeks-off" type="number" min="0" max="52" step="any" value="4"></div>
+              <div class="field"><label>Billable hours / week</label><input aria-label="Billable hours / week" id="rc-hours" type="number" min="1" max="80" step="any" value="30"></div>
+              <div class="field"><label>Weeks off / year</label><input aria-label="Weeks off / year" id="rc-weeks-off" type="number" min="0" max="52" step="any" value="4"></div>
             </div>
             <div class="hint">Billable hours = hours you actually charge clients for. Most freelancers bill 20–35 of every 40 working hours.</div>
           </fieldset>

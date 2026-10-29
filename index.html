@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BillsZilla — Free Invoice Generator | Create Professional Invoices Online</title>
+<title>Free Invoice Generator — BillsZilla | No Signup</title>
 <meta name="description" content="Free invoice generator with no signup and no watermark. Live preview, 6 templates, 50+ currencies, PDF download. Your data never leaves your browser.">
 <link rel="canonical" href="https://billszilla.com/">
 <meta name="p:domain_verify" content="e2f05a026e84c5fa885a1906248993fa">
@@ -11,10 +11,23 @@
 <meta property="og:description" content="Create professional invoices in seconds. Free forever. No signup. No watermark.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://billszilla.com/">
+<meta property="og:image" content="https://billszilla.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="/css/style.css?v=9">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"BillsZilla","url":"https://billszilla.com/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free invoice generator with no signup and no watermark."}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Organization", "name": "BillsZilla", "url": "https://billszilla.com/", "logo": "https://billszilla.com/logo.png", "email": "hello@billszilla.com", "description": "Free invoice generator for freelancers and small businesses. No signup, no watermark."}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is BillsZilla really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — free forever, with no limits on the number of invoices, no watermark, and no account required."}}, {"@type": "Question", "name": "Do I need to sign up?", "acceptedAnswer": {"@type": "Answer", "text": "No. Everything works without an account. Your invoices are saved in your own browser's local storage."}}, {"@type": "Question", "name": "Is my business data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All invoice data is processed locally in your browser. Nothing is uploaded to any server — we couldn't see your data even if we wanted to."}}, {"@type": "Question", "name": "Can I make a GST invoice?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Choose the GST tax mode and enter the GST % per line item. BillsZilla splits CGST/SGST for intra-state invoices and shows IGST for inter-state ones."}}, {"@type": "Question", "name": "Which currencies and languages are supported?", "acceptedAnswer": {"@type": "Answer", "text": "Over 50 currencies including PKR, INR, AED, SAR, USD, EUR and GBP. Invoices can be generated in English, Spanish, French, German, Portuguese, Arabic, Hindi and Urdu — Arabic and Urdu use proper right-to-left layout."}}, {"@type": "Question", "name": "How do I download my invoice as PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Click “Download PDF” — your browser's print dialog opens with the invoice formatted for A4. Choose “Save as PDF” and you're done."}}, {"@type": "Question", "name": "Will my saved invoices sync across devices?", "acceptedAnswer": {"@type": "Answer", "text": "Saved invoices live in the browser you created them in. Because there's no account and no server, they don't sync across devices — that's the trade-off for total privacy."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebSite", "name": "BillsZilla", "url": "https://billszilla.com/", "potentialAction": {"@type": "SearchAction", "target": {"@type": "EntryPoint", "urlTemplate": "https://billszilla.com/search?q={search_term_string}"}, "query-input": "required name=search_term_string"}}
 </script>
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#059669">
@@ -110,40 +123,40 @@
           </fieldset>
           <fieldset>
             <legend>Your Business</legend>
-            <div class="frow single"><div class="field"><label>Business name</label><input id="b-name" placeholder="Acme Studio"></div></div>
-            <div class="frow single"><div class="field"><label>Address</label><textarea id="b-addr" placeholder="Street, City, Country"></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Business name</label><input aria-label="Business name" id="b-name" placeholder="Acme Studio"></div></div>
+            <div class="frow single"><div class="field"><label>Address</label><textarea aria-label="Address" id="b-addr" placeholder="Street, City, Country"></textarea></div></div>
             <div class="frow">
-              <div class="field"><label>Email</label><input id="b-email" type="email" placeholder="you@business.com"></div>
-              <div class="field"><label>Phone</label><input id="b-phone" placeholder="+92 ..."></div>
+              <div class="field"><label>Email</label><input aria-label="Email" id="b-email" type="email" placeholder="you@business.com"></div>
+              <div class="field"><label>Phone</label><input aria-label="Phone" id="b-phone" placeholder="+92 ..."></div>
             </div>
-            <div class="frow single"><div class="field"><label>Tax ID / GSTIN (optional)</label><input id="b-taxid" placeholder="e.g. 27ABCDE1234F1Z5"></div></div>
+            <div class="frow single"><div class="field"><label>Tax ID / GSTIN (optional)</label><input aria-label="Tax ID / GSTIN (optional)" id="b-taxid" placeholder="e.g. 27ABCDE1234F1Z5"></div></div>
             <div class="field"><label>Logo (optional)</label>
-              <div class="logo-row"><img id="logo-prev" class="logo-prev" alt="logo preview"><input id="b-logo" type="file" accept="image/*"></div>
+              <div class="logo-row"><img id="logo-prev" class="logo-prev" alt="logo preview"><input aria-label="Logo (optional)" id="b-logo" type="file" accept="image/*"></div>
               <div class="hint">Your logo is stored only in this browser, never uploaded.</div>
             </div>
           </fieldset>
           <fieldset>
             <legend>Bill To (Client)</legend>
-            <div class="frow single"><div class="field"><label>Client name</label><input id="c-name" placeholder="Client or company"></div></div>
-            <div class="frow single"><div class="field"><label>Client address</label><textarea id="c-addr" placeholder="Street, City, Country"></textarea></div></div>
-            <div class="frow single"><div class="field"><label>Client email</label><input id="c-email" type="email" placeholder="client@email.com"></div></div>
+            <div class="frow single"><div class="field"><label>Client name</label><input aria-label="Client name" id="c-name" placeholder="Client or company"></div></div>
+            <div class="frow single"><div class="field"><label>Client address</label><textarea aria-label="Client address" id="c-addr" placeholder="Street, City, Country"></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Client email</label><input aria-label="Client email" id="c-email" type="email" placeholder="client@email.com"></div></div>
           </fieldset>
           <fieldset>
             <legend>Invoice Details</legend>
             <div class="frow">
-              <div class="field"><label>Invoice number</label><input id="m-number"></div>
-              <div class="field"><label>Currency</label><select id="m-currency"></select></div>
-              <div class="field"><label>PO / Reference no. (optional)</label><input id="m-po" placeholder="e.g. PO-1234"></div>
+              <div class="field"><label>Invoice number</label><input aria-label="Invoice number" id="m-number"></div>
+              <div class="field"><label>Currency</label><select aria-label="Currency" id="m-currency"></select></div>
+              <div class="field"><label>PO / Reference no. (optional)</label><input aria-label="PO / Reference no. (optional)" id="m-po" placeholder="e.g. PO-1234"></div>
             </div>
             <div class="frow">
-              <div class="field"><label>Issue date</label><input id="m-date" type="date"></div>
-              <div class="field"><label>Due date</label><input id="m-due" type="date"></div>
+              <div class="field"><label>Issue date</label><input aria-label="Issue date" id="m-date" type="date"></div>
+              <div class="field"><label>Due date</label><input aria-label="Due date" id="m-due" type="date"></div>
             </div>
             <div class="frow">
               <div class="field"><label class="checkline paid-check"><input type="checkbox" id="m-paid"> Mark this invoice as paid</label></div>
               <div class="field"><label class="checkline paid-check"><input type="checkbox" id="m-show-due" checked> Include due date</label></div>
             </div>
-            <div class="frow single"><div class="field"><label>Invoice language</label><select id="m-lang"></select></div></div>
+            <div class="frow single"><div class="field"><label>Invoice language</label><select aria-label="Invoice language" id="m-lang"></select></div></div>
           </fieldset>
           <fieldset>
             <legend>Items</legend>
@@ -153,7 +166,7 @@
           <fieldset>
             <legend>Tax</legend>
             <div class="frow single"><div class="field"><label>Tax mode</label>
-              <select id="tax-mode">
+              <select aria-label="Tax mode" id="tax-mode">
                 <option value="none">No tax</option>
                 <option value="flat">Flat tax %</option>
                 <option value="perline">Per-line tax %</option>
@@ -165,18 +178,18 @@
             <legend>Discount &amp; Shipping</legend>
             <div class="frow">
               <div class="field"><label>Discount type</label>
-                <select id="disc-type"><option value="percent">Percent %</option><option value="fixed">Fixed amount</option></select></div>
-              <div class="field"><label>Discount value</label><input id="disc-val" type="number" min="0" step="any" value="0"></div>
+                <select aria-label="Discount type" id="disc-type"><option value="percent">Percent %</option><option value="fixed">Fixed amount</option></select></div>
+              <div class="field"><label>Discount value</label><input aria-label="Discount value" id="disc-val" type="number" min="0" step="any" value="0"></div>
             </div>
-            <div class="frow single"><div class="field"><label>Shipping</label><input id="ship" type="number" min="0" step="any" value="0"></div></div>
+            <div class="frow single"><div class="field"><label>Shipping</label><input aria-label="Shipping" id="ship" type="number" min="0" step="any" value="0"></div></div>
           </fieldset>
           <fieldset>
             <legend>Notes &amp; Payment</legend>
-            <div class="frow single"><div class="field"><label>Notes</label><textarea id="notes" placeholder="Any extra notes for your client"></textarea></div></div>
-            <div class="frow single"><div class="field"><label>Payment terms</label><textarea id="m-terms" placeholder="e.g. Payment due within 14 days"></textarea></div></div>
-            <div class="frow single"><div class="field"><label>Payment details</label><textarea id="pay" placeholder="Bank account, IBAN, payment link, wallet address, etc."></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Notes</label><textarea aria-label="Notes" id="notes" placeholder="Any extra notes for your client"></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Payment terms</label><textarea aria-label="Payment terms" id="m-terms" placeholder="e.g. Payment due within 14 days"></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Payment details</label><textarea aria-label="Payment details" id="pay" placeholder="Bank account, IBAN, payment link, wallet address, etc."></textarea></div></div>
             <div class="frow single"><div class="field"><label class="checkline"><input type="checkbox" id="m-qr"> Include a QR code on the invoice</label></div></div>
-            <div class="frow single" id="qr-text-wrap" style="display:none"><div class="field"><label>QR code content (optional)</label><input id="m-qr-text" placeholder="Link or text — defaults to your payment details above"></div></div>
+            <div class="frow single" id="qr-text-wrap" style="display:none"><div class="field"><label>QR code content (optional)</label><input aria-label="QR code content (optional)" id="m-qr-text" placeholder="Link or text — defaults to your payment details above"></div></div>
           </fieldset>
           <fieldset>
             <legend>Signature (optional)</legend>
@@ -300,7 +313,7 @@
       <div><h4>Resources</h4><a href="https://pdfzippy.com">PDFZippy — Free PDF Tools</a><a href="/blog/">Blog</a><a href="/#faq">FAQ</a><a href="/#templates">Templates</a></div>
       <div><h4>Templates</h4><a href="/freelancer-invoice-template">Freelancer Invoice</a><a href="/contractor-invoice-template">Contractor Invoice</a><a href="/photographer-invoice-template">Photographer Invoice</a><a href="/consultant-invoice-template">Consultant Invoice</a><a href="/designer-invoice-template">Designer Invoice</a><a href="/cleaning-service-invoice-template">Cleaning Service Invoice</a></div><div><h4>Company</h4><a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
     </div>
-    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Made for freelancers everywhere.</span></div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Last updated <time datetime="2026-10-29">29 October 2026</time></span><span>Made for freelancers everywhere.</span></div>
   </div>
 </footer>
 

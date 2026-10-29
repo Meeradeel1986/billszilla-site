@@ -16,6 +16,10 @@
 <meta property="og:description" content="Proforma invoices in seconds. Free forever. No signup. No watermark.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://billszilla.com/proforma">
+<meta property="og:image" content="https://billszilla.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="/css/style.css?v=9">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -91,35 +95,35 @@
           </fieldset>
           <fieldset>
             <legend>Your Business</legend>
-            <div class="frow single"><div class="field"><label>Business name</label><input id="b-name" placeholder="Acme Studio"></div></div>
-            <div class="frow single"><div class="field"><label>Address</label><textarea id="b-addr" placeholder="Street, City, Country"></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Business name</label><input aria-label="Business name" id="b-name" placeholder="Acme Studio"></div></div>
+            <div class="frow single"><div class="field"><label>Address</label><textarea aria-label="Address" id="b-addr" placeholder="Street, City, Country"></textarea></div></div>
             <div class="frow">
-              <div class="field"><label>Email</label><input id="b-email" type="email" placeholder="you@business.com"></div>
-              <div class="field"><label>Phone</label><input id="b-phone" placeholder="+92 ..."></div>
+              <div class="field"><label>Email</label><input aria-label="Email" id="b-email" type="email" placeholder="you@business.com"></div>
+              <div class="field"><label>Phone</label><input aria-label="Phone" id="b-phone" placeholder="+92 ..."></div>
             </div>
-            <div class="frow single"><div class="field"><label>Tax ID / GSTIN (optional)</label><input id="b-taxid" placeholder="e.g. 27ABCDE1234F1Z5"></div></div>
+            <div class="frow single"><div class="field"><label>Tax ID / GSTIN (optional)</label><input aria-label="Tax ID / GSTIN (optional)" id="b-taxid" placeholder="e.g. 27ABCDE1234F1Z5"></div></div>
             <div class="field"><label>Logo (optional)</label>
-              <div class="logo-row"><img id="logo-prev" class="logo-prev" alt="logo preview"><input id="b-logo" type="file" accept="image/*"></div>
+              <div class="logo-row"><img id="logo-prev" class="logo-prev" alt="logo preview"><input aria-label="Logo (optional)" id="b-logo" type="file" accept="image/*"></div>
               <div class="hint">Your logo is stored only in this browser, never uploaded.</div>
             </div>
           </fieldset>
           <fieldset>
             <legend>Bill To (Client)</legend>
-            <div class="frow single"><div class="field"><label>Client name</label><input id="c-name" placeholder="Client or company"></div></div>
-            <div class="frow single"><div class="field"><label>Client address</label><textarea id="c-addr" placeholder="Street, City, Country"></textarea></div></div>
-            <div class="frow single"><div class="field"><label>Client email</label><input id="c-email" type="email" placeholder="client@email.com"></div></div>
+            <div class="frow single"><div class="field"><label>Client name</label><input aria-label="Client name" id="c-name" placeholder="Client or company"></div></div>
+            <div class="frow single"><div class="field"><label>Client address</label><textarea aria-label="Client address" id="c-addr" placeholder="Street, City, Country"></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Client email</label><input aria-label="Client email" id="c-email" type="email" placeholder="client@email.com"></div></div>
           </fieldset>
           <fieldset>
             <legend>Proforma Details</legend>
             <div class="frow">
-              <div class="field"><label>Proforma number</label><input id="m-number"></div>
-              <div class="field"><label>Currency</label><select id="m-currency"></select></div>
+              <div class="field"><label>Proforma number</label><input aria-label="Proforma number" id="m-number"></div>
+              <div class="field"><label>Currency</label><select aria-label="Currency" id="m-currency"></select></div>
             </div>
             <div class="frow">
-              <div class="field"><label>Issue date</label><input id="m-date" type="date"></div>
-              <div class="field"><label>Valid until</label><input id="m-due" type="date"><label class="checkline"><input type="checkbox" id="m-show-due" checked> Include date</label></div>
+              <div class="field"><label>Issue date</label><input aria-label="Issue date" id="m-date" type="date"></div>
+              <div class="field"><label>Valid until</label><input aria-label="Valid until" id="m-due" type="date"><label class="checkline"><input type="checkbox" id="m-show-due" checked> Include date</label></div>
             </div>
-            <div class="frow single"><div class="field"><label>Document language</label><select id="m-lang"></select></div></div>
+            <div class="frow single"><div class="field"><label>Document language</label><select aria-label="Document language" id="m-lang"></select></div></div>
           </fieldset>
           <fieldset>
             <legend>Items</legend>
@@ -129,7 +133,7 @@
           <fieldset>
             <legend>Tax</legend>
             <div class="frow single"><div class="field"><label>Tax mode</label>
-              <select id="tax-mode">
+              <select aria-label="Tax mode" id="tax-mode">
                 <option value="none">No tax</option>
                 <option value="flat">Flat tax %</option>
                 <option value="perline">Per-line tax %</option>
@@ -141,16 +145,16 @@
             <legend>Discount &amp; Shipping</legend>
             <div class="frow">
               <div class="field"><label>Discount type</label>
-                <select id="disc-type"><option value="percent">Percent %</option><option value="fixed">Fixed amount</option></select></div>
-              <div class="field"><label>Discount value</label><input id="disc-val" type="number" min="0" step="any" value="0"></div>
+                <select aria-label="Discount type" id="disc-type"><option value="percent">Percent %</option><option value="fixed">Fixed amount</option></select></div>
+              <div class="field"><label>Discount value</label><input aria-label="Discount value" id="disc-val" type="number" min="0" step="any" value="0"></div>
             </div>
-            <div class="frow single"><div class="field"><label>Shipping</label><input id="ship" type="number" min="0" step="any" value="0"></div></div>
+            <div class="frow single"><div class="field"><label>Shipping</label><input aria-label="Shipping" id="ship" type="number" min="0" step="any" value="0"></div></div>
           </fieldset>
           <fieldset>
             <legend>Notes &amp; Payment</legend>
-            <div class="frow single"><div class="field"><label>Notes</label><textarea id="notes" placeholder="Any extra notes for your client"></textarea></div></div>
-            <div class="frow single"><div class="field"><label>Payment terms</label><textarea id="m-terms" placeholder="e.g. 50% advance required before shipment"></textarea></div></div>
-            <div class="frow single"><div class="field"><label>Payment details</label><textarea id="pay" placeholder="Bank account, IBAN, etc."></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Notes</label><textarea aria-label="Notes" id="notes" placeholder="Any extra notes for your client"></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Payment terms</label><textarea aria-label="Payment terms" id="m-terms" placeholder="e.g. 50% advance required before shipment"></textarea></div></div>
+            <div class="frow single"><div class="field"><label>Payment details</label><textarea aria-label="Payment details" id="pay" placeholder="Bank account, IBAN, etc."></textarea></div></div>
           </fieldset>
         </div>
         <div class="app-preview">

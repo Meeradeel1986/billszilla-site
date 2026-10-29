@@ -1,0 +1,12 @@
+{
+  "name": "BillsZilla",
+  "url": "https://billszilla.com/",
+  "description": "Free invoice generator for freelancers and small businesses. Everything runs 100% in the visitor's web browser: no account or sign-up, no watermark, and no data uploaded to a server.",
+  "tools_count": 8,
+  "pricing": "Free",
+  "signup_required": false,
+  "uploads_required": false,
+  "contact": "hello@billszilla.com",
+  "blog": "https://billszilla.com/blog/",
+  "llms_txt": "https://billszilla.com/llms.txt"
+}

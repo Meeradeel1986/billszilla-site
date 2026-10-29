@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+ <title>BillsZilla Blog</title>
+ <link>https://billszilla.com/blog/</link>
+ <description>Practical invoicing guides for freelancers and small businesses: how to write invoices, quotes vs invoices, getting paid faster, and invoicing and tax news.</description>
+ <language>en</language>
+  <item>
+   <title>UAE E-Invoicing Deadline: Appoint a Provider by 30 October or Face AED 5,000 Monthly Fines</title>
+   <link>https://billszilla.com/blog/uae-e-invoicing-deadline-penalties</link>
+   <guid>https://billszilla.com/blog/uae-e-invoicing-deadline-penalties</guid>
+   <pubDate>Mon, 26 Oct 2026 00:00:00 +0000</pubDate>
+   <description>The UAE tax authority warns businesses to meet e-invoicing deadlines: 30 October 2026 for large firms, 31 March 2027 for smaller ones, or face monthly fines.</description>
+  </item>
+  <item>
+   <title>E-Invoicing Is Going Mandatory: The 2026–2028 Deadlines You Need to Know</title>
+   <link>https://billszilla.com/blog/e-invoicing-mandates-2026-2028</link>
+   <guid>https://billszilla.com/blog/e-invoicing-mandates-2026-2028</guid>
+   <pubDate>Sun, 25 Oct 2026 00:00:00 +0000</pubDate>
+   <description>Spain just set its e-invoicing dates, France is already live, and Germany, the UAE and Ireland follow. What the global mandate wave means for freelancers.</description>
+  </item>
+  <item>
+   <title>How to Save and Send an Invoice as a PDF</title>
+   <link>https://billszilla.com/blog/how-to-save-invoice-as-pdf</link>
+   <guid>https://billszilla.com/blog/how-to-save-invoice-as-pdf</guid>
+   <pubDate>Fri, 23 Oct 2026 00:00:00 +0000</pubDate>
+   <description>Why PDF is the best format for sending invoices, how to save your invoice as a PDF, name the file properly, and send it by email or WhatsApp.</description>
+  </item>
+  <item>
+   <title>Invoice Payment Terms Explained: Net 30, Net 15, Due on Receipt</title>
+   <link>https://billszilla.com/blog/invoice-payment-terms</link>
+   <guid>https://billszilla.com/blog/invoice-payment-terms</guid>
+   <pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate>
+   <description>What Net 30, Net 15 and Due on Receipt mean, which terms suit your business, and the exact wording to put on invoices so you get paid on time.</description>
+  </item>
+  <item>
+   <title>Invoice vs Quote vs Receipt vs Proforma</title>
+   <link>https://billszilla.com/blog/invoice-vs-quote-vs-receipt</link>
+   <guid>https://billszilla.com/blog/invoice-vs-quote-vs-receipt</guid>
+   <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+   <description>Invoice, quote, receipt, proforma invoice — four documents, four different jobs. Learn which one to send and when, with real freelancer examples.</description>
+  </item>
+  <item>
+   <title>How to Write an Invoice: The 9 Things Every Invoice Needs</title>
+   <link>https://billszilla.com/blog/how-to-write-an-invoice</link>
+   <guid>https://billszilla.com/blog/how-to-write-an-invoice</guid>
+   <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+   <description>The complete invoice checklist: invoice numbers, dates, line items, taxes, payment terms and more. Write invoices that get you paid faster.</description>
+  </item>
+</channel>
+</rss>
