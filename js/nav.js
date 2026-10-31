@@ -4,6 +4,17 @@
 (function () {
   "use strict";
 
+  /* Mobile hamburger: toggle the nav menu. This lives here (not in the
+     per-tool scripts) so every page with a header gets a working menu,
+     including hub pages that load no tool script. */
+  var menuBtn = document.querySelector(".menu-toggle");
+  var navLinks = document.querySelector(".nav-links");
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener("click", function () {
+      navLinks.classList.toggle("open");
+    });
+  }
+
   function closeAll(except) {
     document.querySelectorAll(".nav-dd.open").forEach(function (dd) {
       if (dd !== except) {

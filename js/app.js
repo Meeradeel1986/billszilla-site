@@ -492,8 +492,6 @@ function renderHistory(){
 
 /* ---------- site chrome (all pages) ---------- */
 function initChrome(){
-  const t=document.querySelector(".menu-toggle"), nl=document.querySelector(".nav-links");
-  if(t&&nl) t.addEventListener("click",()=>nl.classList.toggle("open"));
   document.querySelectorAll(".faq-q").forEach(q=>q.addEventListener("click",()=>q.parentElement.classList.toggle("open")));
   document.querySelectorAll('[data-scroll]').forEach(a=>a.addEventListener("click",e=>{
     const el=document.querySelector(a.getAttribute("href")); if(el){e.preventDefault();el.scrollIntoView({behavior:"smooth"});}

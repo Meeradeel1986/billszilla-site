@@ -61,8 +61,6 @@ function setMode(m){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-  var t = document.querySelector(".menu-toggle"), nl = document.querySelector(".nav-links");
-  if(t && nl){ t.addEventListener("click", function(){ nl.classList.toggle("open"); }); }
 
   $("lf-mode-month").addEventListener("click", function(){ setMode("month"); });
   $("lf-mode-year").addEventListener("click", function(){ setMode("year"); });

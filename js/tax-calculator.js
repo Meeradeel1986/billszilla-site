@@ -49,8 +49,6 @@ function setMode(m){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-  var t = document.querySelector(".menu-toggle"), nl = document.querySelector(".nav-links");
-  if(t && nl){ t.addEventListener("click", function(){ nl.classList.toggle("open"); }); }
 
   $("tc-mode-add").addEventListener("click", function(){ setMode("add"); });
   $("tc-mode-remove").addEventListener("click", function(){ setMode("remove"); });

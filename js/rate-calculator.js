@@ -53,8 +53,6 @@ function calc(){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-  var t = document.querySelector(".menu-toggle"), nl = document.querySelector(".nav-links");
-  if(t && nl){ t.addEventListener("click", function(){ nl.classList.toggle("open"); }); }
 
   var cur = $("rc-currency");
   try{

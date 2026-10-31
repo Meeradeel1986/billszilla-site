@@ -147,8 +147,6 @@ function doPrint(){ bzDone(); window.print(); } /* "completed" = reminder printe
 /* ---------- init ---------- */
 document.addEventListener("DOMContentLoaded", function(){
   /* mobile menu */
-  var t = document.querySelector(".menu-toggle"), nl = document.querySelector(".nav-links");
-  if(t && nl){ t.addEventListener("click", function(){ nl.classList.toggle("open"); }); }
 
   /* currency select */
   var cur = $("r-currency");
