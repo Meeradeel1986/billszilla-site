@@ -65,6 +65,71 @@
 - [Free Wisconsin Sales Tax Calculator — BillsZilla](https://billszilla.com/sales-tax-calculator-wisconsin): Wisconsin sales tax calculator: add the 5% state base rate to a price or strip it from a total. Free, no signup.
 - [Free Wyoming Sales Tax Calculator — BillsZilla](https://billszilla.com/sales-tax-calculator-wyoming): Wyoming sales tax calculator: add the 4% state base rate to a price or strip it from a total. Free, no signup.
 
+## VAT & GST Calculators by Country
+
+- [VAT & GST Calculators by Country](https://billszilla.com/vat-calculators): One free calculator per country, with that country's standard VAT or GST rate pre-filled.
+- [Austria VAT Calculator](https://billszilla.com/vat-calculator-austria): Austria VAT calculator, standard rate pre-filled.
+- [Belgium VAT Calculator](https://billszilla.com/vat-calculator-belgium): Belgium VAT calculator, standard rate pre-filled.
+- [Bulgaria VAT Calculator](https://billszilla.com/vat-calculator-bulgaria): Bulgaria VAT calculator, standard rate pre-filled.
+- [Croatia VAT Calculator](https://billszilla.com/vat-calculator-croatia): Croatia VAT calculator, standard rate pre-filled.
+- [Cyprus VAT Calculator](https://billszilla.com/vat-calculator-cyprus): Cyprus VAT calculator, standard rate pre-filled.
+- [Czechia VAT Calculator](https://billszilla.com/vat-calculator-czechia): Czechia VAT calculator, standard rate pre-filled.
+- [Denmark VAT Calculator](https://billszilla.com/vat-calculator-denmark): Denmark VAT calculator, standard rate pre-filled.
+- [Estonia VAT Calculator](https://billszilla.com/vat-calculator-estonia): Estonia VAT calculator, standard rate pre-filled.
+- [Finland VAT Calculator](https://billszilla.com/vat-calculator-finland): Finland VAT calculator, standard rate pre-filled.
+- [France VAT Calculator](https://billszilla.com/vat-calculator-france): France VAT calculator, standard rate pre-filled.
+- [Germany VAT Calculator](https://billszilla.com/vat-calculator-germany): Germany VAT calculator, standard rate pre-filled.
+- [Greece VAT Calculator](https://billszilla.com/vat-calculator-greece): Greece VAT calculator, standard rate pre-filled.
+- [Hungary VAT Calculator](https://billszilla.com/vat-calculator-hungary): Hungary VAT calculator, standard rate pre-filled.
+- [Ireland VAT Calculator](https://billszilla.com/vat-calculator-ireland): Ireland VAT calculator, standard rate pre-filled.
+- [Italy VAT Calculator](https://billszilla.com/vat-calculator-italy): Italy VAT calculator, standard rate pre-filled.
+- [Latvia VAT Calculator](https://billszilla.com/vat-calculator-latvia): Latvia VAT calculator, standard rate pre-filled.
+- [Lithuania VAT Calculator](https://billszilla.com/vat-calculator-lithuania): Lithuania VAT calculator, standard rate pre-filled.
+- [Luxembourg VAT Calculator](https://billszilla.com/vat-calculator-luxembourg): Luxembourg VAT calculator, standard rate pre-filled.
+- [Malta VAT Calculator](https://billszilla.com/vat-calculator-malta): Malta VAT calculator, standard rate pre-filled.
+- [Netherlands VAT Calculator](https://billszilla.com/vat-calculator-netherlands): Netherlands VAT calculator, standard rate pre-filled.
+- [Poland VAT Calculator](https://billszilla.com/vat-calculator-poland): Poland VAT calculator, standard rate pre-filled.
+- [Portugal VAT Calculator](https://billszilla.com/vat-calculator-portugal): Portugal VAT calculator, standard rate pre-filled.
+- [Romania VAT Calculator](https://billszilla.com/vat-calculator-romania): Romania VAT calculator, standard rate pre-filled.
+- [Slovakia VAT Calculator](https://billszilla.com/vat-calculator-slovakia): Slovakia VAT calculator, standard rate pre-filled.
+- [Slovenia VAT Calculator](https://billszilla.com/vat-calculator-slovenia): Slovenia VAT calculator, standard rate pre-filled.
+- [Spain VAT Calculator](https://billszilla.com/vat-calculator-spain): Spain VAT calculator, standard rate pre-filled.
+- [Sweden VAT Calculator](https://billszilla.com/vat-calculator-sweden): Sweden VAT calculator, standard rate pre-filled.
+- [United Kingdom VAT Calculator](https://billszilla.com/vat-calculator-united-kingdom): United Kingdom VAT calculator, standard rate pre-filled.
+- [Norway VAT Calculator](https://billszilla.com/vat-calculator-norway): Norway VAT calculator, standard rate pre-filled.
+- [Switzerland VAT Calculator](https://billszilla.com/vat-calculator-switzerland): Switzerland VAT calculator, standard rate pre-filled.
+- [Iceland VAT Calculator](https://billszilla.com/vat-calculator-iceland): Iceland VAT calculator, standard rate pre-filled.
+- [Turkey VAT Calculator](https://billszilla.com/vat-calculator-turkey): Turkey VAT calculator, standard rate pre-filled.
+- [Australia GST Calculator](https://billszilla.com/gst-calculator-australia): Australia GST calculator, standard rate pre-filled.
+- [New Zealand GST Calculator](https://billszilla.com/gst-calculator-new-zealand): New Zealand GST calculator, standard rate pre-filled.
+- [India GST Calculator](https://billszilla.com/gst-calculator-india): India GST calculator, standard rate pre-filled.
+- [Pakistan GST Calculator](https://billszilla.com/gst-calculator-pakistan): Pakistan GST calculator, standard rate pre-filled.
+- [Bangladesh VAT Calculator](https://billszilla.com/vat-calculator-bangladesh): Bangladesh VAT calculator, standard rate pre-filled.
+- [Japan Consumption tax Calculator](https://billszilla.com/vat-calculator-japan): Japan Consumption tax calculator, standard rate pre-filled.
+- [South Korea VAT Calculator](https://billszilla.com/vat-calculator-south-korea): South Korea VAT calculator, standard rate pre-filled.
+- [Singapore GST Calculator](https://billszilla.com/gst-calculator-singapore): Singapore GST calculator, standard rate pre-filled.
+- [Malaysia Sales tax Calculator](https://billszilla.com/sales-tax-calculator-malaysia): Malaysia Sales tax calculator, standard rate pre-filled.
+- [Indonesia VAT Calculator](https://billszilla.com/vat-calculator-indonesia): Indonesia VAT calculator, standard rate pre-filled.
+- [Philippines VAT Calculator](https://billszilla.com/vat-calculator-philippines): Philippines VAT calculator, standard rate pre-filled.
+- [Thailand VAT Calculator](https://billszilla.com/vat-calculator-thailand): Thailand VAT calculator, standard rate pre-filled.
+- [Vietnam VAT Calculator](https://billszilla.com/vat-calculator-vietnam): Vietnam VAT calculator, standard rate pre-filled.
+- [UAE VAT Calculator](https://billszilla.com/vat-calculator-uae): UAE VAT calculator, standard rate pre-filled.
+- [Saudi Arabia VAT Calculator](https://billszilla.com/vat-calculator-saudi-arabia): Saudi Arabia VAT calculator, standard rate pre-filled.
+- [Bahrain VAT Calculator](https://billszilla.com/vat-calculator-bahrain): Bahrain VAT calculator, standard rate pre-filled.
+- [Oman VAT Calculator](https://billszilla.com/vat-calculator-oman): Oman VAT calculator, standard rate pre-filled.
+- [Egypt VAT Calculator](https://billszilla.com/vat-calculator-egypt): Egypt VAT calculator, standard rate pre-filled.
+- [South Africa VAT Calculator](https://billszilla.com/vat-calculator-south-africa): South Africa VAT calculator, standard rate pre-filled.
+- [Nigeria VAT Calculator](https://billszilla.com/vat-calculator-nigeria): Nigeria VAT calculator, standard rate pre-filled.
+- [Kenya VAT Calculator](https://billszilla.com/vat-calculator-kenya): Kenya VAT calculator, standard rate pre-filled.
+- [Morocco VAT Calculator](https://billszilla.com/vat-calculator-morocco): Morocco VAT calculator, standard rate pre-filled.
+- [Israel VAT Calculator](https://billszilla.com/vat-calculator-israel): Israel VAT calculator, standard rate pre-filled.
+- [Canada GST Calculator](https://billszilla.com/gst-calculator-canada): Canada GST calculator, standard rate pre-filled.
+- [Mexico VAT Calculator](https://billszilla.com/vat-calculator-mexico): Mexico VAT calculator, standard rate pre-filled.
+- [Argentina VAT Calculator](https://billszilla.com/vat-calculator-argentina): Argentina VAT calculator, standard rate pre-filled.
+- [Chile VAT Calculator](https://billszilla.com/vat-calculator-chile): Chile VAT calculator, standard rate pre-filled.
+- [Colombia VAT Calculator](https://billszilla.com/vat-calculator-colombia): Colombia VAT calculator, standard rate pre-filled.
+- [Peru VAT Calculator](https://billszilla.com/vat-calculator-peru): Peru VAT calculator, standard rate pre-filled.
+
 ## Templates
 - [Free Invoice Templates — Word, Excel & PDF | BillsZilla](https://billszilla.com/invoice-templates): Free invoice templates in Word, Excel and PDF: 6 professional designs to download, fill in and send — or create your invoice online free.
 - [Freelancer Invoice Template — Free | BillsZilla](https://billszilla.com/freelancer-invoice-template): Free freelancer invoice template with sample services and hourly rates. Create yours online in seconds — no signup, no watermark.
