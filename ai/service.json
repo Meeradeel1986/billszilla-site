@@ -621,5 +621,71 @@
     "url": "https://billszilla.com/vat-calculators",
     "description": "Free VAT and GST calculators for 61 countries: each country's standard rate pre-filled, add or remove tax instantly. No signup."
    }
+  ,
+   {
+    "name": "Free Alberta GST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-alberta",
+    "description": "Alberta sales tax calculator: add the 5% combined GST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free British Columbia GST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-british-columbia",
+    "description": "British Columbia sales tax calculator: add the 12% combined GST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free Manitoba GST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-manitoba",
+    "description": "Manitoba sales tax calculator: add the 12% combined GST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free New Brunswick HST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-new-brunswick",
+    "description": "New Brunswick sales tax calculator: add the 15% combined HST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free Newfoundland and Labrador HST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-newfoundland-and-labrador",
+    "description": "Newfoundland and Labrador sales tax calculator: add the 15% combined HST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free Nova Scotia HST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-nova-scotia",
+    "description": "Nova Scotia sales tax calculator: add the 14% combined HST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free Ontario HST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-ontario",
+    "description": "Ontario sales tax calculator: add the 13% combined HST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free Prince Edward Island HST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-prince-edward-island",
+    "description": "Prince Edward Island sales tax calculator: add the 15% combined HST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free Quebec GST + QST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-quebec",
+    "description": "Quebec sales tax calculator: add the 14.975% combined GST + QST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free Saskatchewan GST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-saskatchewan",
+    "description": "Saskatchewan sales tax calculator: add the 11% combined GST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free Northwest Territories GST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-northwest-territories",
+    "description": "Northwest Territories sales tax calculator: add the 5% combined GST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free Nunavut GST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-nunavut",
+    "description": "Nunavut sales tax calculator: add the 5% combined GST rate to a price or strip it from a total. Free, no signup."
+   },
+   {
+    "name": "Free Yukon GST Calculator \u2014 BillsZilla",
+    "url": "https://billszilla.com/gst-calculator-yukon",
+    "description": "Yukon sales tax calculator: add the 5% combined GST rate to a price or strip it from a total. Free, no signup."
+   }
   ]
 }

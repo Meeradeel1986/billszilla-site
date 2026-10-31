@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Nunavut GST Calculator — BillsZilla</title>
+<meta name="description" content="Nunavut sales tax calculator: add the 5% combined GST rate to a price or strip it from a total. Free, no signup.">
+<link rel="canonical" href="https://billszilla.com/gst-calculator-nunavut">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"BillsZilla Free Nunavut GST Calculator","url":"https://billszilla.com/gst-calculator-nunavut","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Nunavut sales tax calculator: add the 5% combined GST rate to a price or strip it from a total. Free, no signup."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type": "Question", "name": "What is the sales tax rate in Nunavut?", "acceptedAnswer": {"@type": "Answer", "text": "The combined rate is 5%. 5% federal GST only \u2014 no territorial sales tax. Nunavut charges only the 5% federal GST. There is no territorial sales tax to add on top."}}, {"@type": "Question", "name": "How do I add sales tax to a price in Nunavut?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply the net price by the combined rate and add it on: a C$1,000.00 item at 5% gives C$50.00 of tax and a C$1,050.00 total. In the calculator, choose \u201cAdd tax\u201d, enter the amount and rate, and the split appears instantly."}}, {"@type": "Question", "name": "How do I remove sales tax from a total in Nunavut?", "acceptedAnswer": {"@type": "Answer", "text": "Divide the gross total by (1 + rate \u00f7 100). At 5%, a C$1,000.00 total divides to a C$952.38 net \u2014 the tax inside it is C$47.62. Choose \u201cRemove tax\u201d in the calculator and it does this for you."}}, {"@type": "Question", "name": "Why is there no provincial tax in Nunavut?", "acceptedAnswer": {"@type": "Answer", "text": "5% federal GST only \u2014 no territorial sales tax. Only the federal GST applies."}}, {"@type": "Question", "name": "Does the combined rate apply to everything in Nunavut?", "acceptedAnswer": {"@type": "Answer", "text": "No. Zero-rating and exemptions apply to some items under the GST/HST, and in GST+PST provinces the provincial tax covers a narrower range of goods and services than the GST does. This calculator uses the general combined rate; type a different rate if your item qualifies for another treatment."}}, {"@type": "Question", "name": "Is this Nunavut sales tax calculator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 unlimited calculations, no signup, no watermark. Everything runs in your browser; nothing you type is uploaded anywhere."}}]}
+</script>
+<meta property="og:title" content="Free Nunavut GST Calculator — BillsZilla">
+<meta property="og:description" content="Nunavut sales tax calculator: add the 5% combined GST rate to a price or strip it from a total. Free, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://billszilla.com/gst-calculator-nunavut">
+<meta property="og:image" content="https://billszilla.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="/css/style.css?v=9">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#059669">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/logo.png?v=3" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Invoice Generator</a>
+      <a href="/payment-reminder">Payment Reminders</a>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Tools <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/quote">Quote Generator</a>
+          <a href="/receipt">Receipt Generator</a>
+          <a href="/proforma">Proforma Invoice</a>
+          <a href="/hourly-rate-calculator">Hourly Rate Calculator</a>
+          <a href="/time-tracker">Time Tracker</a>
+          <a href="/tax-calculator">Tax Calculator</a><a href="/late-fee-calculator">Late Fee Calculator</a><a href="/sales-tax-calculators">US Sales Tax Calculators</a><a href="/vat-calculators">VAT Calculators</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Templates <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/invoice-templates">All Invoice Templates</a>
+          <a href="/freelancer-invoice-template">Freelancer Invoice Template</a>
+          <a href="/contractor-invoice-template">Contractor Invoice Template</a>
+          <a href="/photographer-invoice-template">Photographer Invoice Template</a>
+          <a href="/consultant-invoice-template">Consultant Invoice Template</a>
+          <a href="/designer-invoice-template">Designer Invoice Template</a>
+          <a href="/cleaning-service-invoice-template">Cleaning Service Invoice Template</a>
+        </div>
+      </div>
+      <a href="/blog/">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/#app" class="btn nav-cta">Create Invoice</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Nunavut GST Calculator</h1>
+    <p>Buying or selling in Nunavut? Sales tax starts with the combined 5% rate. Calculate it exactly here — free, in your browser, no signup. 5% federal GST only — no territorial sales tax.</p>
+  </div>
+</section>
+
+<section class="app-section" id="app">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;margin-bottom:26px">
+      <h2 class="sec-title">Nunavut GST Calculator</h2>
+      <p class="sec-sub">Results update live as you type. Amounts in CAD. Nothing leaves your browser.</p>
+      <p style="margin-top:10px"><strong>Combined rate: 5%</strong> — 5% federal GST only — no territorial sales tax.</p>
+    </div>
+    <div class="app-shell">
+      <div class="app-grid cols2">
+        <div class="app-form">
+          <fieldset>
+            <legend>Your Numbers</legend>
+            <div class="frow single"><div class="field"><label>What do you want to do?</label>
+              <div class="mode-toggle">
+                <button type="button" id="tc-mode-add" class="active">Add tax</button>
+                <button type="button" id="tc-mode-remove">Remove tax</button>
+              </div>
+            </div></div>
+            <div class="frow">
+              <div class="field"><label id="tc-amount-label">Amount (before tax)</label><input aria-label="Amount (before tax)" id="tc-amount" type="number" min="0" step="any" value="1000"></div>
+              <div class="field"><label>Tax rate %</label><input aria-label="Tax rate %" id="tc-rate" type="number" min="0" step="any" value="5"></div>
+            </div>
+            <div class="field"><label>Common rates</label>
+              <div class="chip-row">
+                <button type="button" class="chip" data-rate="5">Combined 5%</button>
+                <button type="button" class="chip" data-rate="13">13%</button>
+                <button type="button" class="chip" data-rate="15">15%</button>
+              </div>
+            </div>
+            <div class="hint">“Add tax” starts from a net price. “Remove tax” works backwards from a total that already includes tax. This is the GENERAL combined rate in Nunavut — zero-rating, exemptions and narrower provincial-tax coverage may apply to specific items. If you know a different rate applies to your item, type it into the rate field.</div>
+          </fieldset>
+        </div>
+        <div class="app-preview">
+          <div class="preview-label"><span><span class="live-dot"></span>Your result</span></div>
+          <div class="rate-result">
+            <div class="rate-big" id="tc-big">0.00</div>
+            <div class="rate-sub" id="tc-big-label">total including tax</div>
+            <div class="rate-rows">
+              <div class="rate-row"><span>Net amount (before tax)</span><b id="tc-net">0.00</b></div>
+              <div class="rate-row"><span>Tax amount</span><b id="tc-tax">0.00</b></div>
+              <div class="rate-row"><span>Gross amount (with tax)</span><b id="tc-gross">0.00</b></div>
+            </div>
+            <div class="rate-formula" id="tc-formula"></div>
+            <a href="/#app" class="btn" style="margin-top:18px">Add this to a free invoice →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="rate-source" style="text-align:center;margin-top:14px">Combined rate verified October 2026 · Source: <a href="https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-which-rate.html">Canada Revenue Agency — Charge and collect the GST/HST</a></p>
+  </div>
+</section>
+
+<section class="marketing">
+  <div class="wrap" style="max-width:820px">
+    <h2 class="sec-title">How to calculate Nunavut sales tax in 3 steps</h2>
+    <ol class="steps">
+      <li><strong>Enter your amount.</strong> Type the price you are working with — either before tax or tax-inclusive, depending on what you have.</li>
+      <li><strong>Pick the rate and direction.</strong> The 5% combined rate is pre-filled and editable; choose “Add tax” or “Remove tax”.</li>
+      <li><strong>Read the split instantly.</strong> You get the net amount, the exact tax, and the gross total — ready to quote, invoice, or check a receipt against.</li>
+    </ol>
+    <h2 class="sec-title" style="margin-top:34px">Why getting the Nunavut split right matters</h2>
+    <p>Whether you are a seller working out what to charge or a buyer checking a receipt, the split matters: net, tax, total. Get any one of them wrong and either you absorb the tax or your customer disputes the invoice. This calculator shows all three instantly, in Canadian dollars.</p>
+    <p><a href="/gst-calculator-canada">← All Canadian provinces and territories</a> · <a href="/vat-calculators">See all 61 countries →</a></p>
+  </div>
+</section>
+
+<section class="marketing">
+  <div class="wrap" style="max-width:820px">
+    <h2 class="sec-title">Nunavut sales tax FAQ</h2>
+    <div class="faq-item"><button class="faq-q">What is the sales tax rate in Nunavut?</button><div class="faq-a">The combined rate is 5%. 5% federal GST only — no territorial sales tax. Nunavut charges only the 5% federal GST. There is no territorial sales tax to add on top.</div></div>
+    <div class="faq-item"><button class="faq-q">How do I add sales tax to a price in Nunavut?</button><div class="faq-a">Multiply the net price by the combined rate and add it on: a C$1,000.00 item at 5% gives C$50.00 of tax and a C$1,050.00 total. In the calculator, choose “Add tax”, enter the amount and rate, and the split appears instantly.</div></div>
+    <div class="faq-item"><button class="faq-q">How do I remove sales tax from a total in Nunavut?</button><div class="faq-a">Divide the gross total by (1 + rate ÷ 100). At 5%, a C$1,000.00 total divides to a C$952.38 net — the tax inside it is C$47.62. Choose “Remove tax” in the calculator and it does this for you.</div></div>
+    <div class="faq-item"><button class="faq-q">Why is there no provincial tax in Nunavut?</button><div class="faq-a">5% federal GST only — no territorial sales tax. Only the federal GST applies.</div></div>
+    <div class="faq-item"><button class="faq-q">Does the combined rate apply to everything in Nunavut?</button><div class="faq-a">No. Zero-rating and exemptions apply to some items under the GST/HST, and in GST+PST provinces the provincial tax covers a narrower range of goods and services than the GST does. This calculator uses the general combined rate; type a different rate if your item qualifies for another treatment.</div></div>
+    <div class="faq-item"><button class="faq-q">Is this Nunavut sales tax calculator free?</button><div class="faq-a">Yes — unlimited calculations, no signup, no watermark. Everything runs in your browser; nothing you type is uploaded anywhere.</div></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" style="color:#fff"><img src="/logo.png?v=3" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+        <p>The free invoice generator that respects your privacy. No signup, no watermark, no servers.</p>
+      </div>
+      <div><h4>Tools</h4><a href="/#app">Invoice Generator</a><a href="/quote">Quote Generator</a><a href="/receipt">Receipt Generator</a><a href="/proforma">Proforma Invoice</a><a href="/payment-reminder">Payment Reminder</a><a href="/hourly-rate-calculator">Rate Calculator</a><a href="/time-tracker">Time Tracker</a><a href="/tax-calculator">Tax Calculator</a><a href="/late-fee-calculator">Late Fee Calculator</a><a href="/sales-tax-calculators">US Sales Tax Calculators</a><a href="/vat-calculators">VAT Calculators</a><a href="/invoice-templates">Invoice Templates</a></div>
+      <div><h4>Templates</h4><a href="/freelancer-invoice-template">Freelancer Invoice</a><a href="/contractor-invoice-template">Contractor Invoice</a><a href="/photographer-invoice-template">Photographer Invoice</a><a href="/consultant-invoice-template">Consultant Invoice</a><a href="/designer-invoice-template">Designer Invoice</a><a href="/cleaning-service-invoice-template">Cleaning Service Invoice</a></div>
+      <div><h4>Resources</h4><a href="https://pdfzippy.com">PDFZippy — Free PDF Tools</a><a href="/blog/">Blog</a><a href="/#faq">FAQ</a><a href="/#templates">Templates</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Made for freelancers everywhere.</span></div>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<script src="/js/data.js?v=5"></script>
+<script src="/js/tax-calculator.js?v=1"></script>
+<script src="/js/chat.js?v=3"></script>
+<script src="/js/install.js?v=2"></script>
+<script src="/js/nav.js?v=1"></script>
+</body>
+</html>

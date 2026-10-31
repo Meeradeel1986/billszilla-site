@@ -223,8 +223,8 @@ def check_presence():
 
 def main():
     urls = sitemap_urls()
-    if len(urls) != 141:
-        fail(f"sitemap has {len(urls)} URLs, expected 141 — update this check "
+    if len(urls) != 154:
+        fail(f"sitemap has {len(urls)} URLs, expected 154 — update this check "
              f"if pages were added/removed on purpose")
     check_sitemap_coverage(urls)
     seen_titles, seen_descs = {}, {}

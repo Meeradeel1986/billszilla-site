@@ -130,6 +130,22 @@
 - [Colombia VAT Calculator](https://billszilla.com/vat-calculator-colombia): Colombia VAT calculator, standard rate pre-filled.
 - [Peru VAT Calculator](https://billszilla.com/vat-calculator-peru): Peru VAT calculator, standard rate pre-filled.
 
+## Canada GST/HST Calculators by Province
+
+- [Alberta GST Calculator](https://billszilla.com/gst-calculator-alberta): Alberta sales tax calculator, 5% combined rate pre-filled.
+- [British Columbia GST Calculator](https://billszilla.com/gst-calculator-british-columbia): British Columbia sales tax calculator, 12% combined rate pre-filled.
+- [Manitoba GST Calculator](https://billszilla.com/gst-calculator-manitoba): Manitoba sales tax calculator, 12% combined rate pre-filled.
+- [New Brunswick HST Calculator](https://billszilla.com/gst-calculator-new-brunswick): New Brunswick sales tax calculator, 15% combined rate pre-filled.
+- [Newfoundland and Labrador HST Calculator](https://billszilla.com/gst-calculator-newfoundland-and-labrador): Newfoundland and Labrador sales tax calculator, 15% combined rate pre-filled.
+- [Nova Scotia HST Calculator](https://billszilla.com/gst-calculator-nova-scotia): Nova Scotia sales tax calculator, 14% combined rate pre-filled.
+- [Ontario HST Calculator](https://billszilla.com/gst-calculator-ontario): Ontario sales tax calculator, 13% combined rate pre-filled.
+- [Prince Edward Island HST Calculator](https://billszilla.com/gst-calculator-prince-edward-island): Prince Edward Island sales tax calculator, 15% combined rate pre-filled.
+- [Quebec GST + QST Calculator](https://billszilla.com/gst-calculator-quebec): Quebec sales tax calculator, 14.975% combined rate pre-filled.
+- [Saskatchewan GST Calculator](https://billszilla.com/gst-calculator-saskatchewan): Saskatchewan sales tax calculator, 11% combined rate pre-filled.
+- [Northwest Territories GST Calculator](https://billszilla.com/gst-calculator-northwest-territories): Northwest Territories sales tax calculator, 5% combined rate pre-filled.
+- [Nunavut GST Calculator](https://billszilla.com/gst-calculator-nunavut): Nunavut sales tax calculator, 5% combined rate pre-filled.
+- [Yukon GST Calculator](https://billszilla.com/gst-calculator-yukon): Yukon sales tax calculator, 5% combined rate pre-filled.
+
 ## Templates
 - [Free Invoice Templates — Word, Excel & PDF | BillsZilla](https://billszilla.com/invoice-templates): Free invoice templates in Word, Excel and PDF: 6 professional designs to download, fill in and send — or create your invoice online free.
 - [Freelancer Invoice Template — Free | BillsZilla](https://billszilla.com/freelancer-invoice-template): Free freelancer invoice template with sample services and hourly rates. Create yours online in seconds — no signup, no watermark.
