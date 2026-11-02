@@ -163,6 +163,7 @@
 - [How to Save and Send an Invoice as a PDF — BillsZilla Blog](https://billszilla.com/blog/how-to-save-invoice-as-pdf): Why PDF is the best format for sending invoices, how to save your invoice as a PDF, name the file properly, and send it by email or WhatsApp.
 - [E-Invoicing Deadlines 2026–2028 — BillsZilla Blog](https://billszilla.com/blog/e-invoicing-mandates-2026-2028): Spain just set its e-invoicing dates, France is already live, and Germany, the UAE and Ireland follow. What the global mandate wave means for freelancers.
 - [UAE E-Invoicing Deadline: 30 Oct — BillsZilla Blog](https://billszilla.com/blog/uae-e-invoicing-deadline-penalties): The UAE tax authority warns businesses to meet e-invoicing deadlines: 30 October 2026 for large firms, 31 March 2027 for smaller ones, or face monthly fines.
+- [E-Invoicing's Next Wave: UK Sets a 2029 Date — BillsZilla Blog](https://billszilla.com/blog/uk-e-invoicing-roadmap-2029): HMRC's e-invoicing roadmap (28 Oct 2026): VAT e-invoices become mandatory from 1 April 2029. What changed, who is in scope, and what freelancers should do now.
 
 ## Company
 - [About — BillsZilla | Free Invoice Generator](https://billszilla.com/about): BillsZilla is a free invoice generator built for freelancers and small businesses. No signup, no watermark, no servers — your data never leaves your browser.
