@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICMS Calculators by Brazilian State — BillsZilla</title>
+<meta name="description" content="Free ICMS calculators for all 27 Brazilian states: each state's standard internal rate pre-filled, add or remove tax instantly. No signup.">
+<link rel="canonical" href="https://billszilla.com/icms-calculators">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"BillsZilla ICMS Calculators by Brazilian State","url":"https://billszilla.com/icms-calculators","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free ICMS calculators for all 27 Brazilian states: each state's standard internal rate pre-filled, add or remove tax instantly. No signup."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type": "Question", "name": "What is ICMS?", "acceptedAnswer": {"@type": "Answer", "text": "ICMS (Imposto sobre Circula\u00e7\u00e3o de Mercadorias e Servi\u00e7os) is Brazil's state-level tax on the circulation of goods and on transport, telecom and other listed services. Each of the 26 states plus the Federal District sets its own standard internal rate, so the rate depends on where the sale happens."}}, {"@type": "Question", "name": "Why do ICMS rates differ by state?", "acceptedAnswer": {"@type": "Answer", "text": "ICMS is a state tax, not a federal one: each state government sets its own internal rate by law. Most states sit between 17% and 23% for the standard internal rate, and several raised their rates in 2023\u20132025 \u2014 so a rate you remember from a few years ago may no longer apply. Each calculator below opens with that state's current standard internal rate, verified in November 2026."}}, {"@type": "Question", "name": "Do the internal rates cover interstate sales and tax substitution?", "acceptedAnswer": {"@type": "Answer", "text": "No. Sales to buyers in other states generally use the interstate rates of 7% or 12% instead of the internal rate, and tax substitution (ICMS-ST) \u2014 where the tax is collected earlier in the chain \u2014 changes who pays on some goods. These calculators use the standard internal rate only; for an interstate sale, type 7% or 12% into the rate field on the state calculator."}}, {"@type": "Question", "name": "Is every calculator on this page free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 unlimited calculations, no signup, no watermark. Everything runs in your browser; nothing you type is uploaded anywhere."}}]}
+</script>
+<meta property="og:title" content="ICMS Calculators by Brazilian State — BillsZilla">
+<meta property="og:description" content="Free ICMS calculators for all 27 Brazilian states: each state's standard internal rate pre-filled, add or remove tax instantly. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://billszilla.com/icms-calculators">
+<meta property="og:image" content="https://billszilla.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="/css/style.css?v=9">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#059669">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+.state-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px 32px;max-width:640px;margin:18px auto 0}
+.state-row{display:flex;justify-content:space-between;gap:12px;padding:9px 2px;border-bottom:1px solid #e5e7eb}
+.state-row a{font-weight:600}
+.state-row span{color:#374151}
+@media(max-width:640px){.state-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/logo.png?v=3" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Invoice Generator</a>
+      <a href="/payment-reminder">Payment Reminders</a>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Tools <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/quote">Quote Generator</a>
+          <a href="/receipt">Receipt Generator</a>
+          <a href="/proforma">Proforma Invoice</a>
+          <a href="/hourly-rate-calculator">Hourly Rate Calculator</a>
+          <a href="/time-tracker">Time Tracker</a>
+          <a href="/tax-calculator">Tax Calculator</a><a href="/late-fee-calculator">Late Fee Calculator</a><a href="/sales-tax-calculators">US Sales Tax Calculators</a><a href="/vat-calculators">VAT Calculators</a>
+        </div>
+      </div>
+      <div class="nav-dd">
+        <button class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Templates <span class="nav-caret">▾</span></button>
+        <div class="nav-dd-menu">
+          <a href="/invoice-templates">All Invoice Templates</a>
+          <a href="/freelancer-invoice-template">Freelancer Invoice Template</a>
+          <a href="/contractor-invoice-template">Contractor Invoice Template</a>
+          <a href="/photographer-invoice-template">Photographer Invoice Template</a>
+          <a href="/consultant-invoice-template">Consultant Invoice Template</a>
+          <a href="/designer-invoice-template">Designer Invoice Template</a>
+          <a href="/cleaning-service-invoice-template">Cleaning Service Invoice Template</a>
+        </div>
+      </div>
+      <a href="/blog/">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="/#app" class="btn nav-cta">Create Invoice</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>ICMS Calculators by Brazilian State</h1>
+    <p>One free calculator per state, with that state's standard internal ICMS rate pre-filled. Add tax to a price or strip it out of a total — for all 26 states plus the Federal District, in Brazilian reais.</p>
+  </div>
+</section>
+
+<section class="marketing">
+  <div class="wrap" style="max-width:820px">
+    <p>ICMS is Brazil's state-level tax on goods and listed services, and there is no single national rate: each state sets its own internal rate, most between 17% and 23%. Pick your state below — the calculator opens with that state's standard internal rate already entered, and you can type in a different rate if your item qualifies for one.</p>
+    <p><strong>Two things the internal rate does not cover:</strong> sales to buyers in other states, which generally use the interstate rates of 7% or 12%, and tax substitution (ICMS-ST), where the tax is collected earlier in the chain. The calculators use the standard internal rate only — they do not compute interstate or substitution cases.</p>
+    <h2 class="sec-title">North</h2>
+    <div class="state-grid">
+    <div class="state-row"><a href="/icms-calculator-acre">Acre ICMS</a><span>19%</span></div>
+    <div class="state-row"><a href="/icms-calculator-amapa">Amapá ICMS</a><span>18%</span></div>
+    <div class="state-row"><a href="/icms-calculator-amazonas">Amazonas ICMS</a><span>20%</span></div>
+    <div class="state-row"><a href="/icms-calculator-para">Pará ICMS</a><span>19%</span></div>
+    <div class="state-row"><a href="/icms-calculator-rondonia">Rondônia ICMS</a><span>19.5%</span></div>
+    <div class="state-row"><a href="/icms-calculator-roraima">Roraima ICMS</a><span>20%</span></div>
+    <div class="state-row"><a href="/icms-calculator-tocantins">Tocantins ICMS</a><span>20%</span></div>
+    </div>
+    <h2 class="sec-title">Northeast</h2>
+    <div class="state-grid">
+    <div class="state-row"><a href="/icms-calculator-alagoas">Alagoas ICMS</a><span>20.5%</span></div>
+    <div class="state-row"><a href="/icms-calculator-bahia">Bahia ICMS</a><span>20.5%</span></div>
+    <div class="state-row"><a href="/icms-calculator-ceara">Ceará ICMS</a><span>20%</span></div>
+    <div class="state-row"><a href="/icms-calculator-maranhao">Maranhão ICMS</a><span>23%</span></div>
+    <div class="state-row"><a href="/icms-calculator-paraiba">Paraíba ICMS</a><span>20%</span></div>
+    <div class="state-row"><a href="/icms-calculator-pernambuco">Pernambuco ICMS</a><span>20.5%</span></div>
+    <div class="state-row"><a href="/icms-calculator-piaui">Piauí ICMS</a><span>22.5%</span></div>
+    <div class="state-row"><a href="/icms-calculator-rio-grande-do-norte">Rio Grande do Norte ICMS</a><span>20%</span></div>
+    <div class="state-row"><a href="/icms-calculator-sergipe">Sergipe ICMS</a><span>19%</span></div>
+    </div>
+    <h2 class="sec-title">Center-West</h2>
+    <div class="state-grid">
+    <div class="state-row"><a href="/icms-calculator-distrito-federal">Distrito Federal ICMS</a><span>20%</span></div>
+    <div class="state-row"><a href="/icms-calculator-goias">Goiás ICMS</a><span>19%</span></div>
+    <div class="state-row"><a href="/icms-calculator-mato-grosso">Mato Grosso ICMS</a><span>17%</span></div>
+    <div class="state-row"><a href="/icms-calculator-mato-grosso-do-sul">Mato Grosso do Sul ICMS</a><span>17%</span></div>
+    </div>
+    <h2 class="sec-title">Southeast</h2>
+    <div class="state-grid">
+    <div class="state-row"><a href="/icms-calculator-espirito-santo">Espírito Santo ICMS</a><span>17%</span></div>
+    <div class="state-row"><a href="/icms-calculator-minas-gerais">Minas Gerais ICMS</a><span>18%</span></div>
+    <div class="state-row"><a href="/icms-calculator-rio-de-janeiro">Rio de Janeiro ICMS</a><span>20%</span></div>
+    <div class="state-row"><a href="/icms-calculator-sao-paulo">São Paulo ICMS</a><span>18%</span></div>
+    </div>
+    <h2 class="sec-title">South</h2>
+    <div class="state-grid">
+    <div class="state-row"><a href="/icms-calculator-parana">Paraná ICMS</a><span>19.5%</span></div>
+    <div class="state-row"><a href="/icms-calculator-rio-grande-do-sul">Rio Grande do Sul ICMS</a><span>17%</span></div>
+    <div class="state-row"><a href="/icms-calculator-santa-catarina">Santa Catarina ICMS</a><span>17%</span></div>
+    </div>
+    <h2 class="sec-title" style="margin-top:34px">ICMS calculators FAQ</h2>
+    <div class="faq-item"><button class="faq-q">What is ICMS?</button><div class="faq-a">ICMS (Imposto sobre Circulação de Mercadorias e Serviços) is Brazil's state-level tax on the circulation of goods and on transport, telecom and other listed services. Each of the 26 states plus the Federal District sets its own standard internal rate, so the rate depends on where the sale happens.</div></div>
+    <div class="faq-item"><button class="faq-q">Why do ICMS rates differ by state?</button><div class="faq-a">ICMS is a state tax, not a federal one: each state government sets its own internal rate by law. Most states sit between 17% and 23% for the standard internal rate, and several raised their rates in 2023–2025 — so a rate you remember from a few years ago may no longer apply. Each calculator below opens with that state's current standard internal rate, verified in November 2026.</div></div>
+    <div class="faq-item"><button class="faq-q">Do the internal rates cover interstate sales and tax substitution?</button><div class="faq-a">No. Sales to buyers in other states generally use the interstate rates of 7% or 12% instead of the internal rate, and tax substitution (ICMS-ST) — where the tax is collected earlier in the chain — changes who pays on some goods. These calculators use the standard internal rate only; for an interstate sale, type 7% or 12% into the rate field on the state calculator.</div></div>
+    <div class="faq-item"><button class="faq-q">Is every calculator on this page free?</button><div class="faq-a">Yes — unlimited calculations, no signup, no watermark. Everything runs in your browser; nothing you type is uploaded anywhere.</div></div>
+    <p class="rate-source" style="margin-top:14px">Rates verified November 2026 · Sources: each state's Secretaria da Fazenda and the state legislation linked on each calculator.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/" style="color:#fff"><img src="/logo.png?v=3" alt="BillsZilla logo"><span>Bills<em>Zilla</em></span></a>
+        <p>The free invoice generator that respects your privacy. No signup, no watermark, no servers.</p>
+      </div>
+      <div><h4>Tools</h4><a href="/#app">Invoice Generator</a><a href="/quote">Quote Generator</a><a href="/receipt">Receipt Generator</a><a href="/proforma">Proforma Invoice</a><a href="/payment-reminder">Payment Reminder</a><a href="/hourly-rate-calculator">Rate Calculator</a><a href="/time-tracker">Time Tracker</a><a href="/tax-calculator">Tax Calculator</a><a href="/late-fee-calculator">Late Fee Calculator</a><a href="/sales-tax-calculators">US Sales Tax Calculators</a><a href="/vat-calculators">VAT Calculators</a><a href="/invoice-templates">Invoice Templates</a></div>
+      <div><h4>Templates</h4><a href="/freelancer-invoice-template">Freelancer Invoice</a><a href="/contractor-invoice-template">Contractor Invoice</a><a href="/photographer-invoice-template">Photographer Invoice</a><a href="/consultant-invoice-template">Consultant Invoice</a><a href="/designer-invoice-template">Designer Invoice</a><a href="/cleaning-service-invoice-template">Cleaning Service Invoice</a></div>
+      <div><h4>Resources</h4><a href="https://pdfzippy.com">PDFZippy — Free PDF Tools</a><a href="/blog/">Blog</a><a href="/#faq">FAQ</a><a href="/#templates">Templates</a></div>
+      <div><h4>Company</h4><a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year">2026</span> BillsZilla. All rights reserved.</span><span>Made for freelancers everywhere.</span></div>
+  </div>
+</footer>
+
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+<script src="/js/data.js?v=5"></script>
+<script src="/js/chat.js?v=3"></script>
+<script src="/js/install.js?v=2"></script>
+<script src="/js/nav.js?v=2"></script>
+</body>
+</html>

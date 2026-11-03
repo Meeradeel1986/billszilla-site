@@ -146,6 +146,37 @@
 - [Nunavut GST Calculator](https://billszilla.com/gst-calculator-nunavut): Nunavut sales tax calculator, 5% combined rate pre-filled.
 - [Yukon GST Calculator](https://billszilla.com/gst-calculator-yukon): Yukon sales tax calculator, 5% combined rate pre-filled.
 
+## Brazil ICMS Calculators by State
+
+- [Acre ICMS Calculator](https://billszilla.com/icms-calculator-acre): Acre ICMS calculator, 19% standard internal rate pre-filled.
+- [Alagoas ICMS Calculator](https://billszilla.com/icms-calculator-alagoas): Alagoas ICMS calculator, 20.5% standard internal rate pre-filled.
+- [Amapá ICMS Calculator](https://billszilla.com/icms-calculator-amapa): Amapá ICMS calculator, 18% standard internal rate pre-filled.
+- [Amazonas ICMS Calculator](https://billszilla.com/icms-calculator-amazonas): Amazonas ICMS calculator, 20% standard internal rate pre-filled.
+- [Bahia ICMS Calculator](https://billszilla.com/icms-calculator-bahia): Bahia ICMS calculator, 20.5% standard internal rate pre-filled.
+- [Ceará ICMS Calculator](https://billszilla.com/icms-calculator-ceara): Ceará ICMS calculator, 20% standard internal rate pre-filled.
+- [Distrito Federal ICMS Calculator](https://billszilla.com/icms-calculator-distrito-federal): Distrito Federal ICMS calculator, 20% standard internal rate pre-filled.
+- [Espírito Santo ICMS Calculator](https://billszilla.com/icms-calculator-espirito-santo): Espírito Santo ICMS calculator, 17% standard internal rate pre-filled.
+- [Goiás ICMS Calculator](https://billszilla.com/icms-calculator-goias): Goiás ICMS calculator, 19% standard internal rate pre-filled.
+- [Maranhão ICMS Calculator](https://billszilla.com/icms-calculator-maranhao): Maranhão ICMS calculator, 23% standard internal rate pre-filled.
+- [Mato Grosso ICMS Calculator](https://billszilla.com/icms-calculator-mato-grosso): Mato Grosso ICMS calculator, 17% standard internal rate pre-filled.
+- [Mato Grosso do Sul ICMS Calculator](https://billszilla.com/icms-calculator-mato-grosso-do-sul): Mato Grosso do Sul ICMS calculator, 17% standard internal rate pre-filled.
+- [Minas Gerais ICMS Calculator](https://billszilla.com/icms-calculator-minas-gerais): Minas Gerais ICMS calculator, 18% standard internal rate pre-filled.
+- [Pará ICMS Calculator](https://billszilla.com/icms-calculator-para): Pará ICMS calculator, 19% standard internal rate pre-filled.
+- [Paraíba ICMS Calculator](https://billszilla.com/icms-calculator-paraiba): Paraíba ICMS calculator, 20% standard internal rate pre-filled.
+- [Paraná ICMS Calculator](https://billszilla.com/icms-calculator-parana): Paraná ICMS calculator, 19.5% standard internal rate pre-filled.
+- [Pernambuco ICMS Calculator](https://billszilla.com/icms-calculator-pernambuco): Pernambuco ICMS calculator, 20.5% standard internal rate pre-filled.
+- [Piauí ICMS Calculator](https://billszilla.com/icms-calculator-piaui): Piauí ICMS calculator, 22.5% standard internal rate pre-filled.
+- [Rio de Janeiro ICMS Calculator](https://billszilla.com/icms-calculator-rio-de-janeiro): Rio de Janeiro ICMS calculator, 20% standard internal rate pre-filled.
+- [Rio Grande do Norte ICMS Calculator](https://billszilla.com/icms-calculator-rio-grande-do-norte): Rio Grande do Norte ICMS calculator, 20% standard internal rate pre-filled.
+- [Rio Grande do Sul ICMS Calculator](https://billszilla.com/icms-calculator-rio-grande-do-sul): Rio Grande do Sul ICMS calculator, 17% standard internal rate pre-filled.
+- [Rondônia ICMS Calculator](https://billszilla.com/icms-calculator-rondonia): Rondônia ICMS calculator, 19.5% standard internal rate pre-filled.
+- [Roraima ICMS Calculator](https://billszilla.com/icms-calculator-roraima): Roraima ICMS calculator, 20% standard internal rate pre-filled.
+- [Santa Catarina ICMS Calculator](https://billszilla.com/icms-calculator-santa-catarina): Santa Catarina ICMS calculator, 17% standard internal rate pre-filled.
+- [São Paulo ICMS Calculator](https://billszilla.com/icms-calculator-sao-paulo): São Paulo ICMS calculator, 18% standard internal rate pre-filled.
+- [Sergipe ICMS Calculator](https://billszilla.com/icms-calculator-sergipe): Sergipe ICMS calculator, 19% standard internal rate pre-filled.
+- [Tocantins ICMS Calculator](https://billszilla.com/icms-calculator-tocantins): Tocantins ICMS calculator, 20% standard internal rate pre-filled.
+- [ICMS Calculators by Brazilian State](https://billszilla.com/icms-calculators): one free ICMS calculator per Brazilian state, each with that state's standard internal rate pre-filled.
+
 ## Templates
 - [Free Invoice Templates — Word, Excel & PDF | BillsZilla](https://billszilla.com/invoice-templates): Free invoice templates in Word, Excel and PDF: 6 professional designs to download, fill in and send — or create your invoice online free.
 - [Freelancer Invoice Template — Free | BillsZilla](https://billszilla.com/freelancer-invoice-template): Free freelancer invoice template with sample services and hourly rates. Create yours online in seconds — no signup, no watermark.
