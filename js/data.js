@@ -37,11 +37,11 @@ const LANGUAGES = {
 };
 
 const TEMPLATES = [
-  {id:"t-modern", name:"Modern",  swatch:"linear-gradient(135deg,#10b981,#0f172a)"},
+  {id:"t-modern", name:"Modern",  swatch:"linear-gradient(135deg,#047857,#0f172a)"},
   {id:"t-classic",name:"Classic", swatch:"linear-gradient(135deg,#f8fafc,#0f172a)"},
   {id:"t-minimal",name:"Minimal", swatch:"linear-gradient(135deg,#ffffff,#e5e7eb)"},
   {id:"t-bold",   name:"Bold",    swatch:"linear-gradient(135deg,#0f172a,#334155)"},
-  {id:"t-fresh",  name:"Fresh",   swatch:"linear-gradient(135deg,#a7f3d0,#059669)"},
+  {id:"t-fresh",  name:"Fresh",   swatch:"linear-gradient(135deg,#047857,#064e3b)"},
   {id:"t-mono",   name:"Mono",    swatch:"linear-gradient(135deg,#e5e7eb,#9ca3af)"}
 ];
 

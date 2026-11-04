@@ -57,23 +57,23 @@ var KB=[
 var CHIPS=["Is it really free?","How do I save as PDF?","Is my data private?"];
 
 var css=[
-"#bz-chat-btn{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;border:0;background:#059669;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 6px 20px rgba(5,150,105,.4);z-index:9990;display:flex;align-items:center;justify-content:center}",
+"#bz-chat-btn{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;border:0;background:#047857;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 6px 20px rgba(5,150,105,.4);z-index:9990;display:flex;align-items:center;justify-content:center}",
 "#bz-chat-btn:hover{background:#047857}",
 "#bz-chat-panel{position:fixed;right:18px;bottom:86px;width:min(360px,calc(100vw - 36px));height:min(520px,calc(100vh - 120px));background:#fff;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.18);z-index:9990;display:none;flex-direction:column;overflow:hidden;font-family:inherit}",
 "#bz-chat-panel.open{display:flex}",
-".bz-chat-head{background:#059669;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}",
+".bz-chat-head{background:#047857;color:#fff;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}",
 ".bz-chat-head strong{display:block;font-size:15px}.bz-chat-head span{font-size:12px;opacity:.85}",
 "#bz-chat-close{background:none;border:0;color:#fff;font-size:22px;cursor:pointer;line-height:1}",
 "#bz-chat-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:#f8fafc}",
 ".bz-msg{max-width:85%;padding:9px 12px;border-radius:12px;font-size:14px;line-height:1.45}",
 ".bz-msg.bot{background:#fff;border:1px solid #e2e8f0;color:#0f172a;border-bottom-left-radius:4px;align-self:flex-start}",
-".bz-msg.bot a{color:#059669}",
-".bz-msg.user{background:#059669;color:#fff;border-bottom-right-radius:4px;align-self:flex-end}",
+".bz-msg.bot a{color:#047857}",
+".bz-msg.user{background:#047857;color:#fff;border-bottom-right-radius:4px;align-self:flex-end}",
 "#bz-chat-chips{display:flex;gap:6px;padding:8px 12px;flex-wrap:wrap;background:#f8fafc;border-top:1px solid #e2e8f0}",
 "#bz-chat-chips button{background:#ecfdf5;border:1px solid #6ee7b7;color:#065f46;font-size:12px;border-radius:20px;padding:6px 10px;cursor:pointer}",
 ".bz-chat-input{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid #e2e8f0}",
 "#bz-chat-text{flex:1;border:1px solid #cbd5e1;border-radius:10px;padding:9px 12px;font-size:14px;outline:none}",
-"#bz-chat-send{background:#059669;color:#fff;border:0;border-radius:10px;padding:0 16px;font-size:16px;cursor:pointer}",
+"#bz-chat-send{background:#047857;color:#fff;border:0;border-radius:10px;padding:0 16px;font-size:16px;cursor:pointer}",
 "@media print{#bz-chat-btn,#bz-chat-panel{display:none!important}}"
 ].join("\n");
 

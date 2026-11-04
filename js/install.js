@@ -9,7 +9,7 @@ if ("serviceWorker" in navigator) {
 }
 var css = [
 "#bz-install{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:9989;background:#0f172a;color:#fff;border-radius:14px;padding:10px 10px 10px 16px;display:flex;align-items:center;gap:10px;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,.3);max-width:calc(100vw - 36px)}",
-"#bz-install-go{background:#059669;color:#fff;border:0;border-radius:10px;padding:8px 14px;font-size:14px;cursor:pointer;white-space:nowrap}",
+"#bz-install-go{background:#047857;color:#fff;border:0;border-radius:10px;padding:8px 14px;font-size:14px;cursor:pointer;white-space:nowrap}",
 "#bz-install-x{background:none;border:0;color:#94a3b8;font-size:20px;cursor:pointer;line-height:1;padding:4px 6px}",
 "body.bz-has-install{padding-bottom:96px}",
 "@media print{#bz-install{display:none!important}}"
