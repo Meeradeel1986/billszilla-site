@@ -109,7 +109,7 @@ function init(){
   var panel=document.createElement("div");panel.id="bz-chat-panel";
   panel.innerHTML='<div class="bz-chat-head"><div><strong>BillsZilla Assistant</strong><span>Instant answers</span></div><button id="bz-chat-close" aria-label="Close">×</button></div>'+
     '<div id="bz-chat-msgs"></div><div id="bz-chat-chips"></div>'+
-    '<div class="bz-chat-input"><input id="bz-chat-text" placeholder="Ask a question…" autocomplete="off"><button id="bz-chat-send" aria-label="Send">➤</button></div>';
+    '<div class="bz-chat-input"><input id="bz-chat-text" aria-label="Ask a question" placeholder="Ask a question…" autocomplete="off"><button id="bz-chat-send" aria-label="Send">➤</button></div>';
   document.body.appendChild(btn);document.body.appendChild(panel);
   var greeted=false;
   function toggle(force){

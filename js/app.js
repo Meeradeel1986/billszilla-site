@@ -292,10 +292,10 @@ function renderItems(){
     const row=document.createElement("div");
     row.className="item-row";
     row.innerHTML=`
-      <div class="field"><label>Description</label><input data-k="desc" data-i="${i}" value="${esc(it.desc)}" placeholder="Service or product"></div>
-      <div class="field"><label>Qty</label><input data-k="qty" data-i="${i}" type="number" min="0" step="any" value="${esc(it.qty)}"></div>
-      <div class="field"><label>Rate</label><input data-k="rate" data-i="${i}" type="number" min="0" step="any" value="${esc(it.rate)}"></div>
-      ${showTax?`<div class="field"><label>Tax %</label><input data-k="tax" data-i="${i}" type="number" min="0" step="any" value="${esc(it.tax)}"></div>`:""}
+      <div class="field"><label>Description</label><input aria-label="Description" data-k="desc" data-i="${i}" value="${esc(it.desc)}" placeholder="Service or product"></div>
+      <div class="field"><label>Qty</label><input aria-label="Qty" data-k="qty" data-i="${i}" type="number" min="0" step="any" value="${esc(it.qty)}"></div>
+      <div class="field"><label>Rate</label><input aria-label="Rate" data-k="rate" data-i="${i}" type="number" min="0" step="any" value="${esc(it.rate)}"></div>
+      ${showTax?`<div class="field"><label>Tax %</label><input aria-label="Tax %" data-k="tax" data-i="${i}" type="number" min="0" step="any" value="${esc(it.tax)}"></div>`:""}
       <button class="icon-btn" data-del="${i}" title="Remove">×</button>`;
     box.appendChild(row);
   });
