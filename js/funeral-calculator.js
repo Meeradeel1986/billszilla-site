@@ -28,6 +28,22 @@ function isChecked(id){
 function escHtml(s){
   return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
+function escAttr(s){
+  return escHtml(s).replace(/"/g,"&quot;");
+}
+/* Short source tag for a line item. The default basis (NFDA 2023 median)
+   needs no tag — the legend above the list covers it. Only lines whose
+   basis differs get a tag; the full basis stays on the row (data-basis)
+   and in the tag's tooltip, so no source information is lost. */
+function shortTag(basis){
+  if(!basis) return "";
+  if(basis.indexOf("NFDA 2023 median") === 0) return "";
+  if(basis.indexOf("Funeral Consumers Alliance") !== -1) return "FCA";
+  if(basis.indexOf("FTC right") !== -1) return "FTC right";
+  if(basis.indexOf("GPL study") !== -1) return "GPL study";
+  if(basis.indexOf("LegalClarity") !== -1) return "LegalClarity";
+  return "source";
+}
 
 function setVisible(id, show){
   var el = $(id);
@@ -155,9 +171,11 @@ function calc(){
   var html = "";
   for(var j = 0; j < lines.length; j++){
     var L = lines[j];
-    var val = (L.amount === null || L.amount === undefined) ? "range" : fmt2(L.amount);
-    html += '<div class="rate-row"><span>' + escHtml(L.label) +
-            '<br><small style="color:#64748b">' + escHtml(L.basis) + '</small></span><b>' + val + '</b></div>';
+    var val = (L.amount === null || L.amount === undefined) ? fmt(FC_DATA.cemetery.low) + " – " + fmt(FC_DATA.cemetery.high) : fmt2(L.amount);
+    var tag = shortTag(L.basis);
+    html += '<div class="rate-row" data-basis="' + escAttr(L.basis) + '"><span>' + escHtml(L.label) +
+            (tag ? ' <span class="fc-tag" title="' + escAttr(L.basis) + '">' + escHtml(tag) + '</span>' : '') +
+            '</span><b>' + val + '</b></div>';
   }
   $("fc-lines").innerHTML = html;
   if(low === high){

@@ -513,3 +513,25 @@ section{padding:64px 0}
 .check-list li::before{content:"✓";position:absolute;left:2px;color:var(--green-dark);font-weight:800}
 .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 30px}
 @media(max-width:700px){.check-grid{grid-template-columns:1fr}}
+
+/* ---------- funeral estimator compact bill ---------- */
+/* The estimate must fit on one screen: single-line rows, two-column item
+   grid on desktop, one compact column on phones. Source info lives in the
+   legend + per-line tags (full basis in data-basis / tag tooltip). */
+.fc-result{padding:20px 22px}
+.fc-result .rate-big{font-size:2.2rem}
+.fc-result .rate-sub{margin:2px 0 8px}
+.fc-legend{font-size:.8rem;color:var(--muted);margin:0 0 8px}
+.fc-result .rate-rows{display:grid;grid-template-columns:1fr 1fr;column-gap:20px}
+.fc-result .rate-row{padding:4px 2px;font-size:.84rem;line-height:1.35;gap:6px}
+.fc-result .rate-row b{font-size:.95rem;white-space:nowrap}
+.fc-result .rate-formula,.fc-result #fc-typical,.fc-result #fc-notes{line-height:1.45}
+.fc-tag{display:inline-block;font-size:.68rem;font-weight:700;color:#475569;background:#eef2f7;border:1px solid var(--line);border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.fc-result .rate-formula{margin-top:8px;padding:6px 10px}
+@media(max-width:767px){
+  .fc-result .rate-rows{grid-template-columns:1fr}
+  .fc-result{padding:12px}
+  .fc-result .rate-big{font-size:1.8rem}
+  .fc-result .rate-row{padding:3px 2px;font-size:.82rem}
+  .fc-legend{font-size:.78rem}
+}
