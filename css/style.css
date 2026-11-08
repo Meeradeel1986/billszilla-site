@@ -335,8 +335,16 @@ section{padding:64px 0}
   .grid3,.tpl-gallery,.blog-grid,.steps{grid-template-columns:1fr}
   .frow{grid-template-columns:1fr}
   .item-row{grid-template-columns:1fr 60px 76px 60px 34px}
-  .invoice-sheet{padding:26px 22px}
-  .t-bold .inv-topbar{margin:-26px -22px 20px;padding:24px 22px}
+  .app-preview{padding:20px 14px}
+  .invoice-sheet{padding:22px 14px}
+  .t-bold .inv-topbar{margin:-22px -14px 20px;padding:24px 14px}
+  /* invoice tables: fit all 5-6 columns on a ~390px phone (screen only;
+     print/PDF keeps the full-size layout via @media print) */
+  .invoice-sheet .inv-table th{padding:8px 4px;font-size:.68rem;letter-spacing:.02em}
+  .invoice-sheet .inv-table td{padding:8px 4px;font-size:.85rem}
+  .invoice-sheet .inv-ztable th{padding:8px 4px;font-size:.72rem}
+  .invoice-sheet .inv-ztable td{padding:8px 4px;font-size:.85rem}
+  .invoice-sheet .inv-ztable .zn{width:26px}
   .inv-parties{flex-direction:column}
   .inv-totals{width:100%}
   section{padding:44px 0}
