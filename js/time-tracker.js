@@ -34,9 +34,11 @@ function fmtDur(sec){
 }
 function fmtDurShort(sec){
   sec = Math.max(0, Math.round(sec));
-  var h = Math.floor(sec/3600), m = Math.floor((sec%3600)/60);
-  if(h===0) return m + "m";
-  return h + "h " + (m<10?"0":"")+m + "m";
+  var h = Math.floor(sec/3600), m = Math.floor((sec%3600)/60), s = sec%60;
+  function p(n){ return (n<10?"0":"")+n; }
+  if(h > 0) return h + "h " + p(m) + "m " + p(s) + "s";
+  if(m > 0) return m + "m " + p(s) + "s";
+  return s + "s";
 }
 function fmtDate(iso){
   return new Date(iso).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});

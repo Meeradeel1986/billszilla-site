@@ -3,13 +3,14 @@
 "use strict";
 var $ = function(id){ return document.getElementById(id); };
 var mode = "add"; /* "add": amount is net, add tax on top · "remove": amount is gross, extract the tax */
+var CUR = ""; /* currency symbol for the result panel, from the page's data-currency */
 
 function val(id, fallback){
   var v = parseFloat(($(id).value || "").replace(/,/g,""));
   return (isNaN(v) || v < 0) ? fallback : v;
 }
 function fmt(n){
-  return Number(n).toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
+  return CUR + Number(n).toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
 }
 
 function calc(){
@@ -49,6 +50,11 @@ function setMode(m){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
+
+  /* currency symbol for the result panel (each page declares its own
+     in data-currency on .rate-result, matching the symbol its copy uses) */
+  var rr = document.querySelector(".rate-result");
+  if(rr && rr.getAttribute){ CUR = rr.getAttribute("data-currency") || ""; }
 
   $("tc-mode-add").addEventListener("click", function(){ setMode("add"); });
   $("tc-mode-remove").addEventListener("click", function(){ setMode("remove"); });
