@@ -68,6 +68,7 @@
 ## VAT & GST Calculators by Country
 
 - [VAT & GST Calculators by Country](https://billszilla.com/vat-calculators): One free calculator per country, with that country's standard VAT or GST rate pre-filled.
+- [GST Calculators by Country](https://billszilla.com/gst-calculators): GST calculators for Australia, New Zealand, India, Pakistan, Singapore and Canada, plus all 13 Canadian provinces — rates pre-filled, free, no signup.
 - [Austria VAT Calculator](https://billszilla.com/vat-calculator-austria): Austria VAT calculator, standard rate pre-filled.
 - [Belgium VAT Calculator](https://billszilla.com/vat-calculator-belgium): Belgium VAT calculator, standard rate pre-filled.
 - [Bulgaria VAT Calculator](https://billszilla.com/vat-calculator-bulgaria): Bulgaria VAT calculator, standard rate pre-filled.
@@ -235,6 +236,7 @@
 - [Free Invoice Templates — Word, Excel & PDF | BillsZilla](https://billszilla.com/invoice-templates): Free invoice templates in Word, Excel and PDF: 6 professional designs to download, fill in and send — or create your invoice online free.
 - [Freelancer Invoice Template — Free | BillsZilla](https://billszilla.com/freelancer-invoice-template): Free freelancer invoice template with sample services and hourly rates. Create yours online in seconds — no signup, no watermark.
 - [Contractor Invoice Template — Free | BillsZilla](https://billszilla.com/contractor-invoice-template): Free contractor invoice template with labour, materials and staged payments. Create yours online in seconds — no signup needed.
+- [Construction Invoice Template — Free | BillsZilla](https://billszilla.com/construction-invoice-template): Free construction invoice template with progress billing by project phase, retention and change orders. Create yours online in seconds — no signup.
 - [Photographer Invoice Template — Free | BillsZilla](https://billszilla.com/photographer-invoice-template): Free photographer invoice template with shoot fees, editing and licensing lines. Create yours online in seconds, free.
 - [Consultant Invoice Template — Free | BillsZilla](https://billszilla.com/consultant-invoice-template): Free consultant invoice template with day rates, workshops and retainers. Create yours online in seconds — no signup, no watermark.
 - [Designer Invoice Template — Free | BillsZilla](https://billszilla.com/designer-invoice-template): Free designer invoice template with concepts, revisions and licensing lines. Create yours online in seconds, free forever.
